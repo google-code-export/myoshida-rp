@@ -21,6 +21,7 @@ Redmine::MenuManager.map :admin_reports_menu do |menu|
 
   menu.push :workflows, {:controller => 'admin_reports', :action => 'workflows'},
                                              :caption => :label_workflow
+  menu.push :settings, {:controller => 'admin_reports', :action => 'settings'}
   menu.push :plugins, {:controller => 'admin_reports', :action => 'plugins'}
   menu.push :info, {:controller => 'admin_reports', :action => 'info'},
                                              :caption => :label_information_plural, :last => true
