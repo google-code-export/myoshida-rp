@@ -15,9 +15,13 @@ end
 
 
 Redmine::MenuManager.map :admin_reports_menu do |menu|
-  menu.push :permissions, {:controller => 'admin_reports', :action => 'permissions'}, :caption => :label_permissions_report,
+  menu.push :permissions, {:controller => 'admin_reports', :action => 'permissions'},
+                                             :caption => :label_permissions_report,
                                              :html => {:class => 'roles'}
 
+  menu.push :workflows, {:controller => 'admin_reports', :action => 'workflows'},
+                                             :caption => :label_workflow
   menu.push :plugins, {:controller => 'admin_reports', :action => 'plugins'}
-  menu.push :info, {:controller => 'admin_reports', :action => 'info'}, :caption => :label_information_plural, :last => true
+  menu.push :info, {:controller => 'admin_reports', :action => 'info'},
+                                             :caption => :label_information_plural, :last => true
 end
