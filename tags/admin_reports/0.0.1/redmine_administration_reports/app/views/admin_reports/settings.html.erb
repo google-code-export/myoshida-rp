@@ -1,0 +1,24 @@
+<% html_title(l(:label_settings) + " - " + l(:label_admin_reports)) %>
+<h2><%=l(:label_settings)%></h2>
+<h3><%=l(:label_repository)%></h3>
+
+
+<h4><%= l(:text_issues_ref_in_commit_messages) %></h4>
+
+<table>
+<tr>
+<th><%= l(:setting_commit_ref_keywords) %>:</th>
+<td><%=h Setting[:commit_ref_keywords] %></td>
+</tr>
+<tr>
+<th><%= l(:setting_commit_fix_keywords) %>:</th>
+<td><%=h Setting[:commit_fix_keywords] %></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<%= l(:label_applied_status) %>: <%= @commit_fix_status %><br />
+<%= l(:field_done_ratio) %>: <%= @commit_fix_done_ratio %>
+</td>
+</tr>
+</table>
