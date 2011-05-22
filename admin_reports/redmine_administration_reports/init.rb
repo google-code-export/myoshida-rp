@@ -5,7 +5,7 @@ Redmine::Plugin.register :redmine_administration_reports do
   author 'M. Yoshida'
   description 'This is a plugin for reports of administration'
   version '0.0.1'
-  url 'http://example.com/path/to/plugin'
+  url 'http://www.r-labs.org/projects/rp-admin-reports/wiki/AdministrationReportsEn'
 
 
   menu :application_menu, :admin_reports, { :controller => 'admin_reports', :action => 'info' },
