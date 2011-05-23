@@ -1,5 +1,7 @@
 require 'redmine'
 require 'cgi'
+require 'wikipedia_link_asset_tag_helper_patch'
+
 
 Redmine::Plugin.register :redmine_wikipedia_link do
   name 'Redmine Wikipedia Link plugin'
@@ -21,3 +23,4 @@ Redmine::WikiFormatting::Macros.register do
     end
   end
 end
+
