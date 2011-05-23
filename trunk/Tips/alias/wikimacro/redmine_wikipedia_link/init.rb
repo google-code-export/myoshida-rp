@@ -17,7 +17,7 @@ Redmine::WikiFormatting::Macros.register do
     else
       word = args.first.strip
       addr = "http://ja.wikipedia.org/wiki/" + CGI.escape(word)
-      return link_to(word, addr)
+      return link_to(word, addr, :class => "external")
     end
   end
 end
