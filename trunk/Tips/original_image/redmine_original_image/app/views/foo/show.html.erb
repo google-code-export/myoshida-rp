@@ -1,0 +1,9 @@
+<h2>Foo#show</h2>
+
+<% content_for :header_tags do %>
+<%= stylesheet_link_tag 'bar.css', :plugin => 'redmine_original_image' %>
+<% end %>
+
+
+<span class='icon icon-rimg'> test1 </span> <br />
+<%= link_to "test2", {:controller => :foo, :action => :show}, :class => 'icon icon-rimg' %>

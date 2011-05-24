@@ -1,0 +1,2 @@
+module SampHelper
+end
