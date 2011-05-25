@@ -1,0 +1,42 @@
+
+h1. Redmine adminestration plugin
+
+This plug-in is made to be able to attend information such as 
+the Permissions report and the workflow from the general user.
+
+
+
+h2. Feauture
+
+Report Contents
+
+* Permissions report
+* Workflow
+* Installed plugins
+* Keywords in commit messages for repository
+* Current Redmine version
+
+Adminestration menu is also shown, if a administor user. 
+
+
+h2. Download
+
+
+https://code.google.com/p/myoshida-rp/downloads/list
+
+
+
+h2. Install
+
+
+1. Extends the dawnloaded package in vender/plugins directory.
+2. Restart Redmine WEB server.
+
+cf. http://www.redmine.org/wiki/1/Plugins
+
+
+h2. Usage
+
+View report form *Adminestration reports* menu item in the top menu.
+
+
