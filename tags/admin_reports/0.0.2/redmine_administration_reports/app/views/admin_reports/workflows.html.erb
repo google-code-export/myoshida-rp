@@ -1,0 +1,57 @@
+<% html_title(l(:label_workflow) + " - " + l(:label_admin_reports)) %>
+<h2><%=l(:label_workflow)%></h2>
+
+
+<% form_tag({}, :method => 'get') do %>
+<p>
+	<label><%=l(:label_role)%>:</label>
+	<%= select_tag 'role_id', options_from_collection_for_select(@roles, "id", "name", @role && @role.id) %>
+
+  <label><%=l(:label_tracker)%>:</label>
+	<%= select_tag 'tracker_id', options_from_collection_for_select(@trackers, "id", "name", @tracker && @tracker.id) %>
+  
+</p>
+<p>
+<%= submit_tag l(:button_view), :name => nil %>
+</p>
+<% end %>
+
+
+<% if @tracker && @role && @statuses.any? %>
+<div class="autoscroll">
+<table class="list">
+<thead>
+	<tr>
+		<th align="left"><%=l(:label_current_status)%></th>
+		<th align="center" colspan="<%= @statuses.length %>"><%=l(:label_new_statuses_allowed)%></th>
+	</tr>
+	<tr>
+		<td></td>
+		<% for new_status in @statuses %>
+		<td width="<%= 75 / @statuses.size %>%" align="center">
+			<%= new_status.name %>
+		</td>
+		<% end %>
+	</tr>
+</thead>
+<tbody>
+	<% for old_status in @statuses %>
+	<tr class="<%= cycle("odd", "even") %>">
+		<td>
+			<%= old_status.name %>
+		</td>
+		<% new_status_ids_allowed = old_status.find_new_statuses_allowed_to([@role], @tracker).collect(&:id) -%>
+		<% for new_status in @statuses -%>
+		<td align="center">
+		    <% if new_status_ids_allowed.include?(new_status.id) %>
+                        <span class="icon icon-checked"></span>
+		    <% end %>
+		</td>
+		<% end -%>
+	</tr>
+	<% end %>
+</tbody>
+</table>
+</div>
+<% end %>
+
