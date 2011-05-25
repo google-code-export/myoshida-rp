@@ -4,12 +4,12 @@ Redmine::Plugin.register :redmine_administration_reports do
   name 'Redmine administration Reports plugin'
   author 'M. Yoshida'
   description 'This is a plugin for reports of administration'
-  version '0.0.1'
+  version '0.0.2'
   url 'http://www.r-labs.org/projects/rp-admin-reports/wiki/AdministrationReportsEn'
 
 
-  menu :application_menu, :admin_reports, { :controller => 'admin_reports', :action => 'info' },
-                                               :if => Proc.new { User.current.logged? }
+  menu :top_menu, :admin_reports, { :controller => 'admin_reports', :action => 'info' },
+                                                         :if => Proc.new { User.current.logged? }
 
 end
 
