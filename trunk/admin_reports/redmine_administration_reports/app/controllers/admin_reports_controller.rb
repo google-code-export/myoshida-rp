@@ -45,7 +45,15 @@ class AdminReportsController < ApplicationController
 
 
   def info
-    @db_adapter_name = ActiveRecord::Base.connection.adapter_name
+    @item = params[:id]
+    case @item
+    when 'permissions'; permissions;
+    when 'workflows'; workflows;
+    when 'settings'; settings;
+    when 'plugins'; plugins;
+    else
+      @db_adapter_name = ActiveRecord::Base.connection.adapter_name
+    end
   end
 
 end
