@@ -18,15 +18,17 @@ class ReportItem
   end
 
   def self.label(item)
-    I18n.t(@@captions[item])
+    item = :info	unless item
+    I18n.t(@@captions[item.to_sym])
   end
 
   
   def self.push_menu(menu, item, caption = nil, opts = {})
-    url = {:controller => 'admin_reports', :action => item}
+    url = {:controller => 'admin_reports', :action => :info}
     copts = opts.clone
 
-    unless (item == 'info')
+    if (item != :info)
+      url[:id] = item
       copts[:if] = Proc.new { ReportItem::is_shown?(item) }
     end
 
@@ -42,7 +44,9 @@ class ReportItem
     
   
   def self.is_shown?(item)
-    return !Setting.plugin_redmine_administration_reports['hide_' + item.to_s];
+    hidekey = 'hide_'
+    hidekey += (item) ? item.to_s : "info"
+    return !Setting.plugin_redmine_administration_reports[hidekey];
   end
 
   

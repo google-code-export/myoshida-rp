@@ -1,5 +1,24 @@
+<%
+if @item
+  html_title(ReportItem.label(@item)) 
+end
+%>
 <% html_title(l(:label_admin_reports)) %>
-<h2><%=l(:label_information_plural)%></h2>
+
+
+<h2><%= h ReportItem.label(@item)  %></h2>
+
+<% if ReportItem.is_shown?(@item)
+     if (@item and @item != :info)
+       page = 'admin_reports/' + @item.to_s %>
+<%=    render(:partial => page) %>
+<%   else %>
 
 <p><strong><%= Redmine::Info.versioned_name %></strong> (<%= @db_adapter_name %>)</p>
 
+<%   end %>
+<% else %>
+
+<p><b> Hide </b></p>
+
+<% end %>
