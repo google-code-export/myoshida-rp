@@ -1,0 +1,30 @@
+
+h1. アイコンを使用する
+
+Redmine にはプロジェクトメニューや新規作成、編集といったリンクでアイコンが使われています。プラグインを作る場合でもこういったアイコンを使いたい場合がよくあります。それらのアイコンを使う方法を紹介します。
+
+例えばの [編集] のリンクでは次のように記述されています。( @app/views/issues/show.rhtml@ )
+<pre><code class="ruby">
+link_to l(:button_edit), {:controller => 'queries', :action => 'edit', :id => @query}, :class => 'icon icon-edit'
+</pre>
+これをみるとアイコンを使う場合、 Redmine では、使いやすいようにアイコン画像を直接指定するのではなく、 CSS のクラスでアイコンを指定子、そのクラスを指定しています。
+また、'icon icon-edit' と 2 つのクラスが指定されていますが、クラスは複数指定しているとその定義全部が適用されます。これを使って *icon* クラスでアイコンを使う場合の基本的なスタイルを定義し、*icon-xxx* で個別のアイコン画像を _background-image_ を使って指定しています。
+このクラス定義は Redmine のデフォルトの CSS である @public/stylesheets/application.css@ で定義されています。
+<pre>
+.icon {
+background-position: 0% 50%;
+background-repeat: no-repeat;
+padding-left: 20px;
+padding-top: 2px;
+padding-bottom: 3px;
+}
+.icon-edit { background-image: url(../images/edit.png); }
+</pre>
+
+デフォルトのアイコンは @public/images@ におかれています。アイコンを使う場合、以下のような手順で行ってみてください。
+# @public/images@ で使いたいアイコンを探す
+# @public/stylesheets/application.css@ でそのアイコンがどのようなクラス名で定義されている調べる
+# 使用したいタグのクラスに 'icon _見つかったクラス名_ ' とつける
+
+ちなみに Redmine の本体ではアイコンだけでいい場合、 image_tag などを使っているところもあるのですが、プラグインだとなぜか失敗したので、クラスで指定した方がいいと思います。
+

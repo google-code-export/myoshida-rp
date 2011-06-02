@@ -1,0 +1,20 @@
+
+h1. contain_for の出力先一覧
+
+*content_for* はブロックの中身を第一引数で指定したところに挿入する rails のメソッドです。
+この出力先をいろいろ変えることによりサイドバーやフッタを記述することが出来ます。
+
+例えば、views のページに以下のように書くとサイドバーに foo の文字が追加されます。
+<pre>
+<% content_for :sidebar do %>
+    foo<br />
+<% end %>
+</pre>
+
+
+この contain_for の出力先をまとめてみました。
+
+|_. シンボル名 |_. 出力先 |
+| :header_tags | html のヘッダ。 [[TipsOrignalImage|スタイルシートの追加などに使用します]] |
+| :sidebar | サイドバー。!contain_for_sidebar.png! |
+
