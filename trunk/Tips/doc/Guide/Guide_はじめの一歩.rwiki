@@ -15,7 +15,9 @@ Redmine ではプラグインを作るための雛形(スケルトン)を生成する機能があります。
 
 まず、最初にプラグイン全体のスケルトンを作成します。
 Remine のトップディレクトリに移動して、以下のコマンドを実行します。
+<pre>
 $ ruby script/generate redmine_plugin Standard
+</pre>
 
 コマンドを実行すると @vender/plugins/redmine_standard@ 以下にスケルトンが生成されます。
 他のプラグインをインストールしたことのある方はご存知だと思いますが、 @vender/plugins@ 以下の各ディレクトリがプラグインとして扱われます。
