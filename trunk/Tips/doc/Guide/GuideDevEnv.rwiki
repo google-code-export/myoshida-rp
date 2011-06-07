@@ -7,8 +7,12 @@ h1. ƒvƒ‰ƒOƒCƒ“‚ÌŠJ”­ŠÂ‹«‚Ì€”õ
 
 ’Êí‚Ì Redmine ‚ÌƒCƒ“ƒXƒg[ƒ‹•û–@‚Ìà–¾‚ÍˆÈ‰º‚ÌƒTƒCƒg‚ª‚¨Š©‚ß‚Å‚·B
 
-* http://redmine.jp/guide/RedmineInstall/
-* http://www012.upp.so-net.ne.jp/tanuki-project/install_redmine.html
+* Redmine ‚Ì–{‰Æ
+** http://www.redmine.org/projects/redmine/wiki/RedmineInstall 
+* –{‰Æ‚Ì“ú–{Œê–ó
+** http://redmine.jp/guide/RedmineInstall/ 
+* Windows ”Å‚ÌƒCƒ“ƒXƒg[ƒ‹
+** http://www012.upp.so-net.ne.jp/tanuki-project/install_redmine.html 
 
 
 
@@ -20,7 +24,7 @@ h2. ŠJ”­—p Redmine ‚Ìƒ|ƒCƒ“ƒg
 
 Rails ‚Å‚Í“®ìƒ‚[ƒh‚Æ‚µ‚ÄA *production* ƒ‚[ƒh‚Æ *development* ƒ‚[ƒh‚ª—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·BÀÛ‚É‰Ò“®‚·‚éê‡‚Í production ƒ‚[ƒh‚Å“®ì‚³‚¹‚Ü‚·‚ªAŠJ”­‚Ég‚¤ê‡‚Í development ƒ‚[ƒh‚Ì•û‚ª‚¿‚å‚Á‚Æ•Ö—˜‚Å‚·B
 production ƒ‚[ƒh‚Å‚Í“®ì‚ğ‘‚­‚·‚é‚½‚ßAˆê“x“Ç‚İ‚ñ‚¾ƒR[ƒh‚ÍŠo‚¦‚Ä‚¨‚¢‚ÄAÄ“x•\¦‚·‚éê‡‚Í‚»‚ê‚ğg‚¢‚Ü‚·B‚»‚ê‚É‘Î‚µ‚Ä development ƒ‚[ƒh‚Ìê‡‚ÍA•\¦‚·‚é‚½‚Ñ‚É–ˆ‰ñ“Ç‚İ‚ñ‚Å‚­‚ê‚é‚Ì‚ÅA•ÏX‚ğ Redmine ‚ÌÄ‹N“®‚È‚µ‚ÅŠm”F‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B‚½‚¾A *‚¿‚å‚Á‚Æ* •Ö—˜‚Æ‘‚¢‚½‚Ì‚ÍŒã‚Åà–¾‚µ‚Ü‚·‚ªA‘S•”‘¦À‚É•ÏX‚ª“K—p‚³‚ê‚é‚í‚¯‚Å‚Í‚È‚¢‚Ì‚ÅAˆÓŠO‚ÆÄ‹N“®‚Í•K—v‚Å‚·B
-‚¿‚È‚İ‚É“®ìƒ‚[ƒh‚É‚Í test ƒ‚[ƒh‚Æ‚¢‚¤‚Ì‚à‚ ‚è‚Ü‚·B‚±‚ê‚ÍƒeƒXƒg‚Ég‚¤‚à‚Ì‚Å‚·‚ªA‚±‚Ìƒvƒ‰ƒOƒCƒ“ƒKƒCƒh‚Å‚Í test ‚É‚Â‚¢‚Ä‚Í‘‚¢‚Ä‚È‚¢‚Ì‚ÅAÈ—ª‚µ‚Ä‚¢‚Ü‚·B Rails ‚Å‚ÍƒeƒXƒg‚àŠÈ’P‚É‚Å‚«‚é‚Ì‚ç‚µ‚¢‚Å‚·‚ªA„‚Íg‚Á‚½‚±‚Æ‚ª‚ ‚è‚Ü‚¹‚ñB
+‚¿‚È‚İ‚É“®ìƒ‚[ƒh‚É‚Í test ƒ‚[ƒh‚Æ‚¢‚¤‚Ì‚à‚ ‚è‚Ü‚·B‚±‚ê‚ÍƒeƒXƒg‚Ég‚¤‚à‚Ì‚Å‚·‚ªA‚±‚Ìƒvƒ‰ƒOƒCƒ“ƒKƒCƒh‚Å‚Í test ‚É‚Â‚¢‚Ä‚Í‘‚¢‚Ä‚È‚¢‚Ì‚ÅAÈ—ª‚µ‚Ü‚·B Rails ‚Å‚ÍƒeƒXƒg‚àŠÈ’P‚É‚Å‚«‚é‚Ì‚ç‚µ‚¢‚Å‚·‚ªA„‚Íg‚Á‚½‚±‚Æ‚ª‚ ‚è‚Ü‚¹‚ñB
 
 ÀÛ‚É‰^—p‚·‚éê‡‚ÍƒT[ƒo‚É‚Í Apache ‚È‚Ç‚ğg‚¤‚Æv‚¢‚Ü‚·B‚µ‚©‚µA‚±‚ê‚ç‚ÌƒT[ƒo‚Ìê‡AƒGƒ‰[‚ª”­¶‚µ‚½‚Æ‚«Aƒy[ƒW‚É *Internal Error* ‚Æ‚Å‚é‚¾‚¯‚Å‚·‚ªA *WEBrick* ‚ğg‚Á‚Ä‚¢‚é‚Æ *Ú×‚ÈƒGƒ‰[ƒy[ƒW* ‚ªo‚Ä‚«‚ÄƒfƒoƒbƒO‚É‚©‚È‚è–ğ‚É—§‚¿‚Ü‚·B
 
@@ -33,11 +37,11 @@ h2. g—pƒ\ƒtƒg
 |_. Ruby         | Rumix  | http://ruby.morphball.net/rumix/        |
 |_. ƒf[ƒ^ƒx[ƒX | SQLite | http://www.sqlite.org/download.html     |
 
-‚Ü‚¸ARedmine ‚ÌÅV”Å‚ğƒ_ƒEƒ[ƒh‚µ‚Ü‚·Bì¬‚µ‚½ƒvƒ‰ƒOƒCƒ“ŒöŠJ‚·‚é‚É‚Í‚È‚é‚×‚­ÅV”Å‚ÅŠm”F‚·‚é•û‚ª‚¢‚¢‚Å‚µ‚å‚¤B
+‚Ü‚¸ARedmine ‚ÌÅV”Å‚ğƒ_ƒEƒ[ƒh‚µ‚Ü‚·Bì¬‚µ‚½ƒvƒ‰ƒOƒCƒ“‚ğŒöŠJ‚·‚éê‡‚É‚Í‚È‚é‚×‚­ÅV”Å‚ÅŠm”F‚·‚é•û‚ª‚¢‚¢‚Å‚µ‚å‚¤B
 
 Ruby ‚É‚ÍA ruby ‚Æˆê‚É‚¢‚ë‚¢‚ëƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚­‚ê‚é Rumix ‚ğg—p‚µ‚Ü‚·B
 ƒvƒ‰ƒOƒCƒ“ŠJ”­‚Å‚ÍƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚ÅÀs‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚±‚Æ‚ª‘½‚¢‚Ì‚ÅA“Á‚É nyacus ‚Æ‚¢‚¤ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚ğÀs‚ÌƒvƒƒOƒ‰ƒ€‚ª–ğ‚É—§‚¿‚Ü‚·B
-ruby ‚â gem ‚ğg‚Á‚ÄƒCƒ“ƒXƒg[ƒ‹‚·‚é‚à‚Ì‚Í "ƒCƒ“ƒXƒg[ƒ‹ƒy[ƒW":http://redmine.jp/guide/RedmineInstall/ ‚ÅŠm”F‚µ‚Ä Redmine ‚Ìƒo[ƒWƒ‡ƒ“‚É‚ ‚í‚¹‚½‚à‚Ì‚É‚µ‚Ä‰º‚³‚¢B
+ruby ‚â gem ‚ğg‚Á‚ÄƒCƒ“ƒXƒg[ƒ‹‚·‚é‚à‚Ì‚Í‚È‚é‚×‚­ "–{‰Æ‚ÌƒCƒ“ƒXƒg[ƒ‹ƒy[ƒW":http://www.redmine.org/projects/redmine/wiki/RedmineInstall ‚ÅŠm”F‚µ‚Ä Redmine ‚Ìƒo[ƒWƒ‡ƒ“‚É‚ ‚í‚¹‚½‚à‚Ì‚É‚µ‚Ä‰º‚³‚¢B
 
 ƒf[ƒ^ƒx[ƒX‚É‚Í SQLite ‚ğg‚¢‚Ü‚µ‚½B‘½•ªA Redmine ‚ª‘Î‰‚·‚éƒf[ƒ^ƒx[ƒX‚Ì’†‚Å‚Í Windows ã‚Åˆê”ÔŠÈ’P‚É“®ì‚³‚¹‚ç‚ê‚é‚Æv‚¢‚Ü‚·B
 
@@ -59,8 +63,12 @@ h2. ƒf[ƒ^ƒx[ƒX‚Ìì¬
 ƒf[ƒ^ƒx[ƒX‚Ìì¬ƒRƒ}ƒ“ƒh‚È‚Ç‚à development —p‚É‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
 Rails ‚Ì‹N“®ƒ‚[ƒh‚Ì•ÏX‚Í RAILS_ENV ‚Æ‚¢‚¤ŠÂ‹«•Ï”‚Ås‚¢‚Ü‚·B‚½‚¾‚µAŠÂ‹«•Ï”‚Ìİ’è‚³‚ê‚Ä‚¢‚È‚¢ƒfƒtƒHƒ‹ƒg‚Ì‹N“®ƒI[ƒh‚ª development ƒ‚[ƒh‚È‚Ì‚ÅA *"RAILS_ENV=production"* ‚Æ‚¢‚Á‚½ŠÂ‹«•Ï”‚Ìİ’è‚ğÈ—ª‚·‚é‚¾‚¯‚Å‚·B
 <pre>
+ $ rake generate_session_store
  $ rake db:migrate 
+ $ rake redmine:load_default_data
 </pre>
+
+‚±‚Ì 1 s–Ú‚ÌƒZƒbƒVƒ‡ƒ“ƒXƒgƒA‚ğì‚éì‹Æ‚Í Redmine ‚Ì“r’†‚Ìƒo[ƒWƒ‡ƒ“‚©‚ç•K—v‚É‚È‚Á‚½‹@”\‚È‚Ì‚ÅA‚½‚Ü‚Éà–¾‚ª‘‚©‚ê‚Ä‚¢‚È‚¢ƒTƒCƒg‚à‚ ‚é‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
 
 
 h2. ƒT[ƒo‚Ì‹N“®
@@ -71,7 +79,7 @@ WEBrick ‚Å Redmine ‚ğ‹N“®‚µ‚Ü‚·B
  $ ruby script/server
 </pre>
 
-‹N“®Œã <notextile>http://127.0.0.1:3000</notextile> ‚ÉƒAƒNƒZƒX‚µ‚Ä‚­‚¾‚³‚¢B
+‹N“®Œã <notextile>http://127.0.0.1:3000/</notextile> ‚ÉƒAƒNƒZƒX‚µ‚Ä‚­‚¾‚³‚¢B
 Windows ‚¾‚Æ <notextile>http://localhost:3000/</notextile> ‚¾‚ÆƒAƒNƒZƒX‚Å‚«‚È‚¢‚±‚Æ‚ª‚ ‚è‚Ü‚·B
 
 
@@ -80,8 +88,5 @@ Windows ‚¾‚Æ <notextile>http://localhost:3000/</notextile> ‚¾‚ÆƒAƒNƒZƒX‚Å‚«‚È‚¢‚
 
 ----
 
-| [[ƒvƒ‰ƒOƒCƒ“ŠJ”­ƒKƒCƒh|^]] | [[Guide_ŠJ”­ŠÂ‹«|<<]] | [[Guide_ƒTƒ“ƒvƒ‹d—l|>>]] |
-
-
-
+| [[ƒvƒ‰ƒOƒCƒ“ŠJ”­ƒKƒCƒh|^]] | [[GuideIntro|<<]] | [[GuideSampleSpec|>>]] |
 

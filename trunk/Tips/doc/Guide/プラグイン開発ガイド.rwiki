@@ -1,9 +1,20 @@
 
-h1. Rails を知らない人のための Redmine プラグイン開発入門
+h1. Rails を知らない人のための Redmine プラグイン開発ガイド
 
-Rails をよく知らない人向けの Redmine プラグイン開発のガイドです。
+Redmine のプラグイン開発ガイドを書いてみました。
+Rails をよく知らないても分かるような基礎からの入門的な内容にしたつもりです。
 
-# [[Guide_はじめに|はじめに]]
-# [[Guide_開発環境|プラグインの開発環境の準備]]
-# [[Guide_サンプル仕様|サンプルプラグインの仕様]]
-# [[Guide_はじめの一歩|はじめの一歩]]
+
+# [[GuideIntro|はじめに]]
+# [[GuideDevEnv|プラグイン開発環境の準備]]
+# [[GuideRails|Rails の概要]]
+# [[GuideSampleSpec|サンプルプラグインの仕様]]
+# [[GuideSkeleton|プラグインスケルトンの生成]]
+# [[GuideControlSkelton|コントローラのスケルトンの生成]]
+# [[GuideModel|モデルの作成]]
+# [[GuideI18n|国際化]]
+# [[GuideIndexAction|一覧画面]]
+# [[GuideNewAction|新規作成]]
+# [[GuideShowAction|詳細表示]]
+# [[GuideActionElse|編集、削除]]
+# [[GuideFinal|終わりに]]
