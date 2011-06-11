@@ -10,6 +10,7 @@ Rails をよく知らないても分かるような基礎からの入門的な内容にしたつもりです。
 # [[GuideRails|Rails の概要]]
 # [[GuideSampleSpec|サンプルプラグインの仕様]]
 # [[GuideSkeleton|プラグインスケルトンの生成]]
+# [[GuideInitRb| init.rb の作成 ]]
 # [[GuideControlSkelton|コントローラのスケルトンの生成]]
 # [[GuideModel|モデルの作成]]
 # [[GuideI18n|国際化]]
