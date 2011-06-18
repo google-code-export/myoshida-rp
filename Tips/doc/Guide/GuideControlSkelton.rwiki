@@ -27,7 +27,7 @@ h2. コントローラのスケルトン作成コマンドの実行
 コントローラのスケルトンの実行コマンドの書式は次のような形です。
 
 <pre>
-$ ruby script/generate redmine_plugin_controler プラグイン名 コントローラ名 アクション名 [...]
+$ ruby script/generate redmine_plugin_controler プラグイン名 コントローラ名 [アクション名 ...]
 </pre>
 
 Redmine のトップディレクトリに移動して、決めた名前で実際にコマンドを実行するのですが、今回は削除(destory)アクションは除いておきます。
@@ -53,12 +53,12 @@ $ ruby script/generate redmine_plugin_control Standard Foos index new show edit
 
 実行結果を見ていただけるとコントローラだけでなく、アクションに対応する view もできていることが分かると思います。 Rails ではデフォルトではアクションを実行するとその名前に対応する view のファイルを探してそれを表示するようになっています。このため、削除(destory)は画面を必要としていなかったので、スケルトンの生成では destory を指定しませんでした。 destory は後で直接記述することにします。
 
-生成されたファイルは index.html.erb などですが、検索されるファイルはアクション名の後は .rhtml, .erb などの拡張子でもかまいません。
 
 
 h2. コントローラの生成ファイル
 
 コントローラの生成ファイル(app/controllers/foos_controller.rb )を見てみましょう。
+
 <pre><code class="ruby">
 class FoosController < ApplicationController
   unloadable
@@ -81,12 +81,11 @@ class FoosController < ApplicationController
   end
 
 end
-</pre>
+</code></pre>
 
 コントローラは ApplicationController クラスを継承したクラスで実現され、一つのメソッドが一つのアクションに相当します。
+2 行目に unloadable は Model で出てきたものと同じで、これを書いておかないと development モードで正常に動作しなくなります。
 
-2 行目に *unloadable* という見慣れないものがあると思いますが、これはおまじないのようなものだと思ってください。ただ、これを書いておかないと development モードで正常に動作しなくなります。
-よく C の入門の Hello World のプログラムなどで最初 #include などをおまじないで説明して、後で詳しく説明したりしますが、これはただ書いてあればそれでよいので、おまじないのままでも十分です。詳しく知らないと落ち着かないという方はネットなどで調べてみてください。
 
 h2. View の生成ファイル
 
@@ -94,10 +93,10 @@ view の生成ファイルとして app/views/foos/index.html.erb も見てみます。
 
 <pre><code class="html">
 <h2>Foos#index</h2>
-</pre>
+</code></pre>
 
 といっても大して意味のない html が書かれているだけです。 ここに今後コントローラから渡されたデータなどの中身を書いていくことになります。
-html ですが Erb という埋め込み型の ruby を使って、html 中で ruby のコードを実行できます。
+html ですが *Erb* という埋め込み型の ruby を使って、html 中で ruby のコードを実行できます。
 
 
 h2. Erb (Embeded ruby)
@@ -105,20 +104,21 @@ h2. Erb (Embeded ruby)
 Erb ではファイル内の *<%* と *%%>* の間が ruby スクリプトとして評価されます。
 また、 *<%%=* と *%>* を使うとスクリプトの結果がファイルに埋め込まれます。
 
-例えば、以下のようなファイルを記述したとします。
-<pre>
+例えば、以下のようなコードを記述したとします。
+
+<pre><code class="rhtml">
 <% for val in [1, 2, 3] %>
   <%= val %> <br />
 <% end %>
-</pre>
+</code></pre>
 
-生成されるファイルでは for などの繰り返しもちゃんと処理してくれます。
+生成されるファイルでは for などの繰り返しもちゃんと処理してくれます。また、 <%= %> は文字列中の #{} と同じで必ず to_s メソッドを使って文字列に変換されます。
 
-<pre>
+<pre><code class="html">
   1 <br />
   2 <br />
   3 <br />
-</pre>
+</code></pre>
 
 
 ---

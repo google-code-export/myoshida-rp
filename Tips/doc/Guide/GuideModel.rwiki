@@ -40,7 +40,7 @@ h2. モデルスケルトンの生成
 コントローラのスケルトンの実行コマンドの書式は次のような形です。
 
 <pre>
-$ ruby script/generate redmine_plugin_controler プラグイン名 モデル名 カラム名:型 [...]
+$ ruby script/generate redmine_plugin_controler プラグイン名 モデル名 [カラム名:型 ...]
 </pre>
 
 Redmine のトップディレクトリに移動して、決めた名前で実際にコマンドを実行します。
@@ -84,7 +84,7 @@ class CreateFoos < ActiveRecord::Migration
     drop_table :foos
   end
 end
-</pre>
+</code></pre>
 
 Migration 時にテーブルを作成するメソッドと削除するメソッドがそれぞれ定義されています。
 
@@ -124,11 +124,12 @@ Migrating rfpdf...
 h2. 生成された Model のファイル
 
 Model のファイル app/models/foo.rb を見てみましょう.
-<pre>
+
+<pre><code class="ruby">
 class Foo < ActiveRecord::Base
   unloadable
 end
-</pre>
+</code></pre>
 
 2 行目に *unloadable* という見慣れないものがあると思いますが、これはおまじないのようなものだと思ってください。ただ、これを書いておかないと development モードで正常に動作しなくなります。
 よく C の入門で使う Hello World のプログラムなどで最初 #include などをおまじないで説明して、後で詳しく説明したりしますが、これはただ書いてあればそれでよいので、おまじないのままでも十分です。詳しく知らないと落ち着かないという方はネットなどで調べてみてください。
@@ -154,6 +155,7 @@ $ splite3.exe db/redmine.db
 実行すると *splite>* のプロンプトになります。ここで操作用のコマンドを実行します。
 
 ヘルプと終了は次のコマンドです。
+
 <pre>
 sqlite> .help
 sqlite> .quit
@@ -162,18 +164,21 @@ sqlite> .quit
 h3. テーブルの表示と削除
 
 次のコマンドでテーブルの一覧が表示されます。
+
 <pre>
 sqlite> .tables
 </pre>
 
 そこで削除したいテーブルを探します。ここでは foos がそれにあたります。
 そのテーブル名で削除用の SQL 文を実行します。. で始まっているのはコマンドですが、テーブルの削除は SQL 文なので、最後に ; が必要です。
+
 <pre>
 sqlite> drop table foos;
 </pre>
 
 
 splite3.exe でデータベースファイルの後に SQL 文を書くことで、コマンドプロンプトに入らずにテーブルを削除することも出来ます。
+
 <pre>
 $ splite3.exe db/redmine.db "drop table foos;"
 </pre>

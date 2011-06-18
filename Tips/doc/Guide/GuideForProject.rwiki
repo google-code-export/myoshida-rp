@@ -1,4 +1,4 @@
-h2. プロジェクトで利用可能にする
+h1. プロジェクトで利用可能にする
 
 プラグインをプロジェクトごとに使用できるようするためにはモジュールとしての登録とプロジェクトメニューへの項目の追加が必要となります。
 
@@ -12,31 +12,34 @@ h2. モジュールと permission の設定
 | データの管理 | new, edit, destory |
 
 権限の指定は init.rb の Redmine::Plugin::register メソッドで行います。次の記述をブロック内に追加してください。
+
 <pre><code class="ruby">
   project_module :standard do
     permission :view_foos, :foos => [:index, :show]
     permission :manage_foos, :foos => [:new, :edit, :destroy],
                :require => :member
   end
-</pre>
+</code></pre>
+
 *project_module* メソッドの引数でモジュール名(standard)を指定し、ブロック内で *permission* メソッドを呼び出して権限の指定をしています。
 
 permission メソッドの書式は次の形です。
-<pre>
+
+<pre><code class="ruby">
 permission(name, hash, options={})
-</pre>
+</code></pre>
 
 第一引数で権限の名前を指定します。
 第二引数でコントローラ名をキー、アクション名の配列を値としたハッシュで指定します。サンプルではコントローラは一つしかありませんが、複数あることもあるので、ハッシュで指定できるようになっています。
 第三引数はオプションです。
 
-Rails では次のようなスタイルがとられます。
-* メソッドのオプション的な指定は最後の引数でハッシュを使ってまとめて渡す
+Rails では次のようなスタイルがよくとられるので慣れておきましょう。
+* メソッドのオプション的な指定は最後の引数でシンボル名をキーとしたハッシュを使ってまとめて渡す
 * ハッシュが一つのペアしか持たない場合は括弧 {} は省略する
 
-このオプションを使って、管理の権限ではプロジェクトメンバー以外の Non member や Anonymous(ログインしていない人)では使えないようにしています。
+このオプションの *:require* の指定を使って、データ管理の権限(:manage_foos)ではプロジェクトメンバー以外の Non member や Anonymous(ログインしていない人)では使えないようにしています。
 
-それでは Redmine を起動して、プラグインがプロジェクトで設定できるようにしましょう。
+それでは Redmine を起動して、プラグインをプロジェクトで使用できるようにしましょう。
 
 まず、管理メニューにあるロールと権限の *権限レポート* でチェックをいれて権限を与えます。
 
@@ -58,12 +61,13 @@ h2. プラグインメニューへの追加
 
 <pre><code class="ruby">
   menu :project_menu, :standard, { :controller => 'foos', :action => 'index' }
-</pre>
+</code></pre>
 
 メニューの項目の追加は *menu* メソッドを使います。
-<pre>
+
+<pre><code class="ruby">
 menu(menu, item, url, options={})
-</pre>
+</code></pre>
 
 第 1 引数はメニューの名前です。ここではプロジェクトメニューを指定します。指定できるメニューは [[GuideSampleSpec|サンプル仕様]] で説明した 4 つです。
 
@@ -88,11 +92,13 @@ URL の指定方法については後でも使うのでもう少し詳しく説明しましょう。
 URL として文字列を指定すると単純にその文字列が url として使用されますが、ハッシュで指定するとそれを元に URL を生成します。
 
 指定するキーはコントロール名(:controller)、アクション名(:action)と ID(:id) で、そのキーの値を使って次のようなアドレスとなります。
+
 <pre>
 サーバアドレス/コントロール名/アクション名/ID名
 </pre>
 
-ID 名は省略可能で省略されると ID 名の部分はなくなります。ただし、ここで省略しているのはプロジェクトメニューから呼ばれると自動的に ID 名はプロジェクト名になるためです。サンプルのアドレスは以下のようになります。(プロジェクト名は demo にしています)
+ID 名は省略可能で省略されると ID 名の部分はなくなります。ただし、ここで省略しているのはプロジェクトメニューから呼ばれると自動的に ID 名はプロジェクトの識別名になるためです。サンプルのアドレスは以下のようになります。(プロジェクトの識別名は demo にしています)
+
 <pre>
 http://127.0.0.1:3000/foos/index/demo
 </pre>
@@ -101,6 +107,126 @@ http://127.0.0.1:3000/foos/index/demo
 ID は *param* というハッシュクラスの変数に格納されてます。param は $ マークは付いてませんが、グローバル変数のようなものだと考えてください。
 
 
+h2. index ページの表示
+
+Redmine を再起動してモジュールを追加したプロジェクトを開いてみましょう。プロジェクトメニューに *Standard* が追加されています。
+
+!sample_proj_menu.png!
+
+このメニューをクリックして下さい。 index.html.erb の内容のページが表示されます。
+
+!index_no_project.png!
+
+コントローラの index メソッドの中にはまだ何も書いていません。それにもかかわらず、 index ページが表示されています。これはコントローラのアクションが実行されるとアクション名のメソッドが実行され、デフォルトの状態ではアクション名に対応する views のファイルが表示されるためです。
+スケルトンとして生成されたファイルは index.html.erb ですが、検索されるファイルはアクション名の後は .rhtml, .erb のような Erb の html を表す拡張子であれば何でもかまいません。
+
+
+h2. @project の設定
+
+ただし、表示されたページよく見ると何か変なことに気づくと思います。これは他のプロジェクトメニューと違いプロジェクトが開かれていないためです。このページをプロジェクトに属するものするためには FoosController クラスのインスタンス変数 *@project* を値に設定する必要があります。
+
+FoosController クラスの末尾に次のような @project を設定する *find_project* メソッドの定義を追加します。外から呼ばれることはありませんので、private メソッドにしています。
+<pre><code class="ruby">
+class FoosController < ApplicationController
+  unloadable
+    # :
+private
+  def find_project
+    @project = Project.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+end
+</code></pre>
+
+params[:id] にはプロジェクトの識別名が入っています。 
+Project はプロジェクト用のモデルクラスです。  *find* メソッドは引数にプロジェクト識別名を渡すとデータベースから探して、その見つかった Project のオブジェクトを返すクラス関数です。
+
+Project クラスも ActiveRecord::Base クラスを継承して作成されており、データがみつからないと *ActiveRecord::RecordNotFound* の例外が発生します。コントローラ内で例外が発生すると通常の http サーバの場合 Internal Error のページになってしまいます。(WEBrick では詳細なエラー情報の画面になります。)
+この例外をキャッチして *render_404* を実行しています。 これはファイルが見つかりませんといった http の 404 エラーのページを表示するメソッドです。
+
+定義した find_project メソッドを index メソッドの中で呼び出せばプロジェクト内のページとして表示されます。
+
+
+h2. before_filter
+
+アクションは index だけではありません。他のアクションのメソッドでも同様に find_project を呼び出す必要があります。じゃ、 index の find_project をコピーして、他のメソッドにもペーストしていって ... と思った人はちょっと待ってください。 それでは同じことを何度も書く羽目になります。 Rails には DRY(Don't Repeat Yourself) という繰り返し禁止の方針がありました。何か繰り返しを避ける方法があるはずです。
+
+実際、避ける方法は用意されています。それは *before_filter* です。これでメソッドを指定するとそのメソッドはアクションのメソッドの前に呼ばれるようになります。
+こちらはコントローラクラスの先頭の方に追加します。
+
+<pre><code class="ruby">
+class FoosController < ApplicationController
+  unloadable
+  before_filter :find_project
+    # :
+</code></pre>
+
+
+h2. authorize
+
+before_filter はカンマで区切って複数のメソッドを指定することが出来ます。もう一つ追加してみましょう。
+<pre><code class="ruby">
+class FoosController < ApplicationController
+  unloadable
+  before_filter :find_project, :authorize
+    # :
+</code></pre>
+
+追加した *authorize* はページを開いた時にログインしていない場合はログインのページ行く Redmine のメソッドです。通常、プロジェクトメニューから開かれるので、ログインしていることが多いと思いますが、ブラウザで前に開いていたページをもう一度開くといった設定がしてある場合などでは直接ページが指定されることがあります。そういったときにもちゃんとログインできるようにすべてのアクションの前に実行しておく必要があります。
+
+権限の設定で index や show では設定によってはログインしてなくても、表示できる場合があるのではと疑問を持った方もいると思いますが、そういう場合も Redmine がログインしないように上手く処理してくれます。
+
+ここまで設定して、もう一度 [Standard] のメニューを選択してみてください。今度はプロジェクトのページとして開かれているはずです。
+
+!index_no_tab.png!
+
+まだ、少し変なところがあります。メニュー項目が選択状態になっていませんね。これを解決するにはコントローラでメニュー項目を *menu_item* で指定します。
+
+<pre><code class="ruby">
+  menu_item :メニュー項目のシンボル
+</code></pre>
+
+実はこのメソッドで指定しなくてもメニュー項目が選択状態になることがあります。どうしたらそうなるのかは私もよく分かりません。とりあえず、選択状態にならないときはこのメソッドで指定してみてください。
+
+これまでの記述を追加したコントローラのファイルの中身は次のようになります。
+
+<pre><code class="ruby">
+class FoosController < ApplicationController
+  unloadable
+  menu_item :standard
+  before_filter :find_project, :authorize
+
+
+  def index
+  end
+
+
+  def new
+  end
+
+
+  def show
+  end
+
+
+  def edit
+  end
+
+private
+  def find_project
+    params[:project_id] = params[:id]
+    @project = Project.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+end
+</code></pre>
+
+これでプロジェクトメニューにきちんと登録できるようになりました。
+
+!index_tab.png!
+
 ----
 
-| [[プラグイン開発ガイド|^]] | [[GuideControlSkelton|<<]] | [[GuideModelSkelton|>>]] |
+| [[プラグイン開発ガイド|^]] | [[GuideControlSkelton|<<]] | [[GuideI18n|>>]] |
