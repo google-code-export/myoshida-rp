@@ -15,7 +15,7 @@ Redmine::Plugin.register :redmine_standard do
   url 'http://example.com/path/to/plugin'
   author_url 'http://example.com/about'
 end
-</pre>
+</code></pre>
 
 1 s–Ú‚Í redmine —p‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚ğŒÄ‚Ño‚µ‚Ä‚¢‚é‚Æ‚±‚ë‚ÅA•K‚¸‘‚¢‚Ä‚¢‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
 
@@ -30,7 +30,7 @@ Redmine::Plugin.register('redmine_standard') {
   url('http://example.com/path/to/plugin')
   author_url('http://example.com/about')
 }
-</pre>
+</code></pre>
 
 Rails ƒAƒvƒŠ‚Å‚ÍŸ‚Ì‚æ‚¤‚ÈƒXƒ^ƒCƒ‹‚Å‘‚©‚ê‚Ä‚¢‚Ü‚·B
 * •¶š—ñ‚Å‚Í‚È‚­A‚È‚é‚×‚­ƒVƒ“ƒ{ƒ‹‚ğg‚¤
@@ -63,4 +63,4 @@ Redmine::Plugin.register ‚Æ‚¢‚¤‚Ì‚ªƒvƒ‰ƒOƒCƒ“’Ç‰Á‚Ì‚½‚ß‚Ìƒƒ\ƒbƒh‚Å‚·Bˆø”‚Åƒvƒ
 
 ---
 
-| [[ƒvƒ‰ƒOƒCƒ“ŠJ”­ƒKƒCƒh|^]] | [[GuideSkeleton|<<]] | [[GuideControlSkelton|>>]] |
+| [[ƒvƒ‰ƒOƒCƒ“ŠJ”­ƒKƒCƒh|^]] | [[GuideSkeleton|<<]] | [[GuideModel|>>]] |

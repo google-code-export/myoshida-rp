@@ -50,12 +50,12 @@ h2. データベース設定
 
 Rails では 1 つの Rails プログラムをモードを切り替えて動作させたとしても、他のモードに影響を与えないようになっています。そのため、データベースもモードごとに別々に設定するようになっています。
 データベース設定は config/database.example.yml をもとに config/database.yml を作成します。開発は development モードで起動するので、 このとき development 用の設定を書き直します。
-<pre>
+<pre><code class="yaml">
 development:
   adapter: sqlite3
   dbfile: db/redmine.db
   timeout: 5000
-</pre>
+</code></pre>
 
 
 h2. データベースの作成
