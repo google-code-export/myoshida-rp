@@ -8,7 +8,7 @@ h1. Rails ‚ÌŠT—v
 h2. ƒtƒŒ[ƒ€ƒ[ƒN
 
 ‚»‚ê‚Å‚ÍAƒtƒŒ[ƒ€ƒ[ƒN‚Æ‚Í‰½‚Å‚µ‚å‚¤B
-’¼–ó‚·‚é‚Æ *˜g‘g‚Ý* ‚Å‚·B Web ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÉŒÀ‚ç‚¸AƒvƒƒOƒ‰ƒ€‚Å‚ÍŒˆ‚Ü‚è‚«‚Á‚½ˆ—‚Æ‚¢‚¤‚Ì‚Í‚½‚­‚³‚ñ‚ ‚è‚Ü‚·B‚±‚Ì–Ê“|‚ÈŒˆ‚Ü‚è‚«‚Á‚½ˆ—‚ð‚â‚Á‚Ä‚­‚ê‚é‚Ì‚ªƒtƒŒ[ƒ€ƒ[ƒN‚Å‚·BƒtƒŒ[ƒ€ƒ[ƒN‚ðŽg‚¤‚±‚Æ‚É‚æ‚èŽ©•ª‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì’†g‚É‚¾‚¯‚ðW’†‚µ‚Äì¬‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
+’¼–ó‚·‚é‚Æ *˜g‘g‚Ý* ‚Å‚·B Web ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÉŒÀ‚ç‚¸AƒvƒƒOƒ‰ƒ€‚Å‚ÍŒˆ‚Ü‚è‚«‚Á‚½ˆ—‚Æ‚¢‚¤‚Ì‚Í‚½‚­‚³‚ñ‚ ‚è‚Ü‚·B‚±‚Ì–Ê“|‚ÈŒˆ‚Ü‚è‚«‚Á‚½ˆ—‚ð‚â‚Á‚Ä‚­‚ê‚é‚Ì‚ªƒtƒŒ[ƒ€ƒ[ƒN‚Å‚·BƒtƒŒ[ƒ€ƒ[ƒN‚ðŽg‚¤‚±‚Æ‚É‚æ‚èƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì’†g‚É‚¾‚¯‚ðW’†‚µ‚Äì¬‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
 ‚Ü‚½A’P‚É–Ê“|‚È‚±‚Æ‚ÌŒ¨‘ã‚í‚è‚Æ‚¢‚¤‚¾‚¯‚Å‚È‚­Aê–å“I‚È’mŽ¯‚ª•K—v‚È‚±‚Æ‚à‚â‚Á‚Ä‚­‚ê‚Ü‚·B—á‚¦‚Î Rails ‚ðŽg‚¦‚Îƒf[ƒ^ƒx[ƒX‚âƒCƒ“ƒ^[ƒlƒbƒgƒlƒbƒg‚ÌƒZƒLƒ…ƒŠƒeƒB‚Æ‚¢‚Á‚½‚±‚Æ‚ð‚ ‚Ü‚è‚æ‚­’m‚ç‚È‚­‚Ä‚à Web ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ðì‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
 Ž—‚½‚æ‚¤‚È‚à‚Ì‚Æ‚µ‚Äƒ‰ƒCƒuƒ‰ƒŠ‚ª‚ ‚è‚Ü‚·‚ªA‚±‚¿‚ç‚ÍƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚©‚ç—˜—p‚·‚é‚Æ‚¢‚¤Š´‚¶‚È‚Ì‚É‘Î‚µ‚ÄƒtƒŒ[ƒ€ƒ[ƒN‚Å‚Í˜g‘g‚Ý‚É‚ ‚í‚¹‚ÄƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ðì‚Á‚Ä‚¢‚­Š´‚¶‚Å‚·B
 
@@ -33,7 +33,7 @@ Rails ‚ÉŒÀ‚ç‚¸ CGI ‚ðŽg‚Á‚½ Web ƒAƒvƒŠ‚Å‚ÍŠî–{“I‚É MVC ‚Ì‚æ‚¤‚È\‘¢‚É‚È‚Á‚Ä‚¢‚é‚
 !mvc.png!
 
 ‚±‚Ì MVC ‚ª Rails ‚Å‚Í‚Ç‚±‚É‘Š“–‚·‚é‚©‚É‚Â‚¢‚Ä‚à‚Ý‚Ä‚¢‚«‚Ü‚µ‚å‚¤B
-Model ‚Æ‚¢‚¤‚Ì‚ÍAƒf[ƒ^‚ðˆµ‚¤•”•ª‚Åƒf[ƒ^‚»‚Ì‚à‚Ì‚Å‚Í‚ ‚è‚Ü‚¹‚ñB Rails ‚Å‚Ìƒf[ƒ^‚Íƒf[ƒ^ƒx[ƒX‚É‚È‚è‚Ü‚·B‚Å‚·‚Ì‚ÅAƒf[ƒ^ƒx[ƒX‚ðˆµ‚¤•”•ª‚Æ‚¢‚¤‚±‚Æ‚É‚È‚è‚Ü‚·B
+Model ‚Æ‚¢‚¤‚Ì‚ÍAƒf[ƒ^‚ðˆµ‚¤•”•ª‚Åƒf[ƒ^‚»‚Ì‚à‚Ì‚Å‚Í‚ ‚è‚Ü‚¹‚ñB Rails ‚Å‚Ìƒf[ƒ^‚Íƒf[ƒ^ƒx[ƒX‚É‚È‚è‚Ü‚·B‚»‚Ì‚½‚ß Rails ‚Ìƒ‚ƒfƒ‹‚Íƒf[ƒ^ƒx[ƒX‚ðˆµ‚¤•”•ª‚Æ‚¢‚¤‚±‚Æ‚É‚È‚è‚Ü‚·B
 View ‚Í Web ‚Å‚Í html ‚É‚ ‚½‚é‚Ì‚ÅA html ƒtƒ@ƒCƒ‹‚ð¶¬‚·‚é‚Æ‚±‚ë‚Å‚·BRails ‚Å‚Í Erb ‚Æ‚¢‚¤ html ‚É ruby ƒR[ƒh‚ð–„‚ßž‚Þƒ‰ƒCƒuƒ‰ƒŠ‚ðŽg‚Á‚Ä html ƒtƒ@ƒCƒ‹‚ð¶¬‚µ‚Ü‚·B
 ƒ†[ƒU‚Íƒuƒ‰ƒEƒU‚Å html ‚ðŒ©‚ÄAV‹Kì¬‚âˆê——•\Ž¦‚Æ‚¢‚Á‚½‰½‚ç‚©‚ÌƒAƒNƒVƒ‡ƒ“‚ðs‚¢‚Ü‚·Bhtml ‚Å‚Í‚±‚ê‚ªƒŠƒ“ƒN‚âƒtƒH[ƒ€ƒ{ƒ^ƒ“‚Å’ñ‹Ÿ‚³‚êA‚±‚Ìƒ†[ƒU‚ÌƒAƒNƒVƒ‡ƒ“‚É Contol ‚ª‘Î‰ž‚µ‚Ü‚·B—á‚¦‚Îƒf[ƒ^‚Ìˆê——•\Ž¦‚Å‚ ‚ê‚ÎA Model ‚ðŒÄ‚Ño‚µ‚Äƒf[ƒ^‚ðŽæ“¾‚µA‚»‚ê‚ð View ‚É“n‚µ‚ÄAhtml ‚ðì¬‚µ‚Ü‚·B 
 
@@ -57,8 +57,8 @@ Rails ‚Å‚Í 2 ‚Â‚Ì‘å‚«‚È•ûj‚ª‚ ‚è‚Ü‚·B
 ‚½‚¾AŒ‡“_‚È‚Ì‚Í‚±‚Ì‹K–ñ‚Ìƒ‹[ƒ‹‚ð’m‚ç‚È‚¢‚Æƒ\[ƒX‚ð‚Ý‚½‚¾‚¯‚Å‚Í—¬‚ê‚ªŒ©‚¦‚¸A‰½‚ð‚â‚Á‚Ä‚¢‚é‚Ì‚©‚æ‚­•ª‚©‚ç‚È‚¢‚Æ‚¢‚¤‚±‚Æ‚ª‚æ‚­‹N‚±‚è‚Ü‚·B‚µ‚©‚µA‚±‚ê‚à‹t‚Éƒ‹[ƒ‹‚ª‚í‚©‚Á‚Ä‚­‚é‚Æ‚±‚Ì‹@”\‚Í‚Ç‚±‚ÅŽÀ‘•‚µ‚Ä‚¢‚é‚©‚Æ‚¢‚Á‚½‚±‚Æ‚ª‚·‚®‚É‚í‚©‚èA”ñí‚Éƒ\[ƒXƒR[ƒh‚ð“Ç‚Þ‚Ì‚ªŠy‚É‚È‚è‚Ü‚·B
 
 
-‚³‚ç‚ÉƒfƒBƒŒƒNƒgƒŠ‚âƒtƒ@ƒCƒ‹–¼‚ðŒˆ‚ß‚¤‚¿‚É‚·‚é‚¾‚¯‚Å‚È‚­A ruby ‚Ìƒƒ^ƒvƒƒOƒ‰ƒ~ƒ“ƒO‚ð—˜—p‚µ‚ÄAŽ©•ª‚ªì‚Á‚½ƒtƒ@ƒCƒ‹‚È‚Ç‚àAƒ[ƒh‚·‚éƒƒ\ƒbƒh‚ÌŽw’è‚È‚­‘‚­‚±‚Æ‚ª‚±‚Æ‚ªo—ˆ‚é‚æ‚¤‚É‚È‚è‚Ü‚·B ƒƒ^ƒvƒƒOƒ‰ƒ~ƒ“ƒO‚Æ‚¢‚¤‚Ì‚ÍA ruby ‚ÌƒXƒNƒŠƒvƒg’†‚ÅA¡‚Ç‚Ì‚æ‚¤‚ÈƒNƒ‰ƒX‚âƒƒ\ƒbƒh‚ª’m‚é‚±‚Æ‚ªo—ˆ‚½‚èAƒGƒ‰[ˆ—‚ð‘‚«Š·‚¦‚½‚è‚·‚é‚±‚Æ‚ª‚Å‚«‚é‹@”\‚Å‚·B
-—á‚¦‚Î FooBar.new ‚Æ‚¢‚¤‚æ‚¤‚È‹Lq‚ÅƒNƒ‰ƒX‚ðŽg—p‚µ‚½‚Æ‚µ‚Ü‚·B’ÊíA ’è‹`ƒtƒ@ƒCƒ‹‚Ìƒ[ƒh‚È‚µ‚Å‚Í FooBar ‚Í–¢’è‹`‚Å‚·‚Æ‚¢‚¤‚æ‚¤‚ÈƒGƒ‰[‚ª‚Å‚é‚Ü‚·B Rails ‚Å‚ÍƒGƒ‰[ˆ—‚ðŠg’£‚µA’m‚ç‚È‚¢ƒNƒ‰ƒX‚ðŽg‚¨‚¤‚Æ‚·‚é‚Æ foo_bar.rb ‚Æ‚¢‚¤–¼‘O‚Ìƒtƒ@ƒCƒ‹‚ð’T‚µ‚Äƒ[ƒh‚µ‚Ü‚·B
+‚³‚ç‚ÉƒfƒBƒŒƒNƒgƒŠ‚âƒtƒ@ƒCƒ‹–¼‚ðŒˆ‚ß‚¤‚¿‚É‚·‚é‚¾‚¯‚Å‚È‚­A ruby ‚Ìƒƒ^ƒvƒƒOƒ‰ƒ~ƒ“ƒO‚ð—˜—p‚µ‚ÄŽ©•ª‚ªì‚Á‚½ƒtƒ@ƒCƒ‹‚È‚Ç‚àƒ[ƒh‚·‚éƒtƒ@ƒCƒ‹‚ÌŽw’è‚È‚­‘‚­‚±‚Æ‚ª‚±‚Æ‚ªo—ˆ‚é‚æ‚¤‚É‚È‚è‚Ü‚·B ‚±‚Ìƒƒ^ƒvƒƒOƒ‰ƒ~ƒ“ƒO‚Æ‚¢‚¤‚Ì‚Í ruby ‚ÌƒXƒNƒŠƒvƒg’†‚ÅA¡‚Ç‚Ì‚æ‚¤‚ÈƒNƒ‰ƒX‚âƒƒ\ƒbƒh‚ª’m‚é‚±‚Æ‚ªo—ˆ‚½‚èAƒGƒ‰[ˆ—‚ð‘‚«Š·‚¦‚½‚è‚·‚é‚±‚Æ‚ª‚Å‚«‚é‹@”\‚Å‚·B
+—á‚¦‚Î FooBar.new ‚Æ‚¢‚¤‚æ‚¤‚È‹Lq‚ÅƒNƒ‰ƒX‚ðŽg—p‚µ‚½‚Æ‚µ‚Ü‚·B’ÊíA ’è‹`ƒtƒ@ƒCƒ‹‚Ìƒ[ƒh‚È‚µ‚Å‚Í FooBar ‚Í–¢’è‹`‚Å‚·‚Æ‚¢‚¤‚æ‚¤‚ÈƒGƒ‰[‚ª‚Å‚Ü‚·B Rails ‚Å‚ÍƒGƒ‰[ˆ—‚ðŠg’£‚µA’m‚ç‚È‚¢ƒNƒ‰ƒX‚ðŽg‚¨‚¤‚Æ‚·‚é‚Æ foo_bar.rb ‚Æ‚¢‚¤–¼‘O‚Ìƒtƒ@ƒCƒ‹‚ð’T‚µ‚Äƒ[ƒh‚µ‚Ü‚·B
 ‚±‚Ì’T‚·ƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ÌˆÈ‰º‚Ì‚æ‚¤‚É‚µ‚ÄƒNƒ‰ƒX–¼‚©‚çŒˆ‚ß‚Ü‚·B
 # ‘å•¶Žš¬•¶Žš‚É‚æ‚é’PŒê‚Ì‹æØ‚è‚ð _ (ƒAƒ“ƒ_[ƒo[)‚É•ÏŠ·
 # ‚·‚×‚Ä¬•¶Žš‚É•ÏŠ·
@@ -79,7 +79,7 @@ h2. ŒJ‚è•Ô‚µ‚Ì‹ÖŽ~
 ‚½‚¾A•ûj‚Æ‚µ‚Ä‚ ‚°‚Ä‚¢‚é‚¾‚¯‚ ‚Á‚ÄAŒJ‚è•Ô‚µ‚ð”ð‚¯‚é‚½‚ß‚ÌŽè’i‚ª‚¢‚ë‚¢‚ë’ñ‹Ÿ‚³‚ê‚Ä‚¢‚Ü‚·BŽ„‚àƒR[ƒfƒBƒ“ƒOŽž‚É“¯‚¶‚æ‚¤‚È‚±‚Æ‚ð‰½“x‚à‘‚­‚Ì‚ªŒ™‚¢‚È‚Ì‚ÅA‚±‚Ì•ûj‚Í‚Æ‚Ä‚à•‚©‚Á‚Ä‚¢‚Ü‚·B
 
 ‚Æ‚Í‚¢‚¦A‹K–ñ‚Ì•û‚Í‚»‚ê‚É‚ ‚í‚¹‚È‚¢‚Æì‚ê‚È‚¢‚Ì‚É‘Î‚µ‚ÄAŒJ‚è•Ô‚µ‚Í‚â‚ë‚¤‚ÆŽv‚¦‚Îo—ˆ‚Ä‚µ‚Ü‚¢‚Ü‚·BŽÀÛA Redmine ‚Ìƒ\[ƒX‚Å‚àˆÓŠO‚ÆŒJ‚è•Ô‚µ‚ª‚ ‚Á‚½‚è‚à‚µ‚Ü‚·B
-‚Å‚àA‚â‚Á‚Ï‚èŒJ‚è•Ô‚µ‚ð”ð‚¯‚é‚±‚Æ‚Í‘åØ‚Å‚µ‚å‚¤B‚»‚±‚Å“¯‚¶‚±‚Æ‚ð 2 ‰ñ‘‚¢‚½ê‡A‰½‚©”ð‚¯‚é•û–@‚Í‚È‚¢‚©‚È‚Æl‚¦‚Ä‚Ý‚Ä‚­‚¾‚³‚¢B Rails ‚Å‚ ‚ê‚Î‘å’ï‚»‚ê‚Í”ð‚¯‚é‚±‚Æ‚ª‚Å‚«‚é‚ÆŽv‚¢‚Ü‚·B
+‚Å‚àA‚â‚Á‚Ï‚èŒJ‚è•Ô‚µ‚ð”ð‚¯‚é‚±‚Æ‚Í‘åØ‚Å‚ÆŽv‚¢‚Ü‚·B‚»‚±‚ÅA‚à‚µ“¯‚¶‚±‚Æ‚ð 2 ‰ñ‘‚¢‚½ê‡A‰½‚©”ð‚¯‚é•û–@‚Í‚È‚¢‚©‚È‚Æl‚¦‚Ä‚Ý‚Ä‚­‚¾‚³‚¢B Rails ‚Å‚ ‚ê‚Î‘å’ï‚»‚ê‚Í”ð‚¯‚é‚±‚Æ‚ª‚Å‚«‚é‚Í‚¸‚Å‚·B
 
 
 ---

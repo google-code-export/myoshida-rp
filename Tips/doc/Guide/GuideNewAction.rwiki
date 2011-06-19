@@ -1,0 +1,24 @@
+h1. 新規作成(new)
+
+新しいページを作成するためのアクションを実装します。
+このページは一覧表示ページから呼ばれることになります。
+
+
+h2. コントローラの実装
+
+コントローラ(app/controller/foo_app/controllers/foos_controller.rb) の new メソッドを実装します。 
+
+<pre><code class="ruby">
+  def new
+    @foo = Foo.new
+    @foo.project_id = @project.id
+  end
+</code></pre>
+
+Foo モデルクラスのオブジェクトを新規作成して、 project_id メンバに現在のプロジェクト(@project) の id を設定しています。
+
+
+h2. View の実装
+
+次に View (app/views/foos/new.html.erb) を実装します。
+
