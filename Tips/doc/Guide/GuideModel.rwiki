@@ -40,7 +40,7 @@ h2. モデルスケルトンの生成
 コントローラのスケルトンの実行コマンドの書式は次のような形です。
 
 <pre>
-$ ruby script/generate redmine_plugin_controler プラグイン名 モデル名 [カラム名:型 ...]
+$ ruby script/generate redmine_plugin_model プラグイン名 モデル名 [カラム名:型 ...]
 </pre>
 
 Redmine のトップディレクトリに移動して、決めた名前で実際にコマンドを実行します。
