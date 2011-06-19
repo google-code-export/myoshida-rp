@@ -215,7 +215,6 @@ class FoosController < ApplicationController
 
 private
   def find_project
-    params[:project_id] = params[:id]
     @project = Project.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     render_404
