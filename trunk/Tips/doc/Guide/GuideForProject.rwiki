@@ -78,15 +78,13 @@ menu(menu, item, url, options={})
 | ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒƒjƒ…[ | :application_menu |
 
 ‘æ 2 ˆø”‚Íƒƒjƒ…[‚Ì€–Ú–¼‚Å‚·B
-
 ‘æ 3 ˆø”‚Íƒƒjƒ…[‚ðƒNƒŠƒbƒN‚µ‚½‚Æ‚«‚ÌƒŠƒ“ƒNæ‚Ì URL ‚ðŽw’è‚µ‚Ü‚·B
-
 ‘æ 4 ˆø”‚ÍƒIƒvƒVƒ‡ƒ“‚Å‚±‚±‚Å‚ÍÈ—ª‚µ‚Ä‚¢‚Ü‚·B
 
 
 h2. Rails ‚Å‚Ì URL ‚ÌŽw’è•û–@
 
-æ‚Ù‚Ç‚Ìƒƒjƒ…[‚Ås‚¤ URL ‚ÌŽw’è‚Í *link_to* ‚È‚Ç‚Ì‘¼‚Ì Rails ‚ÌƒŠƒ“ƒN‚ÌŽw’è•û–@‚Æ“¯‚¶‚Å‚·B
+‘Oß‚Ìƒƒjƒ…[‚Ås‚¤ URL ‚ÌŽw’è‚Í *link_to* ‚È‚Ç‚Ì‘¼‚Ì Rails ‚ÌƒŠƒ“ƒN‚ÌŽw’è•û–@‚Æ“¯‚¶‚Å‚·B
 URL ‚ÌŽw’è•û–@‚É‚Â‚¢‚Ä‚ÍŒã‚Å‚àŽg‚¤‚Ì‚Å‚à‚¤­‚µÚ‚µ‚­à–¾‚µ‚Ü‚µ‚å‚¤B
 
 URL ‚Æ‚µ‚Ä•¶Žš—ñ‚ðŽw’è‚·‚é‚Æ’Pƒ‚É‚»‚Ì•¶Žš—ñ‚ª url ‚Æ‚µ‚ÄŽg—p‚³‚ê‚Ü‚·‚ªAƒnƒbƒVƒ…‚ÅŽw’è‚·‚é‚Æ‚»‚ê‚ðŒ³‚É URL ‚ð¶¬‚µ‚Ü‚·B
@@ -103,7 +101,7 @@ ID –¼‚ÍÈ—ª‰Â”\‚ÅÈ—ª‚³‚ê‚é‚Æ ID –¼‚Ì•”•ª‚Í‚È‚­‚È‚è‚Ü‚·B‚½‚¾‚µA‚±‚±‚ÅÈ—ª‚µ‚Ä‚
 http://127.0.0.1:3000/foos/index/demo
 </pre>
 
-ƒnƒbƒVƒ…‚ÅŽw’è‚³‚ê‚½ê‡AŽÀÛ‚É‚ÍŽw’è‚µ‚½ƒRƒ“ƒgƒ[ƒ‹‚ÌƒAƒNƒVƒ‡ƒ“‚ªŽÀs‚³‚ê‚é‚±‚Æ‚É‚È‚è‚Ü‚·B‚±‚±‚Å‚Í FoosController ‚Ì index ƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚Ü‚·B
+‚±‚ÌƒAƒhƒŒƒX‚ÌŽw’è‚É‚æ‚èƒRƒ“ƒgƒ[ƒ‹‚ÌƒAƒNƒVƒ‡ƒ“‚ªŽÀs‚³‚ê‚é‚±‚Æ‚É‚È‚è‚Ü‚·B‚±‚Ìê‡‚Í FoosController ‚Ì index ƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚Ü‚·B
 ID ‚Í *param* ‚Æ‚¢‚¤ƒnƒbƒVƒ…ƒNƒ‰ƒX‚Ì•Ï”‚ÉŠi”[‚³‚ê‚Ä‚Ü‚·Bparam ‚Í $ ƒ}[ƒN‚Í•t‚¢‚Ä‚Ü‚¹‚ñ‚ªAƒOƒ[ƒoƒ‹•Ï”‚Ì‚æ‚¤‚È‚à‚Ì‚¾‚Æl‚¦‚Ä‚­‚¾‚³‚¢B
 
 
@@ -177,6 +175,8 @@ class FoosController < ApplicationController
 
 Œ ŒÀ‚ÌÝ’è‚Å index ‚â show ‚Å‚ÍÝ’è‚É‚æ‚Á‚Ä‚ÍƒƒOƒCƒ“‚µ‚Ä‚È‚­‚Ä‚àA•\Ž¦‚Å‚«‚éê‡‚ª‚ ‚é‚Ì‚Å‚Í‚Æ‹^–â‚ðŽ‚Á‚½•û‚à‚¢‚é‚ÆŽv‚¢‚Ü‚·‚ªA‚»‚¤‚¢‚¤ê‡‚à Redmine ‚ªƒƒOƒCƒ“‚µ‚È‚¢‚æ‚¤‚ÉãŽè‚­ˆ—‚µ‚Ä‚­‚ê‚Ü‚·B
 
+Œ ŒÀ‚Ì”»’è‚É‚ÍŒ»Ý‚ÌƒvƒƒWƒFƒNƒg‚Ìî•ñ‚ª•K—v‚Æ‚È‚è‚Ü‚·Bbefore_filter ‚Í’Ç‰Á‚µ‚½‡‚ÉŽÀs‚³‚ê‚Ü‚·‚Ì‚Å•K‚¸ find_project, authorize ‚Ì‡‚Å‹Lq‚µ‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
+
 ‚±‚±‚Ü‚ÅÝ’è‚µ‚ÄA‚à‚¤ˆê“x [Standard] ‚Ìƒƒjƒ…[‚ð‘I‘ð‚µ‚Ä‚Ý‚Ä‚­‚¾‚³‚¢B¡“x‚ÍƒvƒƒWƒFƒNƒg‚Ìƒy[ƒW‚Æ‚µ‚ÄŠJ‚©‚ê‚Ä‚¢‚é‚Í‚¸‚Å‚·B
 
 !index_no_tab.png!
@@ -187,7 +187,7 @@ class FoosController < ApplicationController
   menu_item :ƒƒjƒ…[€–Ú‚ÌƒVƒ“ƒ{ƒ‹
 </code></pre>
 
-ŽÀ‚Í‚±‚Ìƒƒ\ƒbƒh‚ÅŽw’è‚µ‚È‚­‚Ä‚àƒƒjƒ…[€–Ú‚ª‘I‘ðó‘Ô‚É‚È‚é‚±‚Æ‚ª‚ ‚è‚Ü‚·B‚Ç‚¤‚µ‚½‚ç‚»‚¤‚È‚é‚Ì‚©‚ÍŽ„‚à‚æ‚­•ª‚©‚è‚Ü‚¹‚ñB‚Æ‚è‚ ‚¦‚¸A‘I‘ðó‘Ô‚É‚È‚ç‚È‚¢‚Æ‚«‚Í‚±‚Ìƒƒ\ƒbƒh‚ÅŽw’è‚µ‚Ä‚Ý‚Ä‚­‚¾‚³‚¢B
+‚±‚Ìƒƒ\ƒbƒh‚ÅŽw’è‚µ‚È‚­‚Ä‚àƒƒjƒ…[€–Ú‚ª‘I‘ðó‘Ô‚É‚È‚é‚±‚Æ‚ª‚ ‚è‚Ü‚·BŽÀ‚Í‚Ç‚¤‚µ‚½‚ç‚»‚¤‚È‚é‚Ì‚©‚ÍŽ„‚à‚æ‚­•ª‚©‚è‚Ü‚¹‚ñB‚Æ‚è‚ ‚¦‚¸A‘I‘ðó‘Ô‚É‚È‚ç‚È‚¢‚Æ‚«‚Í‚±‚Ìƒƒ\ƒbƒh‚ÅŽw’è‚µ‚Ä‚Ý‚Ä‚­‚¾‚³‚¢B
 
 ‚±‚ê‚Ü‚Å‚Ì‹Lq‚ð’Ç‰Á‚µ‚½ƒRƒ“ƒgƒ[ƒ‰‚Ìƒtƒ@ƒCƒ‹‚Ì’†g‚ÍŽŸ‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B
 
