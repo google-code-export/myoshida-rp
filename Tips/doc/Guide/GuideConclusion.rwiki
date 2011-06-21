@@ -65,6 +65,16 @@ h4. プロジェクトごとのプラグイン
 h4. 国際化
 
 config/locals 以下に言語別のメッセージファイル(en.yml, ja.yml など)を作成します。
+メッセージファイルには、キーとメッセージのペアを記述します。
+
+通常、メッセージを取得する場合には *l(:キー)* の 国際化ライブラリ(i18n)のメソッドを使用します。しかし、以下のものは自動的にキーが検索されます。あえてラベルを変えたい場合はオプションで :label の値を指定します。
+
+|_. 項目       |_. 検索キー   | 例             |
+| メニュー項目 | label_項目名 | label_standard |
+| モジュール名 | project_module_モジュール名 | project_module_standard |
+| 権限項目     | permission_名前 | permission_view_foos |
+| フォームのフィールド | field_フィールド名 |field_subject |
+
 
 
 
