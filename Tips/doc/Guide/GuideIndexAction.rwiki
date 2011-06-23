@@ -1,4 +1,4 @@
-h1. 一覧表示
+h1. 一覧表示 アクション
 
 一覧表示(index)ページを作成します。
 
@@ -9,7 +9,7 @@ h2. ページ表示の流れ
 !sequence.png!
 
 # ユーザのアクション(ページ指定)により Redmine は指定のコントローラを作成します。
-** アクションの度にコントローラのオブジェクトが作成されます。このため *インスタンス変数(@)はそのアクション限りでしか使用できません* 。
+** アクションの度にコントローラのオブジェクトが作成されます。このため *インスタンス変数(@)はそのアクション限りでしか使用できません* 。すなわち、index アクションで格納したインスタンス変数の値を show アクションで使うといったことは出来ません。
 # Redmine は指定されたアクションのメソッドを実行します。
 ** コントローラ、アクション以外のパラメータは params 変数に格納されます。
 # アクションメソッドの後、アクションに対応したページが作成されます。
@@ -24,7 +24,7 @@ h2. コントローラの実装
 
 <pre><code class="ruby">
   def index
-    @foos = Foo.find(:all, :conditions => ["project_id = ? ", @project.id])
+    @foos = Foo.find(:all, :conditions => ["project_id = #{@project.id} "])
   end
 </code></pre>
 
@@ -37,9 +37,9 @@ h2. コントローラの実装
 | :first | 条件に一致した最初のデータを取得 | モデルオブジェクト |
 
 第二引数はハッシュを受け取るオプションです。ここで *:conditions* を使って条件を指定します。
-foo には属するプロジェクトの識別のためにプロジェクトの ID 番号を格納する [[GuideModel|project_id]] のメンバを持っていました。これが現在のプロジェクトの id と一致するかということを条件にしています。 index メソッドの前には必ず [[GuideForProject|find_project]] が呼ばれて、@project に現在のプロジェクトのオブジェクトが格納されています。
+foo には属するプロジェクトの識別のためにプロジェクトの ID 番号を格納する [[GuideModel|project_id]] のメンバを持っていました。これが現在のプロジェクトの id と一致するということを条件にしています。 index メソッドの前には必ず [[GuideForProject|find_project]] が呼ばれて、@project に現在のプロジェクトのオブジェクトが格納されています。
 
-実は :conditions の指定は SQL 文での指定となるので、けっこう複雑です。ただ、フィルタ機能などを付けなければ、実際にプラグインを作成される場合もこのまま書いてもらえば十分だと思います。
+実は :conditions の指定は SQL 形式での指定となるので、けっこう複雑です。ただ、フィルタ機能などを付けなければ、実際にプラグインを作成される場合もこのまま書いてもらえば十分だと思います。
 検索条件の指定方法は機会があればそのうち詳しく書きたいと思います。
 
 h2. View の実装
@@ -61,26 +61,25 @@ h3. データが空の場合の対策
 <% end %>
 </code></pre>
 
-空のチェックには *blank?* のメソッドを使用しています。 empty? メソッドではオブジェクトが nil の場合例外が発生してしまいますが、 blank? であれば、 nil でもエラーとなりません。配列が空かチェックする場合は基本的にこちらを使う方がいいでしょう。
+空のチェックには *blank?* のメソッドを使用しています。 empty? メソッドではオブジェクトが nil の場合例外が発生してしまいますが、 blank? であれば、 nil でもエラーとなりません。配列や文字列が空かチェックする場合は基本的にこちらを使う方がいいでしょう。
 エラーメッセージ :label_no_data は Redmine で定義されているメッセージで、 class で指定している nodata も Redmine で定義されている CSS のクラスです。これらを使うことにより、 チケットのように Redmine の他のページと同じようなスタイルで表示できるようになります。
 
 h3. テーブルの作成
 
-@foos でなければ、テーブルを作成します。テーブルに表示する要素は foo の *ID 番号(id)* と *題名(title)* にします。
+@foos でなければ、テーブルを作成します。テーブルに表示する要素は foo の *ID 番号(id)* と *題名(subject)* にします。
 
 <pre><code class="rhtml">
 <table class="list">
 
 <thead><tr>  
-<th>#</th> <th><%=h l(:label_foo_title) %></th>
+<th>#</th> <th><%=h l(:field_subject) %></th>
 </tr></thead>
 
 <tbody>
 <% @foos.each do |foo| %>
   <tr class="<%= cycle('odd', 'even') %>">
   <td><%= foo.id %></td>
-  <td><%= link_to(foo.title, {:controller => :foos, :action=> :show,
-                              :id => @project, :foo_id => foo.id} ) %></td>
+  <td><%= link_to(foo.subject, {:action=> :show, :id => @project, :foo_id => foo.id} ) %></td>
 </tr>
 <% end %>
 </tbody>
@@ -88,14 +87,14 @@ h3. テーブルの作成
 </table>
 </code></pre>
 
-まず、ヘッダを出力して、テーブルの各行は *@foos.each* でループをまわして作成しています。
+まず、テーブルのヘッダ行を出力して後テーブルの各行を *@foos.each* でループをまわして作成しています。
 
-テーブルの *list*, *odd*, *even* も Redmine で定義された CSS のクラスでチケットで使っているようなスタイルにすることが出来ます。 odd, even は行を順番で色を変えていくためのもので、 Redmine の *cycle* メソッドでループをまわす度にクラスを切り替えています。
+テーブルの *list*, *odd*, *even* も Redmine で定義された CSS のクラスで Redmine にあわせたスタイルにすることが出来ます。 odd, even は行を順番で色を変えていくためのもので、 Rails の *cycle* メソッドでループをまわす度にクラスを切り替えています。
 
-テーブルの各行には各データの ID 番号(foo.id)と題名(foo.title)を表示しています。
+テーブルの各行には各データの ID 番号(foo.id)と題名(foo.subject)を表示しています。
 題名は各データの詳細ページ(show)へのリンクにしています。このときプロジェクトの識別名を ID として、データの id を *:foo_id* のパラメータとして渡しています。こうすることによって show アクションでは params[:foo_id] でデータの id 番号を取得することができるようになります。
 :id に渡しているのは現在のプロジェクトのオブジェクト(@project)ですが、 Redmine の方で @project.identifer を呼び出して、プロジェクトの識別名にしてくれます。
-
+また、コントローラは省略しています。コントローラが省略された場合、現在のアクションと同じコントローラが指定されたことになります。
 
 h3. new アクションのリンクを追加
 
@@ -104,14 +103,14 @@ h3. new アクションのリンクを追加
 <pre><code class="rhtml">
 <div class="contextual">
   <%= link_to_if_authorized(l(:label_foos_new), 
-                            {:controller => 'foos', :action => 'new', :id => @project}, 
+                            {:action => 'new', :id => @project}, 
                             :class => 'icon icon-add') %>
 </div>
 </code></pre>
 
-new へのリンクは *contextual* のクラスで指定された div 中に書きます。これにより Redmine の他の文書やファイルのページのようにページの右上に表示することが出来ます。この位置は CSS のスタイルで決められているので、 index.html.erb ファイル中のどこに書いてもかまいません。
+new へのリンクは *contextual* のクラスで指定された div 中に書きます。これにより Redmine の他の文書やファイルのページのようにページの右上に表示することが出来ます。リンクを表示する位置は CSS のスタイルで決められているので、 記述する位置は index.html.erb ファイル中のどこに書いてもかまいません。
 
-リンクは通常 link_to を使用しますが、ここでは Redmine の link_to_if_authorized メソッドを使用しています。こうしておくことによって new アクションの権限がユーザに無い場合にはリンクは表示されなくなります。
+リンクは通常 Rails の link_to を使用しますが、ここでは Redmine の link_to_if_authorized メソッドを使用しています。こうしておくことによって new アクションの権限がユーザに無い場合にはリンクは表示されなくなります。
 
 また、リンクのクラスには *"icon icon-add"* を使用して、追加用のアイコンを表示しています。これについての詳しい説明は [[TipsOriginalImage|プラグイン Tips]] を見てください。
 
@@ -129,7 +128,7 @@ h2. 一覧表示ページ
 
 <div class="contextual">
   <%= link_to_if_authorized(l(:label_foos_new), 
-                            {:controller => 'foos', :action => 'new', :id => @project}, 
+                            {:action => 'new', :id => @project}, 
                             :class => 'icon icon-add') %>
 </div>
 
@@ -142,15 +141,14 @@ h2. 一覧表示ページ
 <table class="list">
 
 <thead><tr>  
-<th>#</th> <th><%=h l(:label_foo_title) %></th>
+<th>#</th> <th><%=h l(:field_subject) %></th>
 </tr></thead>
 
 <tbody>
 <% @foos.each do |foo| %>
   <tr class="<%= cycle('odd', 'even') %>">
   <td><%= foo.id %></td>
-  <td><%= link_to(foo.title, {:controller => :foos, :action=> :show,
-                              :id => @project, :foo_id => foo.id} ) %></td>
+  <td><%= link_to(foo.subject, {:action=> :show, :id => @project, :foo_id => foo.id} ) %></td>
 </tr>
 <% end %>
 </tbody>
