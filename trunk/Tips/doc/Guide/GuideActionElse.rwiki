@@ -179,12 +179,12 @@ html のタイトルを付けるには *html_title* メソッドをビュー内で呼び出します。
 </pre>
 
 それでは早速、他のビューにもこの文をコピペしてと ....
-もう何がいいたいかお分かりになるですね。 繰り返しを避ける方法があります。
+もう何がいいたいかお分かりですね。 繰り返しを避ける方法があります。
 
 コントローラの before_filter のようにビューすべてにコードを追加したい場合には *レイアウト* というものを使用します。
 
 レイアウト用の html.erb ファイルは *app/views/layouts* ディレクトリにおきます。
-スケルトンでは layouts はできてませんので、 layouts ディレクトリを作って app/views/layouts/standard.html.erb ファイルを作成します。このときファイル名は何でもかまいません。
+スケルトンでは layouts は作成されていませんので、 layouts ディレクトリを作って app/views/layouts/standard.html.erb ファイルを作成します。このときファイル名は何でもかまいません。
 
 <pre><code class="rhtml">
 <% html_title((@foo && !@foo.subject.blank?) ? @foo.subject : l(:label_standard)) %>
@@ -194,7 +194,7 @@ html のタイトルを付けるには *html_title* メソッドをビュー内で呼び出します。
 html_title の引数は決めたタイトルになるように条件で文字列を変えています。
 
 最後の行でデフォルトのレイアウトを出力しています。
-この layouts/base は Redmine の *app/views/layouts/base.rhtml* ファイルを指しています。このファイルはレイアウトを指定しない場合に使用されているものです。レイアウトを standard.html.erb を指定すると使用するレイアウトはそちらに置き換わってしまいます。 タイトルの指定だけの追加とするためには standard.html.erb 内で再度 base のレイアウトを呼び出す必要があります。
+この layouts/base は Redmine の *app/views/layouts/base.rhtml* ファイルを指しています。このファイルはレイアウトを指定しない場合に使用されているものです。レイアウトに standard.html.erb を指定すると使用するレイアウトはそちらに置き換わってしまいます。 タイトルの指定だけの追加とするためには standard.html.erb 内で再度 base のレイアウトを呼び出す必要があります。
 
 レイアウトの指定はコントローラのクラス定義内に次のコードを追加します。
 
@@ -206,7 +206,7 @@ html_title の引数は決めたタイトルになるように条件で文字列を変えています。
 
 *これでサンプルプラグインは完成です!!*
 
-最終的にコントローラのファイル(foos_controller.rb)は以下のようになります。
+最終的なコントローラのファイル(foos_controller.rb)は以下のようになります。
 
 <pre><code class="ruby">
 class FoosController < ApplicationController

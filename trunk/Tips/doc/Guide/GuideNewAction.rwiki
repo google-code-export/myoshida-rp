@@ -20,7 +20,7 @@ h2. GET ‚Æ POST
 
 ƒRƒ“ƒgƒ[ƒ‰ ¨ ƒrƒ…[ ‚Ìƒf[ƒ^‚Ìƒf[ƒ^‚ÌŽó‚¯“n‚µ‚Å‚ÍƒCƒ“ƒXƒ^ƒ“ƒX•Ï”‚ðŽg—p‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚µ‚½B new ‚Å‚Í‹t‚É ƒrƒ…[ ¨ ƒRƒ“ƒgƒ[ƒ‰ ‚Ì•ûŒü‚Åƒf[ƒ^‚ðŽó‚¯“n‚·•K—v‚ª‚ ‚è‚Ü‚·BRails ‚Å‚Í‚±‚Ìê‡ CGI ‚Ì GET ‚â POST ‚ðŽg‚Á‚Äƒf[ƒ^‚ðŽó‚¯Žæ‚é‚±‚Æ‚É‚È‚è‚Ü‚·B
 
-‚æ‚­ŒŸõƒTƒCƒg‚âŽ«‘ƒTƒCƒg‚Å‚ÍƒAƒhƒŒƒX‚ÌŒã‚É ? ‚ª•t‚¢‚Ä‚¢‚ë‚¢‚ë‚Æƒpƒ‰ƒ[ƒ^‚ªÝ’è‚³‚ê‚Ä‚¢‚é‚ÆŽv‚¢‚Ü‚·B‚±‚Ì‚æ‚¤‚ÉƒAƒhƒŒƒX‚É‚Â‚¯‚Äƒpƒ‰ƒ[ƒ^‚ð“n‚·•û–@‚ð *GET* ‚Æ‚¢‚¢‚Ü‚·B‚±‚Ì•û–@‚Ì—˜“_‚ÍƒAƒhƒŒƒX‚É‚Â‚¯‚Ä“n‚·‚Ì‚ÅAŒŸõðŒž‚Ý‚ÅƒŠƒ“ƒN‚ð‚Â‚­‚é‚±‚Æ‚ª‚Å‚«‚é“_‚Å‚·Bƒvƒ‰ƒOƒCƒ“‚ðì‚éê‡‚Å‚àƒtƒBƒ‹ƒ^‚È‚Ç‚ÌŒŸõ‚ðì‚ë‚¤‚Æ‚µ‚½ê‡‚É‚Íƒpƒ‰ƒ[ƒ^‚ÌŽó‚¯“n‚µ‚É‚Í GET ‚ðŽg‚Á‚½•û‚ª‚¢‚¢‚Å‚·B
+‚æ‚­ŒŸõƒTƒCƒg‚âŽ«‘ƒTƒCƒg‚Å‚ÍƒAƒhƒŒƒX‚ÌŒã‚É ? ‚ª•t‚¢‚Ä‚¢‚ë‚¢‚ë‚Æƒpƒ‰ƒ[ƒ^‚ªÝ’è‚³‚ê‚Ä‚¢‚é‚ÆŽv‚¢‚Ü‚·B‚±‚Ì‚æ‚¤‚ÉƒAƒhƒŒƒX‚É‚Â‚¯‚Äƒpƒ‰ƒ[ƒ^‚ð“n‚·•û–@‚ð *GET* ‚Æ‚¢‚¢‚Ü‚·B‚±‚Ì•û–@‚Ì—˜“_‚ÍƒAƒhƒŒƒX‚É‚Â‚¯‚Ä“n‚·‚Ì‚ÅAŒŸõðŒž‚Ý‚ÅƒŠƒ“ƒN‚ð‚Â‚­‚é‚±‚Æ‚ª‚Å‚«‚é“_‚Å‚·Bƒvƒ‰ƒOƒCƒ“‚ðì‚éê‡‚Å‚àƒtƒBƒ‹ƒ^‚È‚Ç‚ÌŒŸõ‚ðŽg‚¤ê‡‚É‚Íƒpƒ‰ƒ[ƒ^‚ÌŽó‚¯“n‚µ‚É‚Í GET ‚ðŽg‚Á‚½•û‚ª‚¢‚¢‚Å‚µ‚å‚¤B
 ‘OÍ‚Ì index ‚Å‚ÌŠeƒf[ƒ^‚Ö‚ÌƒŠƒ“ƒN‚Å‚Í form_id ‚Ì’l‚àƒpƒ‰ƒ[ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚Ü‚µ‚½B‚±‚ê‚Í GET ‚Åƒpƒ‰ƒ[ƒ^‚ð“n‚·‚±‚Æ‚É‚È‚è‚Ü‚·B Rails ‚Å‚Í url ‚ÌŽw’è‚ðƒnƒbƒVƒ…‚Ås‚Á‚½ê‡AƒRƒ“ƒgƒ[ƒ‹AƒAƒNƒVƒ‡ƒ“A ID ˆÈŠO‚Ìƒpƒ‰ƒ[ƒ^‚ÍƒfƒtƒHƒ‹ƒg‚Å‚Í GET ‚Æ‚µ‚Ä“n‚³‚ê‚é‚½‚ß‚Å‚·B
 
 GET ‚Å‚ÍƒAƒhƒŒƒX‚Æ‚µ‚Äƒpƒ‰ƒ[ƒ^‚ðŽ‚½‚¹‚é‚½‚ßA‚ ‚Ü‚è’·‚¢ƒpƒ‰ƒ[ƒ^‚Ìê‡‚É‚Í•sŒü‚«‚Å‚·‚µA 255 •¶Žš‚Æ‚¢‚¤§ŒÀ‚ª‚ ‚è‚Ü‚·B‚»‚Ìê‡‚É‚Í *POST* ‚ðŽg‚Á‚Äƒf[ƒ^‚ð‘—M‚·‚é‚±‚Æ‚É‚È‚è‚Ü‚·B Rails ‚Å‚ÍƒtƒH[ƒ€‚Åƒpƒ‰ƒ[ƒ^‚ð‘—‚ë‚¤‚Æ‚·‚é‚ÆƒfƒtƒHƒ‹ƒg‚Í POST ‚Æ‚È‚è‚Ü‚·B
@@ -34,7 +34,7 @@ GET ‚Å‚ÍƒAƒhƒŒƒX‚Æ‚µ‚Äƒpƒ‰ƒ[ƒ^‚ðŽ‚½‚¹‚é‚½‚ßA‚ ‚Ü‚è’·‚¢ƒpƒ‰ƒ[ƒ^‚Ìê‡‚É‚Í•s
 
 h2. ƒRƒ“ƒgƒ[ƒ‰‚ÌŽÀ‘•
 
-ƒRƒ“ƒgƒ[ƒ‰(app/controller/foo_app/controllers/foos_controller.rb) ‚Ì new ƒƒ\ƒbƒh‚ðŽÀ‘•‚µ‚Ü‚·B 
+ƒRƒ“ƒgƒ[ƒ‰(app/controllers/foos_controller.rb) ‚Ì new ƒƒ\ƒbƒh‚ðŽÀ‘•‚µ‚Ü‚·B 
 
 <pre><code class="ruby">
     @foo = Foo.new(params[:foo])
@@ -46,21 +46,20 @@ h2. ƒRƒ“ƒgƒ[ƒ‰‚ÌŽÀ‘•
     end
 </code></pre>
 
-new ƒAƒNƒVƒ‡ƒ“‚Íˆê——•\Ž¦‚©‚ç‚ÌƒŠƒ“ƒN‚©‚çŒÄ‚Ño‚³‚ê‚Ü‚·B‚µ‚©‚µA‚»‚ê‚¾‚¯‚Å‚È‚­V‹Kì¬‰æ–Ê‚Å [ì¬] ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ŒãAÄ“x new ƒAƒNƒVƒ‡ƒ“‚ªŽÀs‚³‚ê‚é‚±‚Æ‚É‚È‚è‚Ü‚·B
+new ƒAƒNƒVƒ‡ƒ“‚Íˆê——•\Ž¦‚ÌƒŠƒ“ƒN‚©‚çŒÄ‚Ño‚³‚ê‚Ü‚·B‚µ‚©‚µA‚»‚ê‚¾‚¯‚Å‚È‚­V‹Kì¬‰æ–Ê‚Å [ì¬] ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ŒãAÄ“x new ƒAƒNƒVƒ‡ƒ“‚ªŽÀs‚³‚ê‚é‚±‚Æ‚É‚È‚è‚Ü‚·B
 
 Foo ƒ‚ƒfƒ‹ƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ðV‹Kì¬‚µ‚ÄA project_id ƒƒ“ƒo‚ÉŒ»Ý‚ÌƒvƒƒWƒFƒNƒg(@project) ‚Ì id ‚ðÝ’è‚µ‚Ä‚¢‚Ü‚·B
-‚±‚Ì‚Æ‚«Aˆø”‚Æ‚µ‚Ä params ‚Ì :foo ‚Ì’l‚ª“n‚³‚ê‚Ä‚¢‚Ü‚·Bˆê——•\Ž¦‚©‚çŒÄ‚Ño‚³‚ê‚½ê‡‚É‚ÍA‚±‚Ì’†‚Í‹ó‚È‚Ì‚ÅA’Êí‚ÌƒIƒuƒWƒFƒNƒg‚Ìì¬‚Æ“¯‚¶‚Å‚·B
+‚±‚Ì‚Æ‚«ˆø”‚Æ‚µ‚Ä params ‚Ì :foo ‚Ì’l‚ª“n‚³‚ê‚Ä‚¢‚Ü‚·Bˆê——•\Ž¦‚©‚çŒÄ‚Ño‚³‚ê‚½ê‡‚É‚ÍA‚±‚Ì’†‚Í‹ó‚È‚Ì‚ÅA’Êí‚ÌƒIƒuƒWƒFƒNƒg‚Ìì¬‚Æ“¯‚¶‚Å‚·B
 
 [ì¬] ‚©‚çŒÄ‚Ño‚³‚ê‚½ê‡‚É‚Í @params[:foo]@ ‚É’l‚ª“ü‚Á‚Ä‚¢‚Ü‚·B :foo ‚ðƒL[‚Æ‚µ‚½’l‚Ì’†‚Í‚³‚ç‚ÉƒnƒbƒVƒ…‚É‚È‚Á‚Ä‚¢‚ÄA‚»‚±‚É :subject ‚â :description ‚ðƒL[‚Æ‚µ‚Ä’l‚ª“ü‚Á‚Ä‚¢‚Ü‚·B—á‚¦‚Îà–¾‚Ì’†g‚ðŽæ‚èo‚µ‚½‚¢ê‡‚Í @params[:foo][:description]@ ‚ÅƒAƒNƒZƒX‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
 Foo.new ‚Ìˆø”‚Æ‚µ‚ÄA‚±‚ÌƒnƒbƒVƒ…‚ð“n‚·‚±‚Æ‚Åƒƒ“ƒo‚É‚»‚ÌƒnƒbƒVƒ…‚Ì’†g‚ªŠi”[‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ªì¬‚³‚ê‚Ü‚·B
 
-*request.post?* ‚Í POST ‚ªŽÀs‚³‚ê‚½‚©‚Ç‚¤‚©‚Å‚·B‚»‚Ì‚½‚ßAV‹Kì¬‚©‚çŒÄ‚Î‚ê‚½ê‡‚Í‹U‚Æ‚È‚èAƒƒ\ƒbƒh‚ð”²‚¯A new.html.erb ‚ªì¬•\Ž¦‚³‚ê‚Ü‚·B
+*request.post?* ‚Í POST ‚ªŽÀs‚³‚ê‚½‚©‚Ç‚¤‚©‚Å‚·B‚»‚Ì‚½‚ßAV‹Kì¬‚©‚çŒÄ‚Î‚ê‚½ê‡‚Í‹U‚Æ‚È‚èAƒƒ\ƒbƒh‚ð”²‚¯‚Ä new.html.erb ‚ªì¬A•\Ž¦‚³‚ê‚Ü‚·B
 
 [ì¬] ‚©‚çŒÄ‚Ño‚³‚ê‚½ê‡A @foo.save ‚ªŽÀs‚³‚ê‚Ü‚·B save ‚ÍƒIƒuƒWƒFƒNƒg‚Ì’†g‚ðƒŒƒR[ƒh‚Æ‚µ‚Äƒf[ƒ^ƒx[ƒX‚É•Û‘¶‚·‚é Foo ƒ‚ƒfƒ‹‚Ìƒƒ\ƒbƒh‚Å‚·B
 
 POST ‚Å‚©‚Â•Û‘¶‚à¬Œ÷‚µ‚½‚ ‚Æ‚ÉŽÀs‚³‚ê‚Ä‚¢‚éƒR[ƒh‚Íƒ`ƒbƒv‚Ìì¬Žž‚É‚Å‚Ä‚­‚é‚æ‚¤‚È"ì¬‚³‚ê‚½‚Ü‚µ‚½"‚Æ‚¢‚Á‚½ƒƒbƒZ[ƒW‚ðo—Í‚·‚é‚½‚ß‚Ì‚à‚Ì‚Å‚·B
-
-ÅŒã‚É *redirect_to* ‚ðŽg‚¢Ashow ƒAƒNƒVƒ‡ƒ“‚É•ÏX‚µ‚Ä‚¢‚Ü‚·B‚±‚ê‚É‚æ‚èV‹Kì¬ƒy[ƒW‚Å‚Í‚È‚­AÚ×ƒy[ƒW‚ª•\Ž¦‚³‚ê‚é‚±‚Æ‚É‚È‚è‚Ü‚·B redirect_to ‚É“n‚·ˆø”‚ÍƒŠƒ“ƒN‚È‚Ç‚Å‚ÌƒAƒNƒVƒ‡ƒ“Žw’è‚Ìê‡‚Æ“¯‚¶‚Å‚·B
+‚»‚ÌŒã *redirect_to* ‚ðŽg‚¢Ashow ƒAƒNƒVƒ‡ƒ“‚É•ÏX‚µ‚Ä‚¢‚Ü‚·B‚±‚ê‚É‚æ‚èV‹Kì¬ƒy[ƒW‚Å‚Í‚È‚­AÚ×ƒy[ƒW‚ª•\Ž¦‚³‚ê‚é‚±‚Æ‚É‚È‚è‚Ü‚·B redirect_to ‚É“n‚·ˆø”‚ÍƒŠƒ“ƒN‚È‚Ç‚Å‚ÌƒAƒNƒVƒ‡ƒ“Žw’è‚Ìê‡‚Æ“¯‚¶‚Å‚·B
 
 
 h2. ƒrƒ…[‚ÌŽÀ‘•
@@ -82,7 +81,7 @@ h3. •”•ª•`‰æ
 
 ‚»‚ê‚ª new.html.erb ‚Ì 2 s–Ú‚Ì render ‚Ì•”•ª‚É‚È‚è‚Ü‚·B
 *":partial=>'foos/form'* ‚Å‹¤’Ê•”•ª‚ð‹Lq‚µ‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ðŽw’è‚µ‚Ä‚¢‚Ü‚·BŽw’è‚Í app/views ˆÈ‰º‚ÌƒpƒX‚ÅŽw’è‚·‚é‚Ì‚Å‚·‚ªAŽÀÛ‚Ìƒtƒ@ƒCƒ‹‚Í *app/views/foos/_form.index.html.erb* ‚Æ‚È‚è‚Ü‚·B‚Â‚Ü‚èAŽÀÛ‚É‚Íæ“ª‚É _ ƒAƒ“ƒ_[ƒo[‚ð•t‚¯‚ÄAŠg’£Žq‚ð•t‰Á‚µ‚½‚à‚Ì‚ªŒŸõ‚³‚ê‚Ü‚·B
-ŠÖ”‚Éˆø”‚Æ‚µ‚Ä’l‚ð“n‚·‚æ‚¤‚È‚±‚Æ‚ª *:locals* ‚Åo—ˆ‚Ü‚·B‚±‚±‚Å‚Í f ‚ÅŽw’è‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ª•”•ª•`‰æ‚Ìƒtƒ@ƒCƒ‹“à‚Å‚Í form ‚Æ‚¢‚¤•Ï”–¼‚ÅŽg—p‚·‚é‚æ‚¤‚É‚È‚è‚Ü‚·B
+ŠÖ”‚Éˆø”‚ð“n‚·‚æ‚¤‚È‚±‚Æ‚ª *:locals* ‚Åo—ˆ‚Ü‚·B‚±‚±‚Å‚Í f ‚ÅŽw’è‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ª•”•ª•`‰æ‚Ìƒtƒ@ƒCƒ‹“à‚Å‚Í form ‚Æ‚¢‚¤•Ï”–¼‚ÅŽg—p‚Å‚«‚é‚æ‚¤‚É‚É‚È‚è‚Ü‚·B
 
 
 h3. ƒtƒH[ƒ€
@@ -117,15 +116,15 @@ app/views/foos/_form.index.html.erb ‚Ì’†g‚ÍŽŸ‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B
 
 *box* ƒNƒ‰ƒX‚ÌƒuƒƒbƒN‚ÍÝ’èƒ_ƒCƒAƒƒO‚Ì‚æ‚¤‚É”wŒi‚ðŠDF‚É‚·‚é‚½‚ß‚Ì‚à‚Ì‚Å‚·B
 
-:locals ‚ÌƒIƒvƒVƒ‡ƒ“‚ÅÝ’è‚µ‚½‚æ‚¤‚É‚±‚Ìƒtƒ@ƒCƒ‹“à‚Å‚Í form ‚ª labelled_tabular_form_for ‚ÌƒuƒƒbƒN•Ï”‚Å‚ ‚èA‚±‚ê‚ðŽg‚Á‚ÄŠeƒtƒB[ƒ‹ƒh‚ð‹Lq‚µ‚Ä‚¨‚èAŽŸ‚Ìƒpƒ‰ƒ[ƒ^‚ª”z’u‚³‚ê‚Ä‚¢‚Ü‚·B
+:locals ‚ÌƒIƒvƒVƒ‡ƒ“‚ÅÝ’è‚µ‚½‚æ‚¤‚É‚±‚Ìƒtƒ@ƒCƒ‹“à‚Å‚Í form ‚ª labelled_tabular_form_for ‚ÌƒuƒƒbƒN•Ï”‚Å‘ƒB‚±‚ê‚ðŽg‚Á‚Äƒpƒ‰ƒ[ƒ^—p‚ÌŠeƒtƒB[ƒ‹ƒh‚ª”z’u‚³‚ê‚Ä‚¢‚Ü‚·B
 
-|_. ‘ÎÛ |_. ƒpƒŒƒ[ƒ^–¼ |_. ƒtƒB[ƒ‹ƒhƒ^ƒCƒv |_. ƒ‰ƒxƒ‹‚ÌƒVƒ“ƒ{ƒ‹ |
+|_. ‘ÎÛ |_. ƒpƒ‰ƒ[ƒ^–¼ |_. ƒtƒB[ƒ‹ƒhƒ^ƒCƒv |_. ƒ‰ƒxƒ‹‚ÌƒVƒ“ƒ{ƒ‹ |
 | ‘è–¼ | subject | ƒeƒLƒXƒgƒtƒB[ƒ‹ƒh | field_subject |
 | à–¾ | description | ƒeƒLƒXƒgƒGƒŠƒA | field_description |
 
-ƒ‰ƒxƒ‹‚ðÈ—ª‚³‚ê‚½‚µ‚Ä‚¢‚é‚½‚ßA *field_ƒpƒ‰ƒ[ƒ^–¼* ‚Æ‚¢‚¤ƒVƒ“ƒ{ƒ‹‚É‘Î‰ž‚·‚éƒƒbƒZ[ƒW‚ªŽg—p‚³‚ê‚Ü‚·B‚»‚ê‚¼‚ê‚ÌƒƒbƒZ[ƒW’è‹`‚Í Redmine ‚ÌƒƒbƒZ[ƒWƒtƒ@ƒCƒ‹‚É‚ ‚è‚Ü‚·B
+ƒ‰ƒxƒ‹‚ÍÈ—ª‚µ‚Ä‚¢‚é‚½‚ßA *field_ƒpƒ‰ƒ[ƒ^–¼* ‚Æ‚¢‚¤ƒVƒ“ƒ{ƒ‹‚É‘Î‰ž‚·‚éƒƒbƒZ[ƒW‚ªŽg—p‚³‚ê‚Ü‚·B‚»‚ê‚¼‚ê‚ÌƒƒbƒZ[ƒW’è‹`‚Í Redmine ‚ÌƒƒbƒZ[ƒWƒtƒ@ƒCƒ‹‚É‚ ‚è‚Ü‚·B
 
-subject ƒeƒLƒXƒgƒtƒB[ƒ‹ƒh‚ÌƒIƒvƒVƒ‡ƒ“‚Å‚ÍA‚Ü‚¸ƒfƒtƒHƒ‹ƒg‚Å‚Í•‚ª­‚µ’Z‚¢‚Ì‚Å :size ‚Å•‚ðŽw’è‚µ‚Ä‚¢‚Ü‚·B ŽŸ‚Ì :required ƒIƒvƒVƒ‡ƒ“‚Å true ‚ðŽw’è‚µ‚Ä‚¢‚é‚Ì‚ÅA•K‚¸“ü—Í‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚±‚Æ‚ð•\‚·  %{color:red}*% ‚ª•t‚«‚Ü‚·B‚½‚¾‚µA‚±‚ê‚Íƒ}[ƒN‚ð•t‚¯‚Ä‚¢‚é‚¾‚¯‚Å‚±‚ÌƒIƒvƒVƒ‡ƒ“‚Å‹ó•¶Žš‚Ì“ü—Í‚ÌƒGƒ‰[”»’è‚Ü‚Ås‚Á‚Ä‚­‚ê‚é‚í‚¯‚Å‚Í‚ ‚è‚Ü‚¹‚ñBƒGƒ‰[ƒ`ƒFƒbƒN‚ð‚·‚é•û–@‚ÍŽŸß‚ÅŽÀ‘•‚µ‚Ü‚·B
+subject ƒeƒLƒXƒgƒtƒB[ƒ‹ƒh‚ÌƒIƒvƒVƒ‡ƒ“‚Å‚ÍA‚Ü‚¸ƒfƒtƒHƒ‹ƒg‚Å‚Í•‚ª­‚µ’Z‚¢‚Ì‚Å :size ‚Å•‚ðŽw’è‚µ‚Ä‚¢‚Ü‚·B ŽŸ‚Ì :required ƒIƒvƒVƒ‡ƒ“‚Å true ‚ðŽw’è‚µ‚Ä‚¢‚Ü‚·B‚±‚ê‚Í•K‚¸“ü—Í‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚±‚Æ‚ð•\‚·  %{color:red}*% ‚ð•t‚¯‚é‚½‚ß‚Ì‚à‚Ì‚Å‚·B‚½‚¾‚µA‚±‚ê‚Íƒ}[ƒN‚ð•t‚¯‚Ä‚¢‚é‚¾‚¯‚Å‚±‚ÌƒIƒvƒVƒ‡ƒ“‚Å‹ó•¶Žš‚Ì“ü—Í‚ÌƒGƒ‰[”»’è‚Ü‚Ås‚Á‚Ä‚­‚ê‚é‚í‚¯‚Å‚Í‚ ‚è‚Ü‚¹‚ñBƒGƒ‰[ƒ`ƒFƒbƒN‚ð‚·‚é•û–@‚ÍŽŸß‚ÅŽÀ‘•‚µ‚Ü‚·B
 
 description ƒeƒLƒXƒgƒGƒŠƒA‚Å‚Í wiki “ü—Í‚æ‚¤‚É‚·‚é‚½‚ß 2 ‚Â‚Ì‚±‚Æ‚ðs‚Á‚Ä‚¢‚Ü‚·B
 * CSS ‚Ì *wiki-edit* ƒNƒ‰ƒX‚É‚·‚é
@@ -135,8 +134,8 @@ description ƒeƒLƒXƒgƒGƒŠƒA‚Å‚Í wiki “ü—Í‚æ‚¤‚É‚·‚é‚½‚ß 2 ‚Â‚Ì‚±‚Æ‚ðs‚Á‚Ä‚¢‚Ü‚·
 
 h2. ƒ‚ƒfƒ‹‚ÌŽÀ‘•
 
-ŽÀÛ‚Éƒpƒ‰ƒ[ƒ^‚Ì’l‚ª‘Ã“–‚©‚Ç‚¤‚©‚Ì”»’èˆ—‚Íƒ‚ƒfƒ‹‚É‹Lq‚µ‚Ü‚·B
-”»’èˆ—‚Í ActiveRecord::Base ƒNƒ‰ƒX‚Ì *validate* ƒƒ\ƒbƒh‚ðƒI[ƒo[ƒ‰ƒCƒh‚µ‚ÄŽÀ‘•‚µ‚Ü‚·B‚µ‚©‚µA‹ó•¶Žš‚Ìƒ`ƒFƒbƒN‚È‚Ç‚æ‚­Žg‚í‚ê‚é”»’è‚É‚Í•Ö—˜‚Èƒƒ\ƒbƒh‚ª—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·BƒTƒ“ƒvƒ‹‚Å‚Í‚±‚¿‚ç‚ðŽg—p‚µ‚Ü‚·B
+ƒpƒ‰ƒ[ƒ^‚Ì’l‚ª‘Ã“–‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN‚Íƒ‚ƒfƒ‹‚É‹Lq‚µ‚Ü‚·B
+‚±‚Ìˆ—‚Í ActiveRecord::Base ƒNƒ‰ƒX‚Ì *validate* ƒƒ\ƒbƒh‚ðƒI[ƒo[ƒ‰ƒCƒh‚µ‚ÄŽÀ‘•‚µ‚Ü‚·B‚µ‚©‚µA‹ó•¶Žš‚Ìƒ`ƒFƒbƒN‚È‚Ç‚æ‚­Žg‚í‚ê‚éƒ`ƒFƒbƒN‚É‚Í•Ö—˜‚Èƒƒ\ƒbƒh‚ª—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·BƒTƒ“ƒvƒ‹‚Å‚Í‚±‚¿‚ç‚ðŽg—p‚µ‚Ü‚·B
 
 <pre><code class="ruby">
 class Foo < ActiveRecord::Base
