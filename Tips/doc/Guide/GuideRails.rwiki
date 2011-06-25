@@ -34,7 +34,7 @@ Rails ‚ÉŒÀ‚ç‚¸ CGI ‚ðŽg‚Á‚½ Web ƒAƒvƒŠ‚Å‚ÍŠî–{“I‚É MVC ‚Ì‚æ‚¤‚È\‘¢‚É‚È‚Á‚Ä‚¢‚é‚
 
 ‚±‚Ì MVC ‚ª Rails ‚Å‚Í‚Ç‚±‚É‘Š“–‚·‚é‚©‚É‚Â‚¢‚Ä‚à‚Ý‚Ä‚¢‚«‚Ü‚µ‚å‚¤B
 Model ‚Æ‚¢‚¤‚Ì‚ÍAƒf[ƒ^‚ðˆµ‚¤•”•ª‚Åƒf[ƒ^‚»‚Ì‚à‚Ì‚Å‚Í‚ ‚è‚Ü‚¹‚ñB Rails ‚Å‚Ìƒf[ƒ^‚Íƒf[ƒ^ƒx[ƒX‚É‚È‚è‚Ü‚·B‚»‚Ì‚½‚ß Rails ‚Ìƒ‚ƒfƒ‹‚Íƒf[ƒ^ƒx[ƒX‚ðˆµ‚¤•”•ª‚Æ‚¢‚¤‚±‚Æ‚É‚È‚è‚Ü‚·B
-View ‚Í Web ‚Å‚Í html ‚É‚ ‚½‚é‚Ì‚ÅA html ƒtƒ@ƒCƒ‹‚ð¶¬‚·‚é‚Æ‚±‚ë‚Å‚·BRails ‚Å‚Í Erb ‚Æ‚¢‚¤ html ‚É ruby ƒR[ƒh‚ð–„‚ßž‚Þƒ‰ƒCƒuƒ‰ƒŠ‚ðŽg‚Á‚Ä html ƒtƒ@ƒCƒ‹‚ð¶¬‚µ‚Ü‚·B
+View ‚Í Web ‚Å‚Í html ‚É‚ ‚½‚é‚Ì‚ÅA html ƒtƒ@ƒCƒ‹‚ð¶¬‚·‚é‚Æ‚±‚ë‚Å‚·BRails ‚Å‚Í Erb ‚Æ‚¢‚¤ html ‚É–„‚ßž‚Ü‚ê‚½ ruby ƒR[ƒh‚ð•]‰¿‚µ‚Ä html ƒtƒ@ƒCƒ‹¶¬‚·‚éƒ‰ƒCƒuƒ‰ƒŠ‚ðŽg‚Á‚Ä‚¢‚Ü‚·B
 ƒ†[ƒU‚Íƒuƒ‰ƒEƒU‚Å html ‚ðŒ©‚ÄAV‹Kì¬‚âˆê——•\Ž¦‚Æ‚¢‚Á‚½‰½‚ç‚©‚ÌƒAƒNƒVƒ‡ƒ“‚ðs‚¢‚Ü‚·Bhtml ‚Å‚Í‚±‚ê‚ªƒŠƒ“ƒN‚âƒtƒH[ƒ€ƒ{ƒ^ƒ“‚Å’ñ‹Ÿ‚³‚êA‚±‚Ìƒ†[ƒU‚ÌƒAƒNƒVƒ‡ƒ“‚É Contol ‚ª‘Î‰ž‚µ‚Ü‚·B—á‚¦‚Îƒf[ƒ^‚Ìˆê——•\Ž¦‚Å‚ ‚ê‚ÎA Model ‚ðŒÄ‚Ño‚µ‚Äƒf[ƒ^‚ðŽæ“¾‚µA‚»‚ê‚ð View ‚É“n‚µ‚ÄAhtml ‚ðì¬‚µ‚Ü‚·B 
 
 
@@ -57,9 +57,10 @@ Rails ‚Å‚Í 2 ‚Â‚Ì‘å‚«‚È•ûj‚ª‚ ‚è‚Ü‚·B
 ‚½‚¾AŒ‡“_‚È‚Ì‚Í‚±‚Ì‹K–ñ‚Ìƒ‹[ƒ‹‚ð’m‚ç‚È‚¢‚Æƒ\[ƒX‚ð‚Ý‚½‚¾‚¯‚Å‚Í—¬‚ê‚ªŒ©‚¦‚¸A‰½‚ð‚â‚Á‚Ä‚¢‚é‚Ì‚©‚æ‚­•ª‚©‚ç‚È‚¢‚Æ‚¢‚¤‚±‚Æ‚ª‚æ‚­‹N‚±‚è‚Ü‚·B‚µ‚©‚µA‚±‚ê‚à‹t‚Éƒ‹[ƒ‹‚ª‚í‚©‚Á‚Ä‚­‚é‚Æ‚±‚Ì‹@”\‚Í‚Ç‚±‚ÅŽÀ‘•‚µ‚Ä‚¢‚é‚©‚Æ‚¢‚Á‚½‚±‚Æ‚ª‚·‚®‚É‚í‚©‚èA”ñí‚Éƒ\[ƒXƒR[ƒh‚ð“Ç‚Þ‚Ì‚ªŠy‚É‚È‚è‚Ü‚·B
 
 
-‚³‚ç‚ÉƒfƒBƒŒƒNƒgƒŠ‚âƒtƒ@ƒCƒ‹–¼‚ðŒˆ‚ß‚¤‚¿‚É‚·‚é‚¾‚¯‚Å‚È‚­A ruby ‚Ìƒƒ^ƒvƒƒOƒ‰ƒ~ƒ“ƒO‚ð—˜—p‚µ‚ÄŽ©•ª‚ªì‚Á‚½ƒtƒ@ƒCƒ‹‚È‚Ç‚àƒ[ƒh‚·‚éƒtƒ@ƒCƒ‹‚ÌŽw’è‚È‚­‘‚­‚±‚Æ‚ª‚±‚Æ‚ªo—ˆ‚é‚æ‚¤‚É‚È‚è‚Ü‚·B ‚±‚Ìƒƒ^ƒvƒƒOƒ‰ƒ~ƒ“ƒO‚Æ‚¢‚¤‚Ì‚Í ruby ‚ÌƒXƒNƒŠƒvƒg’†‚ÅA¡‚Ç‚Ì‚æ‚¤‚ÈƒNƒ‰ƒX‚âƒƒ\ƒbƒh‚ª’m‚é‚±‚Æ‚ªo—ˆ‚½‚èAƒGƒ‰[ˆ—‚ð‘‚«Š·‚¦‚½‚è‚·‚é‚±‚Æ‚ª‚Å‚«‚é‹@”\‚Å‚·B
+‚³‚ç‚ÉƒfƒBƒŒƒNƒgƒŠ‚âƒtƒ@ƒCƒ‹–¼‚ðŒˆ‚ß‚¤‚¿‚É‚·‚é‚¾‚¯‚Å‚È‚­A ruby ‚Ìƒƒ^ƒvƒƒOƒ‰ƒ~ƒ“ƒO‚ð—˜—p‚µ‚ÄŽ©•ª‚ªì‚Á‚½ƒtƒ@ƒCƒ‹‚È‚Ç‚àƒ[ƒh‚ÌŽw’è‚È‚­—˜—p‚·‚é‚±‚Æ‚ªo—ˆ‚é‚æ‚¤‚É‚È‚è‚Ü‚·B ‚±‚Ìƒƒ^ƒvƒƒOƒ‰ƒ~ƒ“ƒO‚Æ‚¢‚¤‚Ì‚Í ruby ‚ÌƒXƒNƒŠƒvƒg’†‚ÅA¡‚Ç‚Ì‚æ‚¤‚ÈƒNƒ‰ƒX‚âƒƒ\ƒbƒh‚ª’m‚é‚±‚Æ‚ªo—ˆ‚½‚èAƒGƒ‰[ˆ—‚ð‘‚«Š·‚¦‚½‚è‚·‚é‚±‚Æ‚ª‚Å‚«‚é‹@”\‚Å‚·B
 —á‚¦‚Î FooBar.new ‚Æ‚¢‚¤‚æ‚¤‚È‹Lq‚ÅƒNƒ‰ƒX‚ðŽg—p‚µ‚½‚Æ‚µ‚Ü‚·B’ÊíA ’è‹`ƒtƒ@ƒCƒ‹‚Ìƒ[ƒh‚È‚µ‚Å‚Í FooBar ‚Í–¢’è‹`‚Å‚·‚Æ‚¢‚¤‚æ‚¤‚ÈƒGƒ‰[‚ª‚Å‚Ü‚·B Rails ‚Å‚ÍƒGƒ‰[ˆ—‚ðŠg’£‚µA’m‚ç‚È‚¢ƒNƒ‰ƒX‚ðŽg‚¨‚¤‚Æ‚·‚é‚Æ foo_bar.rb ‚Æ‚¢‚¤–¼‘O‚Ìƒtƒ@ƒCƒ‹‚ð’T‚µ‚Äƒ[ƒh‚µ‚Ü‚·B
-‚±‚Ì’T‚·ƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ÌˆÈ‰º‚Ì‚æ‚¤‚É‚µ‚ÄƒNƒ‰ƒX–¼‚©‚çŒˆ‚ß‚Ü‚·B
+‚±‚Ì’T‚·ƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ÍˆÈ‰º‚Ì‚æ‚¤‚É‚µ‚ÄƒNƒ‰ƒX–¼‚©‚çŒˆ‚ß‚Ü‚·B
+
 # ‘å•¶Žš¬•¶Žš‚É‚æ‚é’PŒê‚Ì‹æØ‚è‚ð _ (ƒAƒ“ƒ_[ƒo[)‚É•ÏŠ·
 # ‚·‚×‚Ä¬•¶Žš‚É•ÏŠ·
 # Šg’£Žq‚ð .rb ‚É‚·‚é

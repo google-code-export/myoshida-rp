@@ -46,7 +46,7 @@ Redmine::Plugin.register ‚Æ‚¢‚¤‚Ì‚ªƒvƒ‰ƒOƒCƒ“’Ç‰Á‚Ì‚½‚ß‚Ìƒƒ\ƒbƒh‚Å‚·Bˆø”‚Åƒvƒ
 
 !init.png!
 
-‚»‚ê‚¼‚ê‚Ìƒƒ\ƒbƒh‚É‘‚­î•ñ‚ðŽŸ‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B
+‚»‚ê‚¼‚ê‚Ìƒƒ\ƒbƒh‚É‘‚­î•ñ‚ÍŽŸ‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·B
 
 |_. ƒƒ\ƒbƒh  |_. à–¾             |
 | name        | ƒvƒ‰ƒOƒCƒ“‚Ì•\Ž¦–¼ |
@@ -56,7 +56,7 @@ Redmine::Plugin.register ‚Æ‚¢‚¤‚Ì‚ªƒvƒ‰ƒOƒCƒ“’Ç‰Á‚Ì‚½‚ß‚Ìƒƒ\ƒbƒh‚Å‚·Bˆø”‚Åƒvƒ
 | url	      | ƒvƒ‰ƒOƒCƒ“‚Ìƒz[ƒ€ƒy[ƒW |
 | author_url  | ì¬ŽÒ‚Ìƒz[ƒ€ƒy[ƒWB–¼‘O‚ðƒNƒŠƒbƒN‚µ‚½‚Æ‚«‚ÌƒŠƒ“ƒNæ‚É‚È‚è‚Ü‚·B |
 
-‚±‚ê‚ç‚Ìî•ñ‚ðŽ©•ª‚Ìƒvƒ‰ƒOƒCƒ“‚É‡‚í‚¹‚ÄA’†g‚ð‘Ö‚¦‚Ä‚¢‚­‚±‚Æ‚É‚È‚è‚Ü‚·B url ‚È‚Ç‚Í‚È‚¯‚ê‚ÎÈ—ª‚µ‚Ä‚à‚©‚Ü‚¢‚Ü‚¹‚ñB
+‚±‚ê‚ç‚Ìî•ñ‚ðŽ©•ª‚Ìƒvƒ‰ƒOƒCƒ“‚É‡‚í‚¹‚ÄA’†g‚ð‘Ö‚¦‚Ä‚¢‚­‚±‚Æ‚É‚È‚è‚Ü‚·B url ‚â author_url ‚Í‚È‚¯‚ê‚ÎÈ—ª‚µ‚Ä‚à‚©‚Ü‚¢‚Ü‚¹‚ñB
 
 ‚±‚Ìƒvƒ‰ƒOƒCƒ“‚ÌŠî–{î•ñ‚ð“K“–‚É‘‚«’¼‚µ‚ÄA Redmine ‚ðÄ‹N“®‚µ‚Ä‚Ý‚Ä‚­‚¾‚³‚¢BŠÈ’P‚Èƒvƒ‰ƒOƒCƒ“‚ÌŠ®¬‚Å‚·B
 ŽŸ‰ñ‚©‚ç‚±‚ê‚É’†g‚ð•t‚¯‚Ä‚¢‚«‚Ü‚µ‚å‚¤B
