@@ -1,19 +1,274 @@
 h1. その他のアクション(詳細表示、編集、削除)
 
-それでは残ったアクションを一気に片付けていきましょう。
+それでは残った 3 つのアクションを一気に片付けていきましょう。
+
+* 詳細表示( show )
+* 削除( destroy )
+* 編集( edit )
 
 
-h2. foo オブジェクト(@foo)の取得
+h2. Foo オブジェクト(@foo)の取得
 
+show, destroy, edit のアクションでは params[:foo_id] に入っている id から対象となる Foo のオブジェクトを取得する必要があります。 
+3 つのメソッドで同じことを行います。こういうときには *before_filter* の出番です。ただし、 index や new では必要ありません。 before_filter では *:only* オプションで実行する対象を指定することも、 *:except* オプションで実行しない対象を指定することも出来ます。サンプルでは 3 つのアクションだけですが、チケットのようにコピーや移動などのアクションを追加したくなるかもれません。そこで :except で index と new を指定することにします。
+
+find_project と同じように find_foo メソッドを追加します。
+
+<pre><code class="ruby">
+class FoosController < ApplicationController
+  unloadable
+  menu_item :standard
+  before_filter :find_project, :authorize
+  before_filter :find_foo, :except => [:index, :new]
+
+  # :
+  
+private
+  def find_project
+    @project = Project.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
+  def find_foo
+    @foo = Foo.find_by_id(params[:foo_id])
+    render_404	unless @foo
+  end
+end
+</code></pre>
+
+ActiveRecord::Base クラスでは ruby のメタプログラミングを利用して find_by_XXX という名前のクラスメソッドで XXX というメンバをキーとしてテーブルを検索することが出来ます。ここでは *Foo.find_by_id* で id の値が一致するオブジェクトを検索しています。
+ただし、 Project.find と違って見つからなかった場合は nil を返すだけで例外は発生しません。 
 
 
 h2. 詳細表示( show アクション )
 
+詳細表示のコントローラでは、 Foo オブジェクトを取得してビューを生成するだけなので、 show メソッドはスケルトン作成時のままで何も追加することはありません。
+
+<pre><code class="ruby">
+  def show
+  end
+</code></pre>
+
+ビュー(show.html.erb) で @foo オブジェクトの中身を表示することになります。
+表示は Redmine で定義されている CSS クラスを使って、ちょっとチケット風にしています。
+
+<pre><code class="rhtml">
+<h2><%=h l(:label_foo) %>#<%= @foo.id %></h2>
+
+<div class="issue">      
+
+  <div class="subject">
+    <h3><%= @foo.subject %></h3>
+  </div>
+
+<% unless @foo.blank? %>
+  <p><strong><%=l(:field_description)%></strong></p>
+  <div class="wiki">
+    <%= textilizable @foo, :description %>
+  </div>
+<% end %>
+
+</div></code></pre>
+
+説明のパラメータは CSS クラスを *wiki* にし、 *textilizable* メソッドを使うことによって、wiki を解析した結果を出力しています。
+
+
+また、詳細表示ページでは右上に *編集* と *削除* リンクをつけます。 
+
+<pre><code class="rhtml">
+<div class="contextual">
+<%= link_to_if_authorized(l(:button_edit),
+                          {:action => 'edit', :id => @project, :foo_id => @foo.id},
+			  :class => 'icon icon-edit') %>
+<%= link_to_if_authorized(l(:button_delete),
+                          {:action => 'destroy', :id => @project, :foo_id => @foo.id},
+			   :confirm => l(:text_are_you_sure), :method => :post,
+			   :class => 'icon icon-del') %>
+</div>
+</code></pre>
+
+削除用リンクには *:confirm=>l(:text_are_you_sure)* オプションをつけています。これによりリンク実行前に確認ダイアログを表示されるようになります。
+
+この詳細表示ページの実行結果は次のようになります。
+
+!show.png!
+
 
 h2. 削除( destroy アクション )
 
+destroy はコントローラのスケルトンで作成していませんでした。そこで中身だけでなく、定義からコントローラ(foos_controller.rb)に記述することになります。
+
+<pre><code class="ruby">
+  def destroy
+    @foo.destroy
+    redirect_to :action => 'index', :id => @project
+  end
+</code></pre>
+
+Foo オブジェクトの *destroy* メソッドを使ってデータベースからデータを削除しています。
+その後、そのままだと destroy.html.erb のビューを表示しようとしますので、 redirect_to を使って一覧表示ページを表示しています。
+
 
 h2. 編集( edit アクション )
+
+edit アクションは new アクションと同じような感じで作成します。
+コントローラは次のようになります。
+
+<pre><code class="ruby">
+  def edit
+    if request.post?
+      @foo.attributes = params[:foo]
+      if @foo.save
+        flash[:notice] = l(:notice_successful_update)
+        redirect_to :action => 'show', :id => @project, :foo_id => @foo
+      end
+    end
+  rescue ActiveRecord::StaleObjectError
+    flash.now[:error] = l(:notice_locking_conflict)
+  end
+</code></pre>
+
+詳細表示ページのリンクから呼ばれる場合は特に何もせずにビューを生成、表示します。
+
+フォームの [編集] ボタンから呼ばれる場合には、 new の場合と同様に save メソッドを使ってデータベースに保存しています。 new との違いは次の 2 点です。
+
+* id 番号は同じにしなければならないので、 new の引数ではなく *attributes* でパラメータのみ変更
+* 同時に編集している人がいるとエラーで例外が発生するので、その場合にはエラーメッセージを表示
+
+ビューは次のようになります。
+
+<pre><code class="rhtml">
+<h2><%=h l(:label_foo) %>#<%= @foo.id %></h2>
+
+<% labelled_tabular_form_for :foo, @foo,
+                             :url => {:foo_id => @foo.id} do |f| %>
+    <%= render :partial => 'foos/form', :locals => {:form => f} %>
+    <%= f.submit l(:button_edit) %>
+<% end %>
+</code></pre>
+
+labelled_tabular_form_for の :url の指定は new ではすべて省略していましたが、 edit では :foo_id のパラメータを指定する必要があります。
+
+後はラベルなどの表示を変えているだけで new とほぼ同じです。
+
+
+h2. レイアウト
+
+最後に html ページのタイトルをつけましょう。
+
+他の文書やチケットを参考にタイトルの付け方を次のようにします。
+
+|_. ページ           |_. タイトル                          |
+| 一覧表示、新規作成 | (プロジェクト名) - 標準 - Redmine   |
+| 詳細表示、編集     | (プロジェクト名) - (題名) - Redmine |
+
+html のタイトルを付けるには *html_title* メソッドをビュー内で呼び出します。
+このとき前後のプロジェクト名と Redmine の文字は Redmine が自動的に付けます。
+
+例えば、 index.html.erb に次のコードを追加します。
+
+<pre><code class="rhtml">
+<% html_title(l(:label_standard)) %>
+</code></pre>
+
+このときプロジェクト名が "デモ" とするとタイトルは次のようになります。
+
+<pre>
+デモ - 標準 - Redmine
+</pre>
+
+それでは早速、他のビューにもこの文をコピペしてと ....
+もう何がいいたいかお分かりになるですね。 繰り返しを避ける方法があります。
+
+コントローラの before_filter のようにビューすべてにコードを追加したい場合には *レイアウト* というものを使用します。
+
+レイアウト用の html.erb ファイルは *app/views/layouts* ディレクトリにおきます。
+スケルトンでは layouts はできてませんので、 layouts ディレクトリを作って app/views/layouts/standard.html.erb ファイルを作成します。このときファイル名は何でもかまいません。
+
+<pre><code class="rhtml">
+<% html_title((@foo && !@foo.subject.blank?) ? @foo.subject : l(:label_standard)) %>
+<%= render :file => "layouts/base" %>
+</code></pre>
+
+html_title の引数は決めたタイトルになるように条件で文字列を変えています。
+
+最後の行でデフォルトのレイアウトを出力しています。
+この layouts/base は Redmine の *app/views/layouts/base.rhtml* ファイルを指しています。このファイルはレイアウトを指定しない場合に使用されているものです。レイアウトを standard.html.erb を指定すると使用するレイアウトはそちらに置き換わってしまいます。 タイトルの指定だけの追加とするためには standard.html.erb 内で再度 base のレイアウトを呼び出す必要があります。
+
+レイアウトの指定はコントローラのクラス定義内に次のコードを追加します。
+
+<pre><code class="ruby">
+  layout 'standard'
+</code></pre>
+
+これでどのアクションに対しても layouts/standard.html.erb の内容がビューのページに付けられてタイトルが変更されるようになります。
+
+*これでサンプルプラグインは完成です!!*
+
+最終的にコントローラのファイル(foos_controller.rb)は以下のようになります。
+
+<pre><code class="ruby">
+class FoosController < ApplicationController
+  unloadable
+  menu_item :standard
+  before_filter :find_project, :authorize
+  before_filter :find_foo, :except => [:index, :new]
+
+  layout 'standard'
+
+  def index
+    @foos = Foo.find(:all, :conditions => ["project_id = #{@project.id} "])
+  end
+
+
+  def new
+    @foo = Foo.new(params[:foo])
+    @foo.project_id = @project.id
+
+    if request.post? and @foo.save	
+      flash[:notice] = l(:notice_successful_create)
+      redirect_to :action => 'show', :id => @project, :foo_id => @foo.id
+    end
+  end
+
+
+  def show
+  end
+
+
+  def edit
+    if request.post?
+      @foo.attributes = params[:foo]
+      if @foo.save
+        flash[:notice] = l(:notice_successful_update)
+        redirect_to :action => 'show', :id => @project, :foo_id => @foo
+      end
+    end
+  rescue ActiveRecord::StaleObjectError
+    flash.now[:error] = l(:notice_locking_conflict)
+  end
+
+
+  def destroy
+    @foo.destroy
+    redirect_to :action => 'index', :id => @project
+  end
+
+
+private
+  def find_project
+    @project = Project.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
+  def find_foo
+    @foo = Foo.find_by_id(params[:foo_id])
+    render_404	unless @foo
+  end
+end
+</code></pre>
 
 
 

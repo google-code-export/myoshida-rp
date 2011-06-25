@@ -1,33 +1,98 @@
 
-h1. I‚í‚è‚É
+h1. ‚Ü‚Æ‚ß
 
-h2. ‚Ü‚Æ‚ß
+ƒvƒ‰ƒOƒCƒ“‚Ìì‚è•û‚Ì‚Ü‚Æ‚ß‚Å‚·B
 
-ÅŒã‚Éƒvƒ‰ƒOƒCƒ“‚Ìì‚è•û‚Ì‚Ü‚Æ‚ß‚Ä‚Ý‚Ü‚·B
-
-h3. Rails 
+h2. Rails 
 
 Rails ‚Ìƒ|ƒCƒ“ƒg‚Í MVC \‘¢‚Æ 2 ‚Â‚Ì•ûj‚Å‚·B
 
-h4. MVC \‘¢
+h3. MVC \‘¢
 
 |_. Model | ƒf[ƒ^‚ðˆµ‚¤•”•ªBƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ªƒf[ƒ^ƒx[ƒX‚Ì 1 ‚Â‚ÌƒŒƒR[ƒh‚É‘Î‰ž‚µAƒe[ƒuƒ‹‚©‚ç‚ÌŽæ“¾‚É‚ÍƒNƒ‰ƒXƒƒ\ƒbƒh‚ðŽg—p‚·‚é |
 |_. View | html ‚ðì¬‚·‚é•”•ªB Erb ‚Å–„‚ßž‚ÝŽ®‚Ì ruby ƒR[ƒh‚ð•]‰¿‚µ‚Äì¬‚·‚é |
 |_. Control | ƒ†[ƒU‚ÌƒAƒNƒVƒ‡ƒ“‚É‰ž“š‚·‚é•”•ªBƒAƒNƒVƒ‡ƒ“‚É‘Î‰ž‚µ‚½ƒƒ\ƒbƒh‚ðŽÀs‚·‚é |
 
 
-h4. •ûj
 
-* Ý’è‚æ‚è‚à‹K–ñ
-  –¼‘O‚É‹K‘¥‚ðŽ‚½‚¹‚é‚±‚Æ‚ÅÝ’è‚ÌŽèŠÔ‚ðÈ‚«AŠÈ’P‚Éì¬‚Å‚«‚é‚æ‚¤‚É‚·‚éB
-* ŒJ‚è•Ô‚µ‚Ì‹ÖŽ~
-  “¯‚¶‚±‚Æ‚ð‰½“x‚à‘‚©‚È‚¢B
+h3. Ý’è‚æ‚è‚à‹K–ñ
+
+–¼‘O‚É‹K‘¥‚ðŽ‚½‚¹‚é‚±‚Æ‚ÅÝ’è‚ÌŽèŠÔ‚ðÈ‚«AŠÈ’P‚Éì¬‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚·B
+
+ƒtƒ@ƒCƒ‹‚ð’u‚­ƒfƒBƒŒƒNƒgƒŠ‚ÍŒˆ‚Ü‚Á‚Ä‚¢‚Ü‚·B
 
 
-h3. ƒXƒPƒ‹ƒgƒ“‚Ì¶¬
+*ƒvƒ‰ƒOƒCƒ“‚ÌƒfƒBƒŒƒNƒgƒŠ*
+
+<pre>
+(Redmine ‚ÌƒgƒbƒvƒfƒBƒŒƒNƒgƒŠ)/vender/plugins/(ƒvƒ‰ƒOƒCƒ“–¼)
+</pre>
+
+*ƒvƒ‰ƒOƒCƒ“ƒfƒBƒŒƒNƒgƒŠ“à*
+
+<pre>
+init.rb			Å‰‚Éƒ[ƒh‚³‚ê‚éƒtƒ@ƒCƒ‹Bƒvƒ‰ƒOƒCƒ“‚Ì’è‹`‚ð‹Lq
+app/
+„¥ controllers/         ƒRƒ“ƒgƒ[ƒ‰
+„¥ models/              ƒ‚ƒfƒ‹
+„¤ views/               ƒrƒ…[
+db/migrate/             ƒf[ƒ^ƒx[ƒX‘€ì
+config/locales/         ‘Û‰»—pƒƒbƒZ[ƒWƒtƒ@ƒCƒ‹‚ÌŠi”[
+</pre>
+
+
+ƒtƒ@ƒCƒ‹‚ÍŠî–{“I‚É 1 ƒtƒ@ƒCƒ‹‚É 1 ƒNƒ‰ƒX‚ð‹Lq‚µAƒtƒ@ƒCƒ‹–¼‚ÍƒNƒ‰ƒX–¼‚ðƒXƒl[ƒNƒP[ƒX‚É•ÏŠ·‚µ‚½–¼‘O‚É‚È‚è‚Ü‚·B
+
+<pre>
+FoosController -> foos_controller.rb
+</pre>
+
+ƒrƒ…[‚Ìƒtƒ@ƒCƒ‹‚Í 1 ƒtƒ@ƒCƒ‹‚É 1 ‚Â‚ÌƒAƒNƒVƒ‡ƒ“—pƒy[ƒW‚ð‹Lq‚µ‚Ü‚·B
+
+<pre>
+app/views/(ƒRƒ“ƒgƒ[ƒ‰–¼)/(ƒAƒNƒVƒ‡ƒ“–¼).html.erb
+
+ex.) app/views/foos/index.html.erb
+</pre>
+
+
+
+h3. ŒJ‚è•Ô‚µ‚Ì‹ÖŽ~
+
+“¯‚¶‚±‚Æ‚ð‰½“x‚à‘‚©‚È‚¢B
+
+ŒJ‚è•Ô‚µ‚ð”ð‚¯‚é‚½‚ß‚Ì‹@”\‚ª—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B
+
+*before_filter*
+
+ƒRƒ“ƒgƒ[ƒ‰‚ÅŠeƒAƒNƒVƒ‡ƒ“‚Ìƒƒ\ƒbƒh‚Ì‘O‚ÉŽÀs‚³‚ê‚éƒƒ\ƒbƒh‚ðŽw’è‚µ‚Ü‚·B
+
+*•”•ª•`‰æ*
+
+ƒrƒ…[‚Å“¯‚¶•”•ª‚ð•Êƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä‹¤’Ê‰»‚µ‚Ü‚·B
+•”•ª•`‰æ—p‚Ìƒtƒ@ƒCƒ‹–¼‚É‚Íæ“ª‚É _ ‚ð•t‚¯‚Ü‚·BŽw’è‚·‚éê‡‚Í _ ‚ÆŠg’£Žq‚ðÈ‚«A app/views ‚©‚ç‚ÌƒpƒX‚ð‘‚«‚Ü‚·B
+
+<pre><code class="rhtml">
+<%= render :partial=>"foos/form" %>
+</code></pre>
+
+
+*ƒŒƒCƒAƒEƒg*
+
+‘Sƒrƒ…[‚Å‹¤’Ê‚·‚é•”•ª‚ÍƒŒƒCƒAƒEƒgƒtƒ@ƒCƒ‹‚É‘‚«‚Ü‚·B 
+ƒŒƒCƒAƒEƒgƒtƒ@ƒCƒ‹‚Í app/views/layouts ˆÈ‰º‚É’u‚«AƒRƒ“ƒgƒ[ƒ‰‚ÅƒŒƒCƒAƒEƒg‚ðŽw’è‚µ‚Ü‚·B
+
+<pre><code class="ruby">
+layout "standard"
+</code></pre>
+
+
+h2. ƒXƒPƒ‹ƒgƒ“‚Ì¶¬
 
 ƒvƒ‰ƒOƒCƒ“‚ðì‚é‚É‚Í—Œ`‚Æ‚È‚éƒXƒPƒ‹ƒgƒ“‚ðì¬‚µ‚ÄA‚»‚±‚É’†g‚ð’Ç‰Á‚µ‚Ä‚¢‚«‚Ü‚·B
-ƒXƒPƒ‹ƒgƒ“‚Í *ƒvƒ‰ƒOƒCƒ“‘S‘Ì* A *ƒRƒ“ƒgƒ[ƒ‹* A *ƒ‚ƒfƒ‹* ‚Ì 3 ‚Â‚Å‚·B View ‚ÍƒRƒ“ƒgƒ[ƒ‹‚Æˆê‚É¶¬‚³‚ê‚Ü‚·B
+ƒXƒPƒ‹ƒgƒ“‚Í *ƒvƒ‰ƒOƒCƒ“‘S‘Ì* A *ƒRƒ“ƒgƒ[ƒ‹* A *ƒ‚ƒfƒ‹* ‚Ì 3 ‚Â‚Å‚·B ƒrƒ…[‚ÍƒRƒ“ƒgƒ[ƒ‹‚Æˆê‚É¶¬‚³‚ê‚Ü‚·B
+
+ƒvƒ‰ƒOƒCƒ“‚Ìì¬‚Í Rails ‚ÌƒgƒbƒvƒfƒBƒŒƒNƒgƒŠ‚ÅŽÀs‚µ‚Ü‚·B
 
 <pre>
 $ ruby script/generate redmine_plugin ƒvƒ‰ƒOƒCƒ“–¼
@@ -35,20 +100,36 @@ $ ruby script/generate redmine_plugin_controler ƒvƒ‰ƒOƒCƒ“–¼ ƒRƒ“ƒgƒ[ƒ‰–¼ [ƒAƒ
 $ ruby script/generate redmine_plugin_model ƒvƒ‰ƒOƒCƒ“–¼ ƒ‚ƒfƒ‹–¼ [ƒJƒ‰ƒ€–¼:Œ^ ...]
 </pre>
 
-¶¬‚³‚ê‚éƒtƒ@ƒCƒ‹‚ÌŽå—v‚ÈƒfƒBƒŒƒNƒgƒŠ\¬‚ÍŽŸ‚Ì‚æ‚¤‚È‚à‚Ì‚Å‚·B
+ƒ‚ƒfƒ‹‚Ìê‡‚É‚Íƒf[ƒ^ƒx[ƒX‚Ö‚Ìƒe[ƒuƒ‹ì¬—p‚Ìƒtƒ@ƒCƒ‹‚à¶¬‚³‚ê‚Ü‚·B
+ƒe[ƒuƒ‹‚Ìì¬‚É‚Í rake ‚ðŽg—p‚µ‚Ü‚·B
 
 <pre>
-init.rb			Å‰‚Éƒ[ƒh‚³‚ê‚éƒtƒ@ƒCƒ‹Bƒvƒ‰ƒOƒCƒ“‚Ì’è‹`‚ð‹Lq
-app/
-„¥ controllers/         ƒRƒ“ƒgƒ[ƒ‰
-„¥ models/              ƒ‚ƒfƒ‹
-„¤ views/               •\Ž¦
-db/migrate/             ƒf[ƒ^ƒx[ƒX‘€ì
-config/locales/         ‘Û‰»—pƒƒbƒZ[ƒWƒtƒ@ƒCƒ‹‚ÌŠi”[
+$ rake db:migrate_plugins
 </pre>
 
 
-h4. ƒvƒƒWƒFƒNƒg‚²‚Æ‚Ìƒvƒ‰ƒOƒCƒ“
+ƒXƒPƒ‹ƒgƒ“¶¬ŒãAŽŸ‚Ì‚æ‚¤‚Èì‹Æ‚ðs‚¤‚±‚Æ‚É‚È‚è‚Ü‚·B
+
+*init.rb*
+
+* ƒo[ƒWƒ‡ƒ“‚È‚Ç‚ÌŠeî•ñ‚ðÝ’è‚µ‚Ü‚·B
+* ƒvƒ‰ƒOƒCƒ“‚Ìƒgƒbƒvƒy[ƒW‚ðŒÄ‚Ño‚·‚½‚ß‚Ìƒƒjƒ…[‚ð’Ç‰Á‚µ‚Ü‚·B
+
+*ƒ‚ƒfƒ‹*
+
+ƒf[ƒ^—v‘f‚ª‘Ã“–‚È‚à‚Ì‚©‚Ì”»’èˆ—‚ð’Ç‰Á‚µ‚Ü‚·B
+
+*ƒRƒ“ƒgƒ[ƒ‹*
+
+ŠeƒAƒNƒVƒ‡ƒ“‚²‚Æ‚Ìƒƒ\ƒbƒh‚ðŽÀ‘•‚µ‚Ü‚·B
+
+*ƒrƒ…[*
+
+ŠeƒAƒNƒVƒ‡ƒ“‚²‚Æ‚Ìƒy[ƒW‚Ì“à—e‚ð‹Lq‚µ‚Ü‚·B
+
+
+
+h2. ƒvƒƒWƒFƒNƒg‚²‚Æ‚Ìƒvƒ‰ƒOƒCƒ“
 
 ƒvƒƒWƒFƒNƒg‚²‚Æ‚Éƒf[ƒ^ŠÇ—‚·‚éƒvƒ‰ƒOƒCƒ“‚É‚·‚é‚½‚ß‚É•K—v‚È‚±‚Æ‚ð‚ ‚°‚Ü‚·B
 
@@ -62,19 +143,96 @@ h4. ƒvƒƒWƒFƒNƒg‚²‚Æ‚Ìƒvƒ‰ƒOƒCƒ“
 ** ƒƒjƒ…[‚ð‘I‘ðó‘Ô menu_item
 
 
-h4. ‘Û‰»
+h2. ‘Û‰»
 
 config/locals ˆÈ‰º‚ÉŒ¾Œê•Ê‚ÌƒƒbƒZ[ƒWƒtƒ@ƒCƒ‹(en.yml, ja.yml ‚È‚Ç)‚ðì¬‚µ‚Ü‚·B
 ƒƒbƒZ[ƒWƒtƒ@ƒCƒ‹‚É‚ÍAƒL[‚ÆƒƒbƒZ[ƒW‚ÌƒyƒA‚ð‹Lq‚µ‚Ü‚·B
 
-’ÊíAƒƒbƒZ[ƒW‚ðŽæ“¾‚·‚éê‡‚É‚Í *l(:ƒL[)* ‚Ì ‘Û‰»ƒ‰ƒCƒuƒ‰ƒŠ(i18n)‚Ìƒƒ\ƒbƒh‚ðŽg—p‚µ‚Ü‚·B‚µ‚©‚µAˆÈ‰º‚Ì‚à‚Ì‚ÍŽ©“®“I‚ÉƒL[‚ªŒŸõ‚³‚ê‚Ü‚·B‚ ‚¦‚Äƒ‰ƒxƒ‹‚ð•Ï‚¦‚½‚¢ê‡‚ÍƒIƒvƒVƒ‡ƒ“‚Å :label ‚Ì’l‚ðŽw’è‚µ‚Ü‚·B
+’ÊíAƒƒbƒZ[ƒW‚ðŽæ“¾‚·‚éê‡‚É‚ÍŽŸ‚Ì‘Û‰»ƒ‰ƒCƒuƒ‰ƒŠ(i18n)‚Ìƒƒ\ƒbƒh‚ðŽg—p‚µ‚Ü‚·B
 
-|_. €–Ú       |_. ŒŸõƒL[   | —á             |
+<pre><code class="ruby">
+l(:ƒL[)
+</code></pre>
+
+
+‚µ‚©‚µAˆÈ‰º‚Ì‚à‚Ì‚ÍŽ©“®“I‚ÉƒL[‚ªŒŸõ‚³‚ê‚Ü‚·B‚ ‚¦‚Äƒ‰ƒxƒ‹‚ð•Ï‚¦‚½‚¢ê‡‚ÍƒIƒvƒVƒ‡ƒ“‚Å :label ‚Ì’l‚ðŽw’è‚µ‚Ü‚·B
+
+|_. €–Ú       |_. ŒŸõƒL[   |_. —á             |
 | ƒƒjƒ…[€–Ú | label_€–Ú–¼ | label_standard |
 | ƒ‚ƒWƒ…[ƒ‹–¼ | project_module_ƒ‚ƒWƒ…[ƒ‹–¼ | project_module_standard |
 | Œ ŒÀ€–Ú     | permission_–¼‘O | permission_view_foos |
 | ƒtƒH[ƒ€‚ÌƒtƒB[ƒ‹ƒh | field_ƒtƒB[ƒ‹ƒh–¼ |field_subject |
 
 
+h2. ƒf[ƒ^‚Ì—¬‚ê
+
+h3. ƒrƒ…[ ¨ ƒRƒ“ƒgƒ[ƒ‹
+
+ƒƒjƒ…[‚âƒrƒ…[‚Ì link_to ‚È‚Ç‚Åì‚Á‚½ƒŠƒ“ƒN‚Ü‚½‚ÍƒtƒH[ƒ€‚©‚çƒRƒ“ƒgƒ[ƒ‹‚ÌƒAƒNƒVƒ‡ƒ“‚ªŒÄ‚Ño‚³‚ê‚Ü‚·B
+
+ƒŠƒ“ƒN‚ÍƒnƒbƒVƒ…‚ÅŽw’è‚µA:control, :action ‚È‚Ç‚Ì—v‘f‚ÅƒAƒhƒŒƒX(ŒÄ‚Ño‚·ƒAƒNƒVƒ‡ƒ“)‚ðŽw’è‚µAŒã‚Ìƒpƒ‰ƒ[ƒ^‚Í *params* •Ï”‚ÉƒnƒbƒVƒ…‚Æ‚µ‚ÄŠi”[‚³‚êƒRƒ“ƒgƒ[ƒ‹‚É“n‚³‚ê‚Ü‚·B :id ƒpƒ‰ƒ[ƒ^‚Í“ÁŽê‚ÅƒAƒhƒŒƒX‚Ìˆê•”‚Æ‚µ‚Ä‚àŽg‚í‚ê‚Ü‚·B‚±‚ê‚ÅƒvƒƒWƒFƒNƒg‚ÌŽ¯•Ê–¼‚ðŽw’è‚µ‚Ü‚·B
+
+<pre><code class="ruby">
+link_to(•\Ž¦•¶Žš—ñ, {:control=>:foos, :action=> :show, :id => "demo", :foo_id => 1})
+</code></pre>
+
+<pre>
+ƒAƒhƒŒƒX: http://127.0.0.1/foos/show/demo
+params = {:id => "demo", :foo_id => "1"}
+</pre>
+
+ƒtƒH[ƒ€‚Å‘—‚éê‡‚ÍƒtƒH[ƒ€‚ÌŠeƒtƒB[ƒ‹ƒh‚Ìƒpƒ‰ƒ[ƒ^‚ª params[:ƒtƒH[ƒ€–¼] ‚ÌŽq—v‘f‚ÌƒnƒbƒVƒ…‚ÅŠi”[‚³‚ê‚Ä“n‚³‚ê‚Ü‚·B
+
+<pre><code class="ruby">
+<% form_for(:foo, (ƒ‚ƒfƒ‹‚ÌƒIƒuƒWƒFƒNƒg), 
+            :url=>{:control=>:foos, :action=> :new, :id => "demo"}) do |f| %>
+  <p> <%= f.text_field(:subject) %>    </p>
+  <p> <%= f.text_area(:description) %> </p>
+      <%= f.submit l(:button_create) %>
+<% end %>
+</code></pre>
+
+<pre>
+ƒAƒhƒŒƒX: http://127.0.0.1/foos/new/demo
+params = {:id => "demo", :foo=>{:subject=>(“ü—Í’l), :description=>(“ü—Í’l) } }
+</pre>
 
 
+h3. ƒRƒ“ƒgƒ[ƒ‹ © ƒ‚ƒfƒ‹
+
+ƒf[ƒ^ƒx[ƒX‚©‚ç‚Ìƒf[ƒ^‚ÌŽæ“¾‚Íƒ‚ƒfƒ‹‚ÌƒNƒ‰ƒXƒƒ\ƒbƒh‚ðŽg‚Á‚ÄƒRƒ“ƒgƒ[ƒ‹“à‚Ås‚¢‚Ü‚·B
+
+<pre><code class="ruby">
+Foo.find(:all, :conditions => ["project_id = #{@project.id} "])   # project_id ‚Ìˆê’v‚·‚é‘S—v‘f‚ðŽæ“¾
+Foo.find(:first, :conditions => ["id = #{foo_id} "])   # id ‚Ìˆê’v‚·‚éÅ‰‚Ì—v‘f‚ðŽæ“¾
+Foo.find_by_id(foo_id)                                 # ‘O‚ÌŠÈˆÕ”Å
+</code></pre>
+
+ƒf[ƒ^ƒx[ƒX‚É•ÏX‚ð‰Á‚¦‚éê‡‚É‚Í Foo ‚ÌƒIƒuƒWƒFƒNƒg‚Ìƒƒ\ƒbƒh‚ðŽg—p‚µ‚Ü‚·B
+
+|_. ‘€ì |_. ŠÖ” |_. à–¾ |
+| ’Ç‰Á  | foo.save | id ƒƒ“ƒo‚ª 0 ‚Å•Û‘¶‚ð‚·‚é‚ÆV‚µ‚¢ƒŒƒR[ƒh‚Æ‚µ‚Ä’Ç‰Á‚³‚ê‚Ü‚·B’Ç‰Á‚ÌÛ id ‚ª˜A”Ô‚ÅŠ„‚èU‚ç‚ê‚Ü‚·B|
+| XV  | foo.save | id ‚ª 0 ˆÈŠO‚Ìê‡‚É‚Í‘ÎÛ‚Æ‚È‚éƒŒƒR[ƒh‚ªXV‚³‚ê‚Ü‚·B |
+| íœ  | foo.destory | ƒe[ƒuƒ‹‚©‚çƒŒƒR[ƒh‚ªíœ‚³‚ê‚Ü‚· |
+
+
+h3. ƒRƒ“ƒgƒ[ƒ‹ ¨ ƒrƒ…[
+
+ƒrƒ…[‚Ì Erb ƒtƒ@ƒCƒ‹‚Ì•]‰¿‚ÍƒRƒ“ƒgƒ[ƒ‹“à‚Ås‚í‚ê‚é‚Ì‚ÅAƒRƒ“ƒgƒ[ƒ‹ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX•Ï”(@)‚Íƒrƒ…[“à‚Å‚à‚»‚Ì‚Ü‚ÜŽg—p‚Å‚«‚Ü‚·B
+
+
+h1. I‚í‚è‚É
+
+ˆÈã‚Åƒvƒ‰ƒOƒCƒ“‚ÌŠJ”­ƒKƒCƒh‚ÍI—¹‚Å‚·B
+ì¬•û–@‚ÌŠî–{‚Í‚²—‰ð‚¢‚½‚¾‚¯‚½‚Å‚µ‚å‚¤‚©B
+
+ŽÀÛ‚Éƒvƒ‰ƒOƒCƒ“‚ðì‚ë‚¤‚ÆŽv‚Á‚½ê‡AƒKƒCƒh‚Ì’mŽ¯‚¾‚¯‚Å‚Í•s‘«‚·‚é‚ÆŽv‚¢‚Ü‚·B‚»‚¤‚¢‚Á‚½‚Æ‚«‚Í [[ƒvƒ‰ƒOƒCƒ“_Tips]] ‚ðŒ©‚Ä‚­‚¾‚³‚¢B‚±‚¿‚ç‚É‚Í‰ž—p“I‚È‹@”\‚ÌŽÀŒ»•û–@‚ªÐ‰î‚³‚ê‚Ä‚¢‚Ü‚·B
+‚»‚±‚É‚à’m‚è‚½‚¢“à—e‚ª‚È‚¢ê‡‚ÍA‘¼‚Ìƒvƒ‰ƒOƒCƒ“‚â Redmine Ž©g‚Ìƒ\[ƒX‚ðŒ©‚Ä‚­‚¾‚³‚¢B‚¨‚»‚ç‚­ƒ\[ƒX‚Ì’†g‚ª‘å•ª“Ç‚Ý‚â‚·‚­‚È‚Á‚Ä‚¢‚é‚Ì‚Å‚Í‚È‚¢‚Å‚µ‚å‚¤‚©B
+
+Redmine ‚É•s‘«‚ðŠ´‚¶‚½‚çAŽ©•ª‚Åƒvƒ‰ƒOƒCƒ“‚ðì‚Á‚Ä–ž‘«‚Ì‚¢‚­ Redmine ‚ÉŽdã‚°‚Ä‚¢‚Á‚Ä‚­‚¾‚³‚¢B
+‚»‚µ‚Äƒvƒ‰ƒOƒCƒ“‚ª‚Å‚«‚½‚ç‚Ç‚ñ‚Ç‚ñŒöŠJ‚µ‚ÄA‚Ý‚ñ‚È‚Å Redmine ‚ð‚¢‚¢ƒ\ƒtƒg‚É‚µ‚Ä‚¢‚«‚Ü‚µ‚å‚¤B
+
+
+---
+
+| [[ƒvƒ‰ƒOƒCƒ“ŠJ”­ƒKƒCƒh|^]] | [[GuideActionElse|<<]] |
