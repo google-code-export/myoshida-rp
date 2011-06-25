@@ -1,0 +1,6 @@
+<h2><%=l(:label_foos_new)%></h2>
+
+<% labelled_tabular_form_for :foo, @foo, {} do |f| %>
+    <%= render :partial => 'foos/form', :locals => {:form => f} %>
+    <%= f.submit l(:button_create) %>
+<% end %>

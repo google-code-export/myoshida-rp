@@ -1,0 +1,9 @@
+ja:
+  label_standard: 標準
+  project_module_standard: 標準プラグイン
+  permission_view_foos: サンプルデータの閲覧
+  permission_manage_foos: サンプルデータの管理
+
+  label_foos_new: 新しいサンプルデータ
+  label_foo: サンプルデータ
+
