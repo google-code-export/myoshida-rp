@@ -7,7 +7,7 @@ class ReportItem
   @@captions = {}
   
   def self.items
-    [:permissions, :workflows, :settings, :plugins, :info]
+    [:permissions, :workflows, :settings, :plugins, :version]
   end
 
   def self.hide_map
@@ -18,13 +18,12 @@ class ReportItem
   end
 
   def self.label(item)
-    item = :info	unless item
     I18n.t(@@captions[item.to_sym])
   end
 
   
   def self.push_menu(menu, item, caption = nil, opts = {})
-    url = {:controller => 'admin_reports', :action => :info}
+    url = {:controller => :admin_reports, :action => :info}
     copts = opts.clone
 
     if (item != :info)
@@ -49,5 +48,8 @@ class ReportItem
     return !Setting.plugin_redmine_administration_reports[hidekey];
   end
 
+  def self.do_nothing()
+    "do_nothing"
+  end
   
 end

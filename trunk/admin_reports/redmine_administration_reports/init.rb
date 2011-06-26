@@ -9,8 +9,9 @@ Redmine::Plugin.register :redmine_administration_reports do
 
   settings(:default => ReportItem.hide_map(),
            :partial => 'settings/reports_settings')
-  menu :top_menu, :admin_reports, { :controller => 'admin_reports', :action => 'info' },
-                                                         :if => Proc.new { User.current.logged? }
+  menu(:top_menu, :admin_reports,
+       { :controller => 'admin_reports', :action => 'info', :id => :version },
+       :if => Proc.new { User.current.logged? })
 
 end
 
@@ -22,5 +23,5 @@ Redmine::MenuManager.map :admin_reports_menu do |menu|
                                     
   ReportItem.push_menu(menu, :settings)
   ReportItem.push_menu(menu, :plugins)
-  ReportItem.push_menu(menu, :info, :label_information_plural, :last => true)
+  ReportItem.push_menu(menu, :version, :label_information_plural, :last => true)
 end
