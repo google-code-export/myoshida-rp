@@ -1,7 +1,7 @@
 class AdminReportsController < ApplicationController
   unloadable
 
-  layout 'admin_reports'
+  layout 'redmine_info'
   
   before_filter :require_login
 
@@ -44,9 +44,9 @@ class AdminReportsController < ApplicationController
   end
 
 
-  def info
-    @item = params[:id]
-    case @item
+  def show
+    @icat = params[:id]
+    case @icat
     when 'permissions'; permissions;
     when 'workflows'; workflows;
     when 'settings'; settings;

@@ -1,50 +1,49 @@
 # 
-# report_item.rb
+# info_category.rb
 # 
 
-class ReportItem
+class InfoCategory
 
   @@captions = {}
   
-  def self.items
+  def self.categories
     [:permissions, :workflows, :settings, :plugins, :version]
   end
 
   def self.hide_map
     map = {}
-    ReportItem.items.each {|el|
-      map['hide_' + el.to_s] = false
+    InfoCategory.categories.each {|catsym|
+      map['hide_' + catsym.to_s] = false
     }
+    map
   end
 
-  def self.label(item)
-    I18n.t(@@captions[item.to_sym])
+  def self.label(catname)
+    I18n.t(@@captions[catname.to_sym])
   end
 
   
-  def self.push_menu(menu, item, caption = nil, opts = {})
-    url = {:controller => :admin_reports, :action => :info}
+  def self.push_menu(menu, catsym, caption = nil, opts = {})
+    url = {:controller => :admin_reports, :action => :show}
     copts = opts.clone
 
-    if (item != :info)
-      url[:id] = item
-      copts[:if] = Proc.new { ReportItem::is_shown?(item) }
-    end
+    url[:id] = catsym
+    copts[:if] = Proc.new { InfoCategory::is_shown?(catsym) }
 
     if (caption)
       copts[:caption] = caption
     else
-      caption = ("label_" + item.to_s).to_sym
+      caption = ("label_" + catsym.to_s).to_sym
     end
-    @@captions[item] = caption
+    @@captions[catsym] = caption
 
-    menu.push(item, url, copts)
+    menu.push(catsym, url, copts)
   end
     
   
-  def self.is_shown?(item)
+  def self.is_shown?(catsym)
     hidekey = 'hide_'
-    hidekey += (item) ? item.to_s : "info"
+    hidekey += (catsym) ? catsym.to_s : "info"
     return !Setting.plugin_redmine_administration_reports[hidekey];
   end
 
