@@ -8,17 +8,22 @@ end
 
 <h2><%= h ReportItem.label(@item)  %></h2>
 
-<% if ReportItem.is_shown?(@item)
-     if (@item and @item != :info)
+<%= ReportItem.do_nothing %>
+
+<% if (!@item) %>
+@item = <%= @item %>
+     if ReportItem.is_shown?(@item) %
+
+<p><strong><%= Redmine::Info.versioned_name %></strong> (<%= @db_adapter_name %>)</p>
+
+%   end %
+<% else %>
+<%   if ReportItem.is_shown?(@item)
        page = 'admin_reports/' + @item.to_s %>
 <%=    render(:partial => page) %>
 <%   else %>
 
-<p><strong><%= Redmine::Info.versioned_name %></strong> (<%= @db_adapter_name %>)</p>
-
-<%   end %>
-<% else %>
-
 <p><b> Hide </b></p>
 
+<%   end %>
 <% end %>
