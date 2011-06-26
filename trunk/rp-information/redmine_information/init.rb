@@ -7,7 +7,7 @@ Redmine::Plugin.register :redmine_information do
   version '0.1.0'
   url 'http://www.r-labs.org/projects/rp-admin-reports/wiki/RedmineInformationEn'
 
-  settings(:default => ReportItem.hide_map(),
+  settings(:default => InfoCategory.hide_map(),
            :partial => 'settings/reports_settings')
   menu(:top_menu, :redmine_info,
        { :controller => 'info', :action => 'show', :id => :version },
