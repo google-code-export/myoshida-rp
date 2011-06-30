@@ -1,4 +1,7 @@
 
+<% content_for :header_tags do %>
+<%= stylesheet_link_tag 'redmine_info.css', :plugin => 'redmine_information' %>
+<% end %>
 
 <% form_tag({}, :method => 'get') do %>
 <p>
@@ -16,40 +19,27 @@
 
 
 <% if @tracker && @role && @statuses.any? %>
-<div class="autoscroll">
-<table class="list">
-<thead>
-	<tr>
-		<th align="left"><%=l(:label_current_status)%></th>
-		<th align="center" colspan="<%= @statuses.length %>"><%=l(:label_new_statuses_allowed)%></th>
-	</tr>
-	<tr>
-		<td></td>
-		<% for new_status in @statuses %>
-		<td width="<%= 75 / @statuses.size %>%" align="center">
-			<%= new_status.name %>
-		</td>
-		<% end %>
-	</tr>
-</thead>
-<tbody>
-	<% for old_status in @statuses %>
-	<tr class="<%= cycle("odd", "even") %>">
-		<td>
-			<%= old_status.name %>
-		</td>
-		<% new_status_ids_allowed = old_status.find_new_statuses_allowed_to([@role], @tracker).collect(&:id) -%>
-		<% for new_status in @statuses -%>
-		<td align="center">
-		    <% if new_status_ids_allowed.include?(new_status.id) %>
-                        <span class="icon icon-checked"></span>
-		    <% end %>
-		</td>
-		<% end -%>
-	</tr>
-	<% end %>
-</tbody>
-</table>
-</div>
+
+<%   if @workflows %>
+
+<%=    render(:partial => 'info/flows_table',
+              :locals => {:workflows => @workflows['always'], :sub_workflows => false}) %>
+
+<%     for name in ['author', 'assignee'] %>
+
+<h4><%= t('label_additional_workflow_transitions_for_' + name) %></h4>
+
+<%       if (workflows_empty?(@statuses, @workflows[name])) %>
+<p> <%= l(:label_no_data) %> </p>
+<%        else %>
+<%= render(:partial => 'info/flows_table',
+           :locals => {:workflows => @workflows[name], :sub_workflows => @workflows['always']}) %>
+<%       end %>
+<%     end %>
+
+<%   else %>
+<%=    render(:partial => 'info/old_flows_table') %>
+<%   end %>
+
 <% end %>
 

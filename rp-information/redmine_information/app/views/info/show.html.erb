@@ -1,8 +1,29 @@
+
+<% content_for :header_tags do %>
+<%= stylesheet_link_tag 'redmine_info.css', :plugin => 'redmine_information' %>
+<% end %>
+
+<h2 <%= is_admin_only?(@icat) ? "class='icon icon-lock'" : "" %></h2>
+<%= h InfoCategory.label(@icat)  %>
+</h2>
+
+
+<% if is_shown?(@icat)
+     page = 'info/' + @icat.to_s %>
+<%=  render(:partial => page) %>
+<% else %>
+
+<div class="nodata">
+  <%= h l(:text_no_public) %>
+</div>
+
+<% end %>
+
 <% content_for :sidebar do %>
-  <h3><%=l(:label_admin_reports)%></h3>
-  <div id="redmine-info">
+  <h3><%=l(:label_info_categories)%></h3>
+  <div id="admin-menu">
     <ul>
-      %= render_menu :redmine_info_menu %
+      <%= render_menu :redmine_info_menu %>
     </ul>
   </div>
 
@@ -13,30 +34,8 @@
 <% end %>
 
 <%
-if @icat
+unless (@icat == :version)
   html_title(InfoCategory.label(@icat)) 
 end
 %>
 <% html_title(l(:label_admin_reports)) %>
-
-
-<h2><%= h InfoCategory.label(@item)  %></h2>
-
-
-<% if (!@item) %>
-@item = <%= @item %>
-     if InfoCategory.is_shown?(@item) %
-
-<p><strong><%= Redmine::Info.versioned_name %></strong> (<%= @db_adapter_name %>)</p>
-
-%   end %
-<% else %>
-<%   if InfoCategory.is_shown?(@item)
-       page = 'admin_reports/' + @item.to_s %>
-<%=    render(:partial => page) %>
-<%   else %>
-
-<p><b> Hide </b></p>
-
-<%   end %>
-<% end %>

@@ -1,3 +1,9 @@
 ja:
   label_redmine_info: 情報
-  label_hide_item: 非表示にする項目の選択
+
+  label_info_categories: カテゴリ
+  label_hide_info_categories: 非表示にするカテゴリの選択
+  label_wiki_macros: Wiki マクロ
+  label_rails_info: Rails 情報
+
+  text_no_public: このカテゴリの情報は公開されていません。
