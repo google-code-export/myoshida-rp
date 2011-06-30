@@ -7,13 +7,13 @@ class InfoCategory
   @@captions = {}
   
   def self.categories
-    [:permissions, :workflows, :settings, :plugins, :version]
+    [:permissions, :workflows, :settings, :plugins, :wiki_macros, :rails_info, :version]
   end
 
   def self.hide_map
     map = {}
     InfoCategory.categories.each {|catsym|
-      map['hide_' + catsym.to_s] = false
+      map['hide_' + catsym.to_s] = (catsym == "rails_info") ? true : false
     }
     map
   end
@@ -24,11 +24,11 @@ class InfoCategory
 
   
   def self.push_menu(menu, catsym, caption = nil, opts = {})
-    url = {:controller => :admin_reports, :action => :show}
+    url = {:controller => :info, :action => :show}
     copts = opts.clone
 
     url[:id] = catsym
-    copts[:if] = Proc.new { InfoCategory::is_shown?(catsym) }
+    copts[:if] = Proc.new { (InfoCategory::is_shown?(catsym) or User.current.admin?) }
 
     if (caption)
       copts[:caption] = caption
@@ -42,13 +42,9 @@ class InfoCategory
     
   
   def self.is_shown?(catsym)
-    hidekey = 'hide_'
-    hidekey += (catsym) ? catsym.to_s : "info"
-    return !Setting.plugin_redmine_administration_reports[hidekey];
+    hidekey = 'hide_' + catsym.to_s
+    return !Setting.plugin_redmine_information[hidekey];
   end
 
-  def self.do_nothing()
-    "do_nothing"
-  end
   
 end

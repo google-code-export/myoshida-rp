@@ -1,9 +1,10 @@
-class AdminReportsController < ApplicationController
+class InfoController < ApplicationController
   unloadable
-
-  layout 'redmine_info'
   
   before_filter :require_login
+
+  helper :info
+  include InfoHelper
 
 
   def permissions
@@ -23,6 +24,16 @@ class AdminReportsController < ApplicationController
       @statuses = @tracker.issue_statuses
     end
     @statuses ||= IssueStatus.find(:all, :order => 'position')
+
+    if ((1 <= Redmine::VERSION::MAJOR && 2 <= Redmine::VERSION::MINOR) &&
+        @tracker && @role && @statuses.any?)
+      workflows = Workflow.all(:conditions => {:role_id => @role.id, :tracker_id => @tracker.id})
+      @workflows = {}
+      @workflows['always'] = workflows.select {|w| !w.author && !w.assignee}
+      @workflows['author'] = workflows.select {|w| w.author}
+      @workflows['assignee'] = workflows.select {|w| w.assignee}
+    end
+
   end
 
 
@@ -51,8 +62,8 @@ class AdminReportsController < ApplicationController
     when 'workflows'; workflows;
     when 'settings'; settings;
     when 'plugins'; plugins;
-    else
-      @db_adapter_name = ActiveRecord::Base.connection.adapter_name
+    when 'version'
+      @db_adapter_name = ActiveRecord::Base.connection.adapter_name 
     end
   end
 

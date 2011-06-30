@@ -1,3 +1,9 @@
 en:
   label_redmine_info: Information
-  label_hide_item: Selections of hidden view item
+
+  label_info_categories: Information categories
+  label_hide_info_categories: Selections of hidden information categories
+  label_wiki_macros: Wiki macros
+  label_rails_info: Rails information
+  
+  text_no_public: "Information on this category isn't made public."
