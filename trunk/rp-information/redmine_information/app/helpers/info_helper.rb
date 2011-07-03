@@ -20,5 +20,9 @@ module InfoHelper
     return true
   end
 
+  def workflow_has_author_assignee
+    (1 < Redmine::VERSION::MAJOR ||
+        (1 == Redmine::VERSION::MAJOR && 2 <= Redmine::VERSION::MINOR))
+  end
   
 end

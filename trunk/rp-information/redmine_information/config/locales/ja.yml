@@ -3,7 +3,10 @@ ja:
 
   label_info_categories: カテゴリ
   label_hide_info_categories: 非表示にするカテゴリの選択
+
   label_wiki_macros: Wiki マクロ
   label_rails_info: Rails 情報
+
+  label_all_ng: すべて不可
 
   text_no_public: このカテゴリの情報は公開されていません。

@@ -1,28 +1,33 @@
 
-h1. Redmine adminestration plugin
+h1. Redmine information plugin
+
+{{>toc}}
 
 This plug-in is made to be able to attend information such as 
 the Permissions report and the workflow from the general user.
 
+(This is renamed from _"Administration report plugin"_ )
 
 
 h2. Feauture
 
-Report Contents
+Information Contents
 
 * Permissions report
 * Workflow
-* Installed plugins
 * Keywords in commit messages for repository
+* Installed plugins
+* A List of wiki macros
+* Rails information
 * Current Redmine version
 
-Adminestration menu is also shown, if a administor user. 
+These information to display is selectable.
+If a administor user, all information is shown and _"Adminestration menu"_ is also shown in a side bar.
 
 
 h2. Download
 
-
-https://code.google.com/p/myoshida-rp/downloads/list
+http://sourceforge.jp/projects/rp-information/releases/
 
 
 
@@ -35,8 +40,10 @@ h2. Install
 cf. http://www.redmine.org/wiki/1/Plugins
 
 
+
+
 h2. Usage
 
-View report form *Adminestration reports* menu item in the top menu.
+View information form *Information* menu item in the top menu.
 
 
