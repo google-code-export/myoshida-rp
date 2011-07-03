@@ -5,8 +5,9 @@ Redmine::Plugin.register :redmine_information do
   author 'M. Yoshida'
   description 'This is a plugin for information of Redmine'
   version '0.1.0'
-  url 'http://www.r-labs.org/projects/rp-admin-reports/wiki/RedmineInformationEn'
-
+  url 'http://www.r-labs.org/projects/rp-admin-reports/wiki/Redmine_Information_Plugin'
+  author_url 'http://www.r-labs.org/users/296'
+  
   settings(:default => InfoCategory.hide_map(),
            :partial => 'settings/info_settings')
   menu(:top_menu, :redmine_info,

@@ -1,23 +1,29 @@
 
 <h3><%=l(:label_repository)%></h3>
 
+<table>
+<tr>
+<th><%=h l(:setting_repositories_encodings) %>:</th>
+<td><%=h (Setting[:repositories_encodings].blank?) ? '(utf-8)' : Setting[:repositories_encodings] %></td>
+</tr>
+</table>
 
 <h4><%= l(:text_issues_ref_in_commit_messages) %></h4>
 
 <table>
 <tr>
-<th><%= l(:setting_commit_ref_keywords) %>:</th>
+<th><%=h l(:setting_commit_ref_keywords) %>:</th>
 <td><%=h Setting[:commit_ref_keywords] %></td>
 </tr>
 <tr>
-<th><%= l(:setting_commit_fix_keywords) %>:</th>
+<th><%=h l(:setting_commit_fix_keywords) %>:</th>
 <td><%=h Setting[:commit_fix_keywords] %></td>
 </tr>
 <tr>
 <td></td>
 <td>
-<%= l(:label_applied_status) %>: <%= @commit_fix_status %><br />
-<%= l(:field_done_ratio) %>: <%= @commit_fix_done_ratio %>
+<%=h l(:label_applied_status) %>: <%=h @commit_fix_status %><br />
+<%=h l(:field_done_ratio) %>: <%=h @commit_fix_done_ratio %>
 </td>
 </tr>
 </table>

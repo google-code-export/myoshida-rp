@@ -14,6 +14,9 @@ class InfoController < ApplicationController
 
 
   def workflows
+    @workflow_counts = Workflow.count_by_tracker_and_role
+    @workflow_all_ng_roles = find_all_ng_roles(@workflow_counts)
+
     @roles = Role.find(:all, :order => 'builtin, position')
     @role = Role.find_by_id(params[:role_id])
 
@@ -25,8 +28,7 @@ class InfoController < ApplicationController
     end
     @statuses ||= IssueStatus.find(:all, :order => 'position')
 
-    if ((1 <= Redmine::VERSION::MAJOR && 2 <= Redmine::VERSION::MINOR) &&
-        @tracker && @role && @statuses.any?)
+    if (workflow_has_author_assignee && @tracker && @role && @statuses.any?)
       workflows = Workflow.all(:conditions => {:role_id => @role.id, :tracker_id => @tracker.id})
       @workflows = {}
       @workflows['always'] = workflows.select {|w| !w.author && !w.assignee}
@@ -67,4 +69,20 @@ class InfoController < ApplicationController
     end
   end
 
+  private
+  def find_all_ng_roles(workflow_counts)
+    roles_map = {}
+    workflow_counts.each do |tracker, roles|
+      roles.each do |role, count|
+        roles_map[role] = 0	unless roles_map[role]
+        roles_map[role] += count
+      end
+    end
+    all_ng_roles = []
+    roles_map.each {|role, count|
+      all_ng_roles << role	if (count == 0)
+    }
+    return all_ng_roles
+  end
+  
 end
