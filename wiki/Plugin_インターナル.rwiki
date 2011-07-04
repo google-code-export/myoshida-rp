@@ -1,0 +1,178 @@
+"Plugin Internals":http://www.redmine.org/projects/redmine/wiki/Plugin_Internals の日本語訳です。(結構、意訳しています。よく言えば超訳 ?)
+
+h1. プラグインインターナル
+
+プラグイン開発関連の情報はこのページに書いていきましょう。
+
+{{>toc}}
+
+
+h2. プラグインが動作する Redmine のバージョンを指定する。
+
+プラグインで Redmine 本体の機能を使ったり、Redmine のページを改造するようなプラグインを作ったりすると、ある特定のバージョンの Redmine でしかプラグインが動作しなくなることがあります。
+
+このような場合、プラグインが動作する Redmine のバージョンを指定する必要が出てきます。 "requires_redmine":http://rdoc.info/github/asoltys/redmine/master/Redmine/Plugin:requires_redmine メソッドを使えばこれが実現できます。(この機能は "#2162":http://www.redmine.org/issues/2162 で提案され、"r2042":http://www.redmine.org/projects/redmine/repository/revisions/2042 で実際に実装されました)
+このメソッドを使えば簡単、確実にプラグインが動作する Redmine のバージョンを指定することが出来ます。プラグインのロードされる際、 このメソッドを記述していると要求する Redmine のバージョンを満たしていない場合には、未対応のバージョンですとといったメッセージを出力してロードを中止します。
+
+例えば IIda さんの "Wiki extensions プラグイン":https://bitbucket.org/haru_iida/redmine_wiki_extensions/src/8e162f7a04bb/init.rb では以下のように使用されています。
+
+<pre><code class="ruby">
+Redmine::Plugin.register :redmine_wiki_extensions do
+  name 'Redmine Wiki Extensions plugin'
+  # :
+  version '0.3.5'
+  requires_redmine :version_or_higher => '1.1.0'
+
+  # :
+</code></pre>
+
+h2. Redmine の本体機能のオーバーロード
+
+Rails は [[GuideRails|MVC構造]] になっています。プラグインで Redmine 本体の機能を変えようした時、MVC のうちビューの場合にはコントローラやモデルと違って Redmine 本体のものをプラグインのもので上書きするオーバーロードの方法をとることになります。
+
+コントローラやビューをプラグインで書き変えた場合に Redmine/Rails がどのような動作をとるか説明します。ここでのプラグインの名前は @MyPlugin@ としています。
+コントローラだけ説明していますが、モデルの場合も同じような流れになります。
+
+*コントローラ(モデル)*
+
+# Rails の起動の開始
+# Rails フレームワークをロード
+# 各プラグインのロード
+## MyPlugin 内で @IssueController@ を見つけると、その @show@ アクションの定義を見にいきます。
+# @<redmine_folder>/app@ から Rails アプリケーション(Redmine)をロード
+## そこで再度 IssueController を見つけ、アプリケーションの @show@ アクションの定義を見にいきます。
+## ここでプラグインで定義された  @show@ アクションはアプリケーションのものに上書きされてしまいます。これは Rails というよりも Ruby の仕様上そうなるようになっています。
+# Rails の起動が完了して、サーバが立ち上がる
+
+*ビュー*
+
+ビューの場合もコントローラとほぼ同じようにロードされますが、少し違うところがあります。これは Redmine のパッチ機能のためです。
+
+# Rails の起動の開始
+# Rails フレームワークをロード
+# 各プラグインのロード
+## @<redmine_folder>/vendor/plugins/my_plugin/app/views@ 以下にディレクトリを見つけると、それを views のパッチの *先頭に追加* します。
+# @<redmine_folder>/app@ から Rails アプリケーション(Redmine)をロード
+# Rails の起動が完了して、サーバが立ち上がる
+# サーバに要求がきて、ビューの描画が必要になる
+# Rails は要求されたアクションに合うテンプレートを探した後、プラグインのテンプレートをロード
+    これはプラグインのビューがパッチとして *先頭に追加* されていたためです。 
+# Rails はプラグインのビューを表示
+
+なぜ、 MVC のうちビューだけこのようになっているかというと、 モデルやコントローラの場合には Ruby のモジュールのインクルードを使えば、こちらは簡単に機能を拡張することが出来るからです。プラグインで Redmine 本体の機能を変えたい場合にも Redmine 本体のモデルやコントローラのメソッドなどは上書きするべきではありませし、実際そういった機能の API は Redmine では用意されていません。
+しかし、ビューの場合には Redmine の本体の機能を上書きする方法をとることになります。Rails ではビューはモデルやコントローラと比べるとちょっとトリッキーな方法で機能が実現されいて、拡張するよりも書き換える機能の方が使い勝手がいいためです。 
+
+Redmine 本体の表示を変えたい場合には @<redmine_folder>/app/views@ 以下のファイルと全く同じ名前のファイルをプラグインのディレクトリに置いておくだけです。そうするとそちらが表示の際に使われるようになります。例えばプロジェクトのインデックスページを書き換えたい場合、 @<redmine_folder>/vendor/plugins/my_plugin/app/views/projects/index.rhtml@ のファイルを作成します。
+
+
+h2. Redmine の本体機能の拡張
+
+先ほどモデルやコントローラはオーバーロードしないと説明しましたが、まれに書き換えくなることはあります。そのような場合、かわりに次の方法をとります。
+
+* モデルやコントローラに新しいメソッドを追加する
+* 既存のメソッドをラップする
+
+
+h3. 新しいメソッドの追加
+
+新しいメソッドを追加する方法の分かりやすい例は Eric Davi さんの "Budget plugin":https://github.com/edavis10/redmine-budget-plugin/blob/5076b1c88b57c2068aa92cdf694769dbd22d061a/lib/issue_patch.rb にあります。
+このプラグインではチケットモデルクラスに @deliverable_subject@ というメソッドを追加しています。
+
+<pre><code class="ruby">
+module IssuePatch
+  def self.included(base) # :nodoc:
+    base.send(:include, InstanceMethods)
+  end
+
+  module InstanceMethods
+    # Wraps the association to get the Deliverable subject.  Needed for the 
+    # Query and filtering
+    def deliverable_subject
+      unless self.deliverable.nil?
+        return self.deliverable.subject
+      end
+    end
+  end    
+end
+</code></pre>
+
+
+h3. 既存メソッドのラップ
+
+Eric Davis さんの "Rate plugin":https://github.com/edavis10/redmine_rate/blob/4666ddb10e1061ca3ef362735d0d264676b99024/lib/rate_users_helper_patch.rb は既存のメソッドをラップするいい例となる記述があります。
+ここでは "alias_method_chain":http://blog.livedoor.jp/sasata299/archives/51166404.html を使って  @UsersHelper@ の @user_settings_tabs@ メソッドをラップして、 DB にチケットを保存するタイミングで処理を追加しています。 
+@user_settings_tabs@ が Redmine から呼ばれる時の流れは次のようになります。
+
+
+# Redmine 本体が UsersHelper#user_settings_tabs を呼び出す
+# UsersHelper#user_settings_tabs が実行される (これは実際には UsersHelper#user_settings_tabs_with_rate_tab です)
+# UsersHelper#user_settings_tabs_with_rate_tab がもともとの UsersHelper#user_settings_tabs を呼び出す。(元のものは UsersHelper#user_settings_tabs_without_rate_tab と名前が変更されています)
+# 元のメソッドの結果にプラグイン用のデータを追加
+# UsersHelper#user_settings_tabs_with_rate_tab は Redmine 本体の結果にプラグイン用の結果を結合したものを返す
+
+<pre><code class="ruby">
+module RateUsersHelperPatch
+  def self.included(base) # :nodoc:
+    base.send(:include, InstanceMethods)
+
+    base.class_eval do
+      alias_method_chain :user_settings_tabs, :rate_tab
+    end
+  end
+
+  module InstanceMethods
+    # Adds a rates tab to the user administration page
+    def user_settings_tabs_with_rate_tab
+      tabs = user_settings_tabs_without_rate_tab
+      tabs << { :name => 'rates', :partial => 'users/rates', :label => :rate_label_rate_history}
+      return tabs
+    end
+  end
+end
+</code></pre>
+
+alias_method_chain はちょっとした拡張用メソッドですが、とても強力です。
+
+
+h2. プラグインでの Rails のコールバックの使用
+
+チケットの保存や作成など際にプラグインで処理を追加したい場合、すべてのチケットに対する処理を追加したいならば、 Redmine の "ホック機能":http://www.redmine.org/projects/redmine/wiki/Hooks よりも Rails の "コールバック":http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html を使った方がいいと思います。
+その主な理由は新しいチケットを作ったとき、:controller_issues_edit_before_save のホックに追加したメソッドは呼び出されないためです。
+
+Rails のコールバックを利用した例は Eric Davis さんの *"Kanban plugin"* を見てください。
+
+* "init.rb#L10":http://github.com/edavis10/redmine_kanban/blob/000cf175795c18033caa43082c4e4d0a9f989623/init.rb#L10
+* "issue_patch.rb#L13":http://github.com/edavis10/redmine_kanban/blob/000cf175795c18033caa43082c4e4d0a9f989623/lib/redmine_kanban/issue_patch.rb#L13
+
+このプラグインでは、新規作成や更新を含めたチケットのすべての保存のタイミングで @issue.update_kanban_from_issue@ が確実に実行されるようになっています。
+
+もし、チケットを新規作成したい場合にだけ処理を追加したい場合には、 @before_create@ ではなく @after_save@ コールバックを使用してください。 @after_create@ コールバックではチケットの保存が成功したかどうかにかかわらず処理が呼び出されますが、 after_save を使うと実際に保存が成功された場合にだけ処理が実行されるようになります。
+
+
+h2. マイページのブロックの追加
+
+マイページへのブロックに関して次のような質問がよくあります。
+
+* なぜかマイページのブロックを選択するためのドロップダウンメニューの項目が翻訳されていません。
+
+ドロップダウンメニューの項目用の翻訳メッセージはプラグインのローケルファイルの記述する際、規約でどのエントリ名を使うか決められています。
+そのエントリ名はブロック用のプラグインのファイル名と同じでなければなりません。例えばそのファイル名が次のようなものだったとします。
+
+<pre>
+<myplugin_folder>/app/views/my/blocks/<myblocks_view_file_name>.erb
+</pre>
+
+この場合、プラグインのローケルファイル *<myplugin_folder>/confige/locale/en.yml* には次のように記述します。
+
+<pre><code class="yaml">
+<myblocks_view_file_name>: <ドロップダウンメニュー項目の表示名をここに記述します>
+</code></pre>
+
+この名前でローケルファイルに定義が記述されていないとメニュー項目は翻訳されていない状態になります。
+
+
+h2. 参照情報
+
+* http://www.redmine.org/boards/3/topics/show/5121 (Which version of Redmine I need to use your plugin?)
+* http://www.redmine.org/boards/3/topics/show/4283 (Can a plugin modify the view of the projects page?)
+* http://www.redmine.org/boards/3/topics/show/4095 (Rails Engines and extending the issue model)

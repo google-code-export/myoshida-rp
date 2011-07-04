@@ -1,0 +1,180 @@
+"Redmine plugin hooks":http://www.redmine.org/projects/redmine/wiki/Hooks の日本語訳です。
+
+h1. プラグイン ホック
+
+{{>toc}}
+
+Redmine では *ホック* という考え方が取り入れられています。これはプラグインで記述されたコードを実行させる API で実現され、 Redmine 本体のコードを修正することなく、 Redmine の機能を拡張することが出来るようになっています。
+ホックを使うと Redmine がある特定コードの地点に到達したとき、プラグインで登録したコールバック関数を順に実行させることができます。
+
+"使用可能なホックのリスト":http://www.redmine.org/projects/redmine/wiki/Hooks_List が公開されています。しかし、使用したいホックを探す一番いい方法は拡張したい機能が実装されている Redmine のソースの中身を見て、その周辺にあるホックを探すことです。
+
+ホック以外にも次にあげるような Redmine の機能を拡張するための方法があります。
+
+* [[プラグイン_インターナル#新しいメソッドの追加|新しいメソッドの追加]]
+* [[プラグイン_インターナル#既存メソッドのラップ|既存メソッドのラップ]]
+* [[プラグイン_インターナル#Rails-のコールバックの使用|Rails のコールバックの使用]]
+
+
+h2. ホックの基本
+
+前述したようにホックが呼ばれると、前もって登録しておいたコールバック関数が実行されます。このコールバック関数は一つだけ引数を受け取ります。受け取る引数は一つですが、ハッシュになっていてコールバック関数を実行する上で必要な種々の情報(context)が格納されています。後述するコントローラのビューホックの場合では、ビューホックのデフォルトの情報として以下のものが格納されています。
+
+* :controller => カレントのコントローラのオブジェクト
+* :project => カレントのプロジェクト (設定されている場合)
+* :request => カレントの Web リクエストに関する情報を持ったリクエストオブジェクト
+
+これらに加えてホックごとに決まった情報がハッシュには格納されています。このホックごとのデータは Redmine 本体中のコードの中で @call_hook@ メソッドを実行するときに直接渡されています。
+
+モデルホックの場合は共通して渡されるデータはありません。各モデルホックはホックごとのデータのみハッシュに格納されています。
+
+h2. ホックタイプ
+
+ホックは大きくわけて次の 3 つに分類されます。
+
+* ビューホック
+* コントローラホック
+* モデルホック
+
+コントローラとモデルのホックはまったく同じ形式なのに対して、ビューホックは他の 2 つと使い方が違っています。
+
+
+h3. ビューホック
+
+ビューホックは表示の HTML を作成中に実行されます。このホックでは HTML 内のホックで決められている場所に、[[GuideNewAction#ビューの実装|部分描画]]を使って任意の HTML コードを挿入することが出来ます。単純なものであれば簡単に HTML を挿入する方法もあります。詳しくは次節を見てください。
+
+
+h3. コントローラホック
+
+コントローラホックはビューホックに比べるとその数は少ないです。これは "additional filters":http://apidock.com/rails/ActionController/Filters/ClassMethods やモデルクラスの拡張を使えば十分な場合が多いからです。また、コントローラのアクションの処理は簡略にしておくべきですし、多くはそのように実装されており、ホックを使うのはあまりふさわしくありません。しかし、たまに長い処理を行うアクションがあります。こういったものにはホックが使用されています。
+
+ホックを適切に使用するために理解しておかなければならないことがあります。それは context ハッシュに格納されているオブジェクトは参照であるということだけです。もしコールバック内でオブジェクトを変更したとしても、その変更内容は実際のコントローラでも、その後のビューでも利用可能です。次にあげる簡単な例で考えてみてください。
+
+@do_something@ メソッドをホックに登録したとします。
+
+<pre><code class="ruby">
+def do_something(context={ })
+  context[:issue].subject = "Nothing to fix" 
+end
+</code></pre>
+
+この関数が以下のようなコントローラのアクション中で呼ばれた時のことを考えてください。
+
+<pre><code class="ruby">
+issue = Issue.find(1)
+# issue.subject(チケットのタイトル) は "Fix me" 
+call_hook(:do_something, :issue => issue)
+# ここでは issue.subject(チケットのタイトル) は "Nothing to fix" 
+</code></pre>
+
+見てもらったようにホックメソッドはその時点のチケットオブジェクトの値を変更することが出来ます。しかし、オブジェクトの参照を破壊してしまうため、完全にチケットを置き換えるはできません。
+
+
+h3. モデルホック
+
+モデルホックもコントローラホックと同じように使用することが出来ます。しかし、モデルホックの数はさらに少なくなっています。 モデルの場合には [[プラグイン_インターナル#新しいメソッドの追加|新しいメソッドを追加]] したり、 @alias_method_chain@ を使って [[プラグイン_インターナル#既存メソッドのラップ|既存メソッドをラップ]] したりすることによって機能の拡張を行います。
+
+h2. ホックへのメソッドの追加
+
+h3. ビューホック
+
+次の例は @view_issues_form_details_bottom@ ホックにコールバックのメソッドを追加するものです。このホックはチケット編集のフォームにフィールドを追加するために使用されます。この例ではプラグイン名を MyPlugin(my_plugin) としています。
+
+1. MyPlugin のプラグインの *lib/my_plugin/hooks.rb* で次のようなクラスを作成します。このクラス内で複数のホックに登録することも出来ます。
+
+<pre><code class="ruby">
+module MyPlugin
+  class Hooks < Redmine::Hook::ViewListener
+    # ここでは単に以下のファイルを部分描画しています。
+    # app/views/hooks/my_plugin/_view_issues_form_details_bottom.rhtml
+    #
+    # context ハッシュとして渡される内容は部分描画時のローカル変数として使用することが出来ます。
+    # このホックでハッシュに追加される情報は以下のものです。
+    #   :issue  => 編集されたチケット
+    #   :f      => フィールドを追加するためのフォームオブジェクト
+    render_on :view_issues_form_details_bottom,
+              :partial => 'hooks/my_plugin/view_issues_form_details_bottom'
+  end
+end
+</code></pre>
+
+  上で使った簡便な @render_on@ ヘルパーの変わりに次の例ではまったく同じことを別な方法で実装しています。ここで使うメソッドの名前は登録するホック自身と同じ名前にする必要があります。
+
+<pre><code class="ruby">
+module MyPlugin
+  class Hooks < Redmine::Hook::ViewListener
+    def view_issues_form_details_bottom(context={ })
+      # コントローラパラメータはカレントの params オブジェクトの一部になっています。
+      # これは文字列に部分描画を行い、それを返しています。
+      context[:controller].send(:render_to_string, {
+        :partial => "hooks/my_plugin/view_issues_form_details_bottom",
+        :locals => context
+      })
+
+      # 上のコードではなく、プラグイン内で生成した文字列を返すことも出来ます。
+      # その文字列がビューに挿入されます。
+    end
+  end
+end
+</code></pre>
+
+
+2. 作成したホック用のファイルを init.rb で明示的に require する必要があります。次のようなコードになります。
+
+<pre><code class="ruby">
+require 'redmine'
+
+# ここが重要な行です。
+# lib/my_plugin/hooks.rb のファイルを rquire しています。
+require_dependency 'my_plugin/hooks'
+
+Redmine::Plugin.register :my_plugin do
+  [...]
+end
+</code></pre>
+
+
+h3. コントローラ、モデルホック
+
+ビューホックと同じような方法でコントローラとモデルのホックもメソッドを登録することが出来ます。 作成したクラスは常に init.rb で require する必要があることは忘れないで下さい。
+以下に例をあげます。
+
+<pre><code class="ruby">
+module MyPlugin
+  class Hooks < Redmine::Hook::ViewListener
+    def controller_issues_bulk_edit_before_save(context={ })
+      # set my_attribute on the issue to a default value if not set explictly
+      context[:issue].my_attribute ||= "default" 
+    end
+  end
+end
+</code></pre>
+
+
+h2. 使用例
+
+redmine_contacts プラグインでは実際にホックが使用されています。
+
+* ビューホック
+** "view_layouts_base_html_head_hook.rb":http://github.com/edavis10/redmine_contracts/blob/master/lib/redmine_contracts/hooks/view_layouts_base_html_head_hook.rb
+** "view_issues_show_details_bottom_hook.rb":http://github.com/edavis10/redmine_contracts/blob/master/lib/redmine_contracts/hooks/view_issues_show_details_bottom_hook.rb
+** "view_issues_form_details_bottom_hook.rb":http://github.com/edavis10/redmine_contracts/blob/master/lib/redmine_contracts/hooks/view_issues_form_details_bottom_hook.rb
+** "view_issues_bulk_edit_details_bottom_hook.rb":http://github.com/edavis10/redmine_contracts/blob/master/lib/redmine_contracts/hooks/view_issues_bulk_edit_details_bottom_hook.rb
+
+* ヘルパーホック
+** "helper_issues_show_detail_after_setting_hook.rb":http://github.com/edavis10/redmine_contracts/blob/master/lib/redmine_contracts/hooks/helper_issues_show_detail_after_setting_hook.rb
+
+* コントローラホック
+** "controller_timelog_available_criterias_hook.rb":http://github.com/edavis10/redmine_contracts/blob/master/lib/redmine_contracts/hooks/controller_timelog_available_criterias_hook.rb
+** "controller_issues_edit_before_save_hook.rb":http://github.com/edavis10/redmine_contracts/blob/master/lib/redmine_contracts/hooks/controller_issues_edit_before_save_hook.rb
+** "controller_issues_bulk_edit_before_save_hook.rb":http://github.com/edavis10/redmine_contracts/blob/master/lib/redmine_contracts/hooks/controller_issues_bulk_edit_before_save_hook.rb
+
+
+h2. TODO
+
+* HowTo add filters to existing controllers?
+* HowTo overwrite methods using alias_method_chain
+** instance methods
+** class methods
+** initialize
+** modules
