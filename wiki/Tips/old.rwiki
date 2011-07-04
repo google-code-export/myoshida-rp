@@ -1,0 +1,172 @@
+{{>toc}}
+
+チュートリアルの域を超えそうなものはこちらに？
+
+h2. 活動ページにプラグインの履歴を表示する
+
+Hudson プラグインを例にとり、プラグインの履歴を表示する方法を紹介します。
+
+h3. 準備するもの
+
+* 履歴の名前
+* 履歴を管理するクラス
+
+Hudson の場合は、
+
+* 履歴の名前: hudson
+* 履歴を管理するクラス: HudsonBuild (ビルドを活動の履歴としたいので）
+
+としました。
+
+h3. サイドバーに表示される履歴の名前に、自分のプラグインを追加する
+
+h4. 1. init.rb で活動ページに参加することを宣言する
+
+以下のコードを Redmine::Plugin.register の中に追加します。
+
+<pre><code class="ruby">
+  activity_provider :[履歴の名前], :class_name => '[履歴を管理するクラス]', :default => false
+</code></pre>
+
+Hudson の場合は以下のようになります。
+default => false は、サイドバーのチェックボックスの状態で、最初表示した時にはチェックされないことを意味します。
+
+<pre><code class="ruby">
+  activity_provider :hudson, :class_name => 'HudsonBuild', :default => false
+</code></pre>
+
+h4. 2. 権限に view_[履歴の名前] を追加する
+
+活動の履歴では権限をチェックします。
+現在ログインしているユーザが履歴を閲覧してよいかどうかは、 *view_[履歴の名前]権限が許されているかどうか* に依存します。
+
+Hudsonプラグインで言うと、履歴の種類が hudson なので、 *view_hudson* 権限が必要です。
+*init.rb に記述する権限に view_hudson がないと、権限なしとみなされてサイドバーに履歴の名前が表示されません。*
+
+<pre><code class="ruby">
+  project_module :hudson do
+    # パーミッション設定。
+    permission :view_hudson, {:hudson => [:index, :history]}  # ！！ここ大事！！
+    permission :build_hudson, {:hudson => [:build]}, :require => :member
+    permission :edit_hudson_settings, {:hudson_settings => [:edit, :joblist]}
+  end
+</code></pre>
+
+h4. 3. 言語ファイルに label_[履歴の名前]_plural というエントリを追加する
+
+サイドバーに表示する用語は、 label_[履歴の名前]_plural に統一されています。
+Hudsonだと label_hudson_plural ですね。
+言語ファイルに登録しておかないと label_hudson_plural が表示されるという、格好悪いことになります。
+
+h3. 履歴を表示する
+
+h4. 1. 履歴を管理するクラスに、 project, author のプロパティを用意する
+
+履歴を表示する際に、 project, author のプロパティが必要となります。
+HudsonBuild には project, author がなかったので、
+
+* project => 親のjobから借りてくる
+* author => でっちあげる(caused_by という列を用意して、Redmine Admin(user_id=1)が起動したことにする）
+
+ことにしました。
+
+h4. 2. 履歴を管理するクラスに、acts_as_event を追加する
+
+コードを参考に追加してみてください。
+
+<pre><code class="ruby">
+  acts_as_event :title => Proc.new {|o| "#{l(:label_build)} #{o.job.name} #{o.number}: #{o.result}"},
+                :description => "",
+                :datetime => :finished_at
+</code></pre>
+
+|:title      |表題に利用されます                          |
+|:description|詳細…斜体で表示されている部分に利用されます|
+|:datetime   |発生した日時に利用されます                  |
+
+Proc.new は自分的にはおまじない…(^^; o が表示対象のオブジェクトと考えれば大丈夫なはず。
+
+h4. 3. 履歴を管理するクラスに、acts_as_activity_provider を追加する
+
+同じくコードを参考に…。
+
+<pre><code class="ruby">
+  acts_as_activity_provider :type => 'hudson',
+                             :timestamp => "#{HudsonBuild.table_name}.finished_at",
+                             :author_key => "#{HudsonBuild.table_name}.caused_by",
+                             :find_options => {:include => {:job => :project}}
+</code></pre>
+
+|:type        |履歴の名前にあわせましょう        |
+|:timestamp   |発生した日時を表す列              |
+|:find_options|多分ですが、プロジェクトを探す方法|
+
+:find_options ですが、例で言うと、HudsonBuild から job(HudsonJob)をたどって、project(Project)を探してくださいという意味になります。
+
+
+h2. wiki マクロを追加する
+
+Redmine では <notextile>{{foo(arg1, arg2)}}</notextile> のような形式で wiki のマクロを記述します。これはプラグインで自由に追加することができます。
+
+
+サンプルコード
+* "表示":http://code.google.com/p/myoshida-rp/source/browse/#svn%2Ftrunk%2FTips%2Falias%2Fwikimacro%2Fredmine_wikipedia_link%253Fstate%253Dclosed
+* "ダウンロード":http://code.google.com/p/myoshida-rp/downloads/detail?name=sample-wikimacro.zip
+
+サンプルとしてウィキペディアへのリンクをはるマクロを考えてみます。
+ウィキペディアで例えば _Redmine_ や _日本語_ を表示してみると次のようなアドレスになっています。
+<pre>
+http://ja.wikipedia.org/wiki/Redmine
+http://ja.wikipedia.org/wiki/日本語
+</pre>
+これを見ると <notextile>http://ja.wikipedia.org/wiki</notextile>の後に単語を追加すればいいみたいです。そこで単語をマクロの引数で指定して、それを wiki/ の後に追加するマクロにしましょう。
+ちなみに最近のブラウザはかしこいので、アドレスには日本語が表示されていますが、実際には日本語はアドレスとしては使えない文字なので、%E6... といった感じでエスケープされています。
+
+マクロのプラグインの場合も通常のプラグインのように最初にスケルトンを生成します。ただし、今回は簡単なので init.rb しか使用しません。その後 init.rb のプラグインの register 内を適当に記述します。
+
+wiki マクロを登録するには Plugin のように register 関数で登録します。この関数は実行されればどこに書いてもいいと思いますが、通常 *init.rb* に記述します。
+<pre><code class="ruby">
+Redmine::WikiFormatting::Macros.register do
+  desc "Wikipedia link macro"
+  macro :wikipedia do |obj, args|
+    if (args.size != 1)
+      raise "Wikipedia macro is given only one argument."
+    else
+      word = args.first.strip
+      addr = "http://ja.wikipedia.org/wiki/" + CGI.escape(word)
+      return link_to(word, addr, :class => "external")
+    end
+  end
+end
+</pre>
+
+まず、Plugin の register のように desc でマクロの説明を記述します。
+この説明は{{@macro_list@}}で表示されるマクロ一覧に使用されます。
+
+3 行目の macro からマクロの処理を記述します。
+引数でマクロのキーワードを指定します。今回 wikipedia が引数になるようにしています。
+ブロック引数の @args@ にマクロの引数が配列で入っていて、これを元にリンクを作成していきます。
+
+4, 5 行目でマクロの引数のチェックをしています。
+マクロの作成中に @raise@ するとそれがエラーとしてページに挿入されます。
+
+7 行目で空白をとっています。
+wikipedia( Redmine ) というように空白を入れていると引数には空白込みで値がわたってきているためです。 
+
+8 行目でリンク先のアドレスを作成しています。
+*CGI.escape* は ruby の標準の添付ライブラリである cgi に含まれる関数で日本語や = のようなアドレスとして使えない文字を % 形式のものに変換します。
+
+9 行でリンクの文字列を返しています。この戻り値がそのまま html のページに挿入されます。
+*link_to* は rails の関数で <a src = " _addr_ " class=>"external"> _word_ </a> といった html のリンクタグの文字列を返します。
+第一引数が表示名で、今回リンクの表示文字はマクロの引数のままにしています。表示文字の場合も <, >, & といった使えない文字がありますが、これは link_to 内で勝手に直してくれます。
+第二引数にはリンク先のアドレスを文字列で渡しています。
+第三引数はハッシュでオプションを渡します。ここではタグのクラスを指定しています。Redmine 外部へのリンクの場合先頭に外部リンクをあらわすアイコンが付きますが、この wikipedia へのリンクも外部リンクなのでアイコンをつけた方がいいです。スタイルシートで定義されているので、クラスを @external@ とするだけでアイコンが表示されるようになります。
+
+出来たプラグインを使ってみると、以下のような感じになります。
+<pre>
+* {{wikipedia(Redmine)}}
+* {{wikipedia(日本語)}}
+* {{wikipedia(two, argument)}}
+</pre>
+
+!wikimacro_view.png!
