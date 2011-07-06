@@ -8,7 +8,7 @@ Redmine::Plugin.register :redmine_standard do
   url 'http://www.r-labs.org/projects/r-labs/wiki'
 
   project_module :standard do
-    permission :view_foos, :foos => [:index, :show]
+    permission :view_foos, :foos => [:index, :show, :preview]
     permission :manage_foos, {:foos => [:new, :edit, :destroy]},
                :require => :member
   end

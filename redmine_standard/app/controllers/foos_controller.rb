@@ -2,7 +2,9 @@ class FoosController < ApplicationController
   unloadable
   menu_item :standard
   before_filter :find_project, :authorize
-  before_filter :find_foo, :except => [:index, :new]
+  before_filter :find_foo, :except => [:index, :new, :preview]
+
+  helper :attachments
 
   layout 'standard'
 
@@ -15,7 +17,9 @@ class FoosController < ApplicationController
     @foo = Foo.new(params[:foo])
     @foo.project_id = @project.id
 
-    if request.post? and @foo.save	
+    if request.post? and @foo.save
+      Attachment.attach_files(@foo, params[:attachments])
+      render_attachment_warning_if_needed(@foo)
       flash[:notice] = l(:notice_successful_create)
       redirect_to :action => 'show', :id => @project, :foo_id => @foo.id
     end
@@ -30,6 +34,8 @@ class FoosController < ApplicationController
     if request.post?
       @foo.attributes = params[:foo]
       if @foo.save
+        Attachment.attach_files(@foo, params[:attachments])
+        render_attachment_warning_if_needed(@foo)
         flash[:notice] = l(:notice_successful_update)
         redirect_to :action => 'show', :id => @project, :foo_id => @foo
       end
@@ -42,6 +48,12 @@ class FoosController < ApplicationController
   def destroy
     @foo.destroy
     redirect_to :action => 'index', :id => @project
+  end
+
+
+  def preview
+    @text = params[:foo][:description]
+    render :partial => 'common/preview'
   end
 
 
