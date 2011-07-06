@@ -16,10 +16,10 @@
     <h3><%= @foo.subject %></h3>
   </div>
 
-<% unless @foo.blank? %>
+<% unless @foo.description.blank? %>
   <p><strong><%=l(:field_description)%></strong></p>
   <div class="wiki">
-    <%= textilizable @foo, :description %>
+    <%= textilizable @foo.description %>
   </div>
 <% end %>
 
