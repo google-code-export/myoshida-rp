@@ -1,0 +1,9 @@
+<%= error_messages_for 'foo' %>
+<div class="box">
+<p><%= form.text_field :subject,
+                       :size => 100, :required => true %></p>
+<p><%= form.text_area :description,
+                      :class => 'wiki-edit' %></p>
+<%= wikitoolbar_for 'foo_description' %>
+<p><label><%=l(:label_attachment_plural)%></label><%= render :partial => 'attachments/form' %></p>
+</div>

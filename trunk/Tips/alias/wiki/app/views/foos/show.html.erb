@@ -1,0 +1,32 @@
+<div class="contextual">
+<%= link_to_if_authorized(l(:button_edit),
+                          {:action => 'edit', :id => @project, :foo_id => @foo.id},
+			  :class => 'icon icon-edit') %>
+<%= link_to_if_authorized(l(:button_delete),
+                          {:action => 'destroy', :id => @project, :foo_id => @foo.id},
+			   :confirm => l(:text_are_you_sure), :method => :post,
+			   :class => 'icon icon-del') %>
+</div>
+
+<h2><%=h l(:label_foo) %>#<%= @foo.id %></h2>
+
+<div class="issue">      
+
+  <div class="subject">
+    <h3><%= @foo.subject %></h3>
+  </div>
+
+<% unless @foo.description.blank? %>
+  <p><strong><%=l(:field_description)%></strong></p>
+  <div class="wiki">
+    <%= textilizable @foo.description, :attachments => @foo.attachments %>
+  </div>
+<% end %>
+
+<% if @foo.attachments.any? %>
+    <hr />
+    <%= link_to_attachments @foo %>
+<% end %>
+
+</div>
+
