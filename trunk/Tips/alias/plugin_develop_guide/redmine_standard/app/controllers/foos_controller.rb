@@ -46,12 +46,6 @@ class FoosController < ApplicationController
 
 
 private
-  def find_project
-    @project = Project.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render_404
-  end
-
   def find_foo
     @foo = Foo.find_by_id(params[:foo_id])
     render_404	unless @foo
