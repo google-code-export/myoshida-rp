@@ -37,12 +37,34 @@
   (interactive)
   (message "ex-html-mode.el : %s" ex-html-mode-version))
 
+;; For Customize
 
-(defvar ex-html-code-class-format
-  "class=\"%s\""
-  "Code syntax highlighting pre tag atribute format (<pre ???>)")
+(defgroup ex-html nil
+  "Expand HTML editing mode"
+  :group 'sgml)
 
-(defvar ex-html-code-class-alist
+(defcustom ex-html-link-alist
+  '(("ex-html" .
+     ("http://yohshiy.blog.fc2.com/?tag=ex-html-mode.el" t "ex-html-mode.el")))
+  "Insert link candidate list. If display name is empty, the address is used."
+  :type '(repeat
+	  (cons
+	   (string :tag "Keyword")
+	   (list
+	    (string :tag "Site address")
+	    (boolean :tag "New window ?")
+	    (string :tag "Display name")
+	    )))
+  :group 'ex-html)
+  
+
+
+(defcustom ex-html-code-class-format "class=\"%s\""
+  "Code syntax highlighting pre tag atribute format (<pre ???>)"
+  :type 'string
+  :group 'ex-html)
+
+(defcustom ex-html-code-class-alist
   '(
     ("bison" . "sh_bison") ("glsl" . "sh_glsl") ("m4" . "sh_m4") ("scala" . "sh_scala")
     ("c" . "sh_c") ("haxe" . "sh_haxe") ("makefile" . "sh_makefile") ("shell" . "sh_sh")
@@ -55,11 +77,18 @@
     ("xml" . "sh_xml") 
     ("diff" . "sh_diff") ("log" . "sh_log") ("python" . "sh_python") ("xorg" . "sh_xorg")
     ("flex" . "sh_flex") ("lsm" . "sh_lsm") ("ruby" . "sh_ruby"))
-  "Code syntax highlighting class alist")
+  "Code syntax highlighting class alist"
+  :type '(repeat
+	  (cons
+	   (string :tag "Keyword   ")
+	   (string :tag "Class name")))
+  :group 'ex-html)
 
-(defvar ex-html-default-code-class
-  nil
-  "Code syntax highlighting default class")
+(defcustom ex-html-default-code-class
+  ""
+  "Code syntax highlighting default class"
+  :type 'string
+  :group 'ex-html)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -95,12 +124,18 @@ Key bindings:
 (defvar ex-html-prefix-key (make-keymap)
   "Prefix key for ex-html-mode")
 
+(defvar ex-html-insert-prefix-key (make-keymap)
+  "Prefix key for insert in ex-html-mode")
+
 (define-key ex-html-mode-map "\C-c" ex-html-prefix-key)
 
 (define-key ex-html-prefix-key "\C-y" 'ex-html-yank)
 (define-key ex-html-prefix-key "\C-q" 'ex-html-quote-region)
+(define-key ex-html-prefix-key "il" 'ex-html-insert-registered-link)
+(define-key ex-html-prefix-key "i\C-y" 'ex-html-yank-as-link)
 
-;;;###autoload
+
+;;
 (or (assoc 'ex-html-mode minor-mode-alist)
     (setq minor-mode-alist
 	  (cons '(ex-html-mode "-Ex") minor-mode-alist)))
@@ -162,7 +197,64 @@ Key bindings:
   (insert "</pre>\n"))
 
 
+;; Link
 
+(defun ex-html-valid-string-p (str)
+  "If the string is valid(not empty), return t."
+  (if (and str (stringp str) (not (string= str "")))
+      t
+    nil))
+
+
+(defun ex-html-insert-registered-link ()
+  "Insert a registerd link."
+  (interactive)
+  (let ((link-info
+	 (cdr (assoc (completing-read "Link keyword ? : " ex-html-link-alist nil t)
+		     ex-html-link-alist)))
+	(completion-ignore-case t))
+    (if link-info
+	(insert (format "<a href=\"%s\"%s>%s</a>"
+			(nth 0 link-info)
+			(if (nth 1 link-info) " target=\"_blank\"" "")
+			(if (ex-html-valid-string-p (nth 2 link-info))
+			    (nth 2 link-info) (nth 0 link-info))
+			))
+      (message "Keywoprd is not match"))
+    ))
+
+
+(defun ex-html-yank-as-link (&optional arg)
+  "Yank as html link. if after C-u, new window link."
+  (interactive "P")
+  (let (beg endm dispstr)
+    (if (and mark-active transient-mark-mode)
+	;; Region selected
+	(progn
+	  (setq beg (min (point) (mark)))
+	  (setq endm (make-marker))
+	  (set-marker endm (max (point) (mark)))
+	  (goto-char beg)))
+    (insert "<a href=\"")
+    (yank)
+    (if arg
+	(insert " target=\"_blank\""))
+    (insert "\">")
+    (if endm
+	(progn
+	  (ex-html-quote-region (point) (marker-position endm))
+	  (goto-char (marker-position endm))
+	  (set-marker endm nil))
+      (setq dispstr (read-string "Display string : "))
+      (if (ex-html-valid-string-p dispstr)
+	  (progn
+	    (setq beg (point))
+	    (insert dispstr)
+	    (ex-html-quote-region beg (point)))
+	(yank))
+	)
+    (insert "</a>"))
+  )
 
 (provide 'ex-html-mode)
 ;;; ex-html-mode.el ends here
