@@ -238,8 +238,8 @@ Key bindings:
     (insert "<a href=\"")
     (yank)
     (if arg
-	(insert " target=\"_blank\""))
-    (insert "\">")
+	(insert "\" target=\"_blank\">")
+      (insert "\">"))
     (if endm
 	(progn
 	  (ex-html-quote-region (point) (marker-position endm))
