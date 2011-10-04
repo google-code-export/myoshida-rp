@@ -90,6 +90,18 @@
   :type 'string
   :group 'ex-html)
 
+(defcustom ex-html-target-mode-auto-newline
+  t
+  "Blog target is auto newline mode."
+  :type 'boolean
+  :group 'ex-html)
+
+(defcustom ex-html-mode-hook nil
+  "Hook run by command `ex-html-mode'."
+  :type 'hook
+  :group 'ex-html)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -116,7 +128,10 @@ Key bindings:
             ;; Toggle mode
             (not ex-html-mode)
           ;; Enable/Disable according to arg
-          (> (prefix-numeric-value arg) 0))))
+          (> (prefix-numeric-value arg) 0)))
+  (if ex-html-mode
+      (run-hooks 'ex-html-mode-hook))
+  )
 
 (defvar ex-html-mode-map (make-sparse-keymap)
   "Keymap for ex-html minor mode.")
@@ -128,12 +143,26 @@ Key bindings:
   "Prefix key for insert in ex-html-mode")
 
 (define-key ex-html-mode-map "\C-c" ex-html-prefix-key)
+(define-key ex-html-mode-map "\C-m" 'ex-html-newline)
 
 (define-key ex-html-prefix-key "\C-y" 'ex-html-yank)
 (define-key ex-html-prefix-key "\C-q" 'ex-html-quote-region)
 (define-key ex-html-prefix-key "il" 'ex-html-insert-registered-link)
 (define-key ex-html-prefix-key "i\C-y" 'ex-html-yank-as-link)
+(define-key ex-html-prefix-key "iu" 'ex-html-insert-ul)
+(define-key ex-html-prefix-key "io" 'ex-html-insert-ol)
+(define-key ex-html-prefix-key "id" 'ex-html-insert-dl)
+(define-key ex-html-prefix-key "it" 'ex-html-insert-table)
 
+;; Html Quote fun
+(defun ex-html-insert-amp () "insert quoted &" (interactive) (insert "&amp;"))
+(defun ex-html-insert-lt () "insert quoted <" (interactive) (insert "&lt;"))
+(defun ex-html-insert-gt () "insert quoted >" (interactive) (insert "&gt;"))
+(defun ex-html-insert-space () "insert quoted space" (interactive) (insert "&nbsp;"))
+(define-key ex-html-prefix-key "&" 'ex-html-insert-amp)
+(define-key ex-html-prefix-key "<" 'ex-html-insert-lt)
+(define-key ex-html-prefix-key ">" 'ex-html-insert-gt)
+(define-key ex-html-prefix-key " " 'ex-html-insert-space)
 
 ;;
 (or (assoc 'ex-html-mode minor-mode-alist)
@@ -146,10 +175,13 @@ Key bindings:
 		minor-mode-map-alist)))
 
 
+
+
 ;;;; Quote 
 
 (setq ex-html-quote-alist
       '((?& . "&amp;") (?< . "&lt;") (?> . "&gt;")))
+
 
 (defun ex-html-quoted-char (ch)
   (cdr (assoc ch ex-html-quote-alist)))
@@ -237,9 +269,9 @@ Key bindings:
 	  (goto-char beg)))
     (insert "<a href=\"")
     (yank)
-    (if arg
-	(insert "\" target=\"_blank\">")
-      (insert "\">"))
+    (if arg	
+	(insert "\">")
+      (insert "\" target=\"_blank\">"))
     (if endm
 	(progn
 	  (ex-html-quote-region (point) (marker-position endm))
@@ -255,6 +287,100 @@ Key bindings:
 	)
     (insert "</a>"))
   )
+
+
+;; newline
+
+(defun ex-html-newline ()
+  "newline, If ex-html-target-mode-auto-newline is nil, inserting html newline tag."
+  (interactive)
+  (unless ex-html-target-mode-auto-newline
+    (insert "<br />"))
+  (newline))
+
+(defun ex-html-insert-newline ()
+  (unless ex-html-target-mode-auto-newline
+      (newline-and-indent)))
+
+
+;; insert list
+
+(defun ex-html-insert-string-newline (str)
+  (insert str)
+  (unless ex-html-target-mode-auto-newline
+      (newline-and-indent)))
+
+(defun ex-html-insert-list-tag (tagname)
+  (ex-html-insert-string-newline (format "<%s>" tagname))
+  (let (str)
+    (while (ex-html-valid-string-p
+	    (setq str (read-string "List Item : ")))
+      (ex-html-insert-string-newline (format "<li>%s</li>" str))))
+  (ex-html-insert-string-newline (format "</%s>" tagname))
+  )
+
+(defun ex-html-insert-ul ()
+  "Insert unordered list"
+  (interactive)
+  (ex-html-insert-list-tag "ul"))
+
+(defun ex-html-insert-ol ()
+  "Insert ordered list"
+  (interactive)
+  (ex-html-insert-list-tag "ol"))
+
+(defun ex-html-insert-dl ()
+  "Insert definition list"
+  (interactive)
+  (ex-html-insert-string-newline "<dl>")
+  (let (str)
+    (while (ex-html-valid-string-p
+	    (setq str (read-string "Definition Term : ")))
+      (ex-html-insert-string-newline (format "<dt>%s</dt>" str))
+      (if (ex-html-valid-string-p
+	   (setq str (read-string "Definition Description : ")))
+	  (ex-html-insert-string-newline (format "<dd>%s</dd>" str)))
+      ))
+  (ex-html-insert-string-newline "</dl>")
+  )
+
+
+;; Insert table
+(defun ex-html-insert-table ()
+  "Insert table"
+  (interactive)
+  (ex-html-insert-string-newline "<table>")
+  (let ((col 1) str thlist)
+    ;; Header
+    (insert "<tr>")
+    (while (ex-html-valid-string-p
+	    (setq str (read-string (format "Table Header %d : " col))))
+      (setq col (+ col 1))
+      (setq thlist (cons str thlist))
+      (insert (format "<th> %s </th>" str)))
+    (ex-html-insert-string-newline "</tr>")
+    (setq thlist (reverse thlist))
+    ;; Rows
+    (catch 'empty-row
+      (while t
+	(unless (ex-html-valid-string-p
+		 (setq str (read-string (format "Table Description \"%s\" [Quit] : "
+						(car thlist)))))
+	    (throw 'empty-row t))
+	(let ((tdlist (cdr thlist)) curth)
+	  (insert "<tr>")
+	  (insert (format "<td> %s </td>" str))
+	  (while (setq curth (car tdlist))
+	    (if (ex-html-valid-string-p
+		 (setq str (read-string (format "Table Description \"%s\" : "
+						curth))))
+		(insert (format "<td> %s </td>" str))
+	      (insert "<td>&nbsp;</td>"))
+	    (setq tdlist (cdr tdlist)))
+	  (ex-html-insert-string-newline "</tr>"))
+	)))
+  (ex-html-insert-string-newline "<table>"))
+
 
 (provide 'ex-html-mode)
 ;;; ex-html-mode.el ends here
