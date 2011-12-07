@@ -6,7 +6,7 @@ Redmine::Plugin.register :redmine_sample_macros do
   author 'yohshiy'
   description 'This is a sample plugin for wiki macro'
   version '0.0.1'
-  url 'http://yohshiy.blog.fc2.com/blog-entry-77.html'
+  url 'http://yohshiy.blog.fc2.com/blog-entry-78.html'
   author_url 'http://yohshiy.blog.fc2.com/'
 end
 
