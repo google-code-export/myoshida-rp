@@ -6,7 +6,7 @@ Redmine::Plugin.register :redmine_sample_macros do
   author 'yohshiy'
   description 'This is a sample plugin for wiki macro'
   version '0.0.1'
-  url 'http://yohshiy.blog.fc2.com/blog-entry-78.html'
+  url 'http://yohshiy.blog.fc2.com/blog-entry-77.html'
   author_url 'http://yohshiy.blog.fc2.com/'
 end
 
@@ -23,7 +23,7 @@ end
 Redmine::WikiFormatting::Macros.register do
   macro :google do |obj, args|
     word = args.first
-    link_to(word + "?", "http://www.google.co.jp/search?ie=UTF-8&amp;q=" + CGI.escape(word))
+    link_to(word + "?", "http://www.google.co.jp/search?ie=UTF-8&q=" + CGI.escape(word))
   end
 end
 
