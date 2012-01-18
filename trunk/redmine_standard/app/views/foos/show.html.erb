@@ -1,9 +1,9 @@
 <div class="contextual">
 <%= link_to_if_authorized(l(:button_edit),
-                          {:action => 'edit', :id => @project, :foo_id => @foo.id},
+                          {:action => 'edit', :project_id => @project, :id => @foo.id},
 			  :class => 'icon icon-edit') %>
 <%= link_to_if_authorized(l(:button_delete),
-                          {:action => 'destroy', :id => @project, :foo_id => @foo.id},
+                          {:action => 'destroy', :project_id => @project, :id => @foo.id},
 			   :confirm => l(:text_are_you_sure), :method => :post,
 			   :class => 'icon icon-del') %>
 </div>

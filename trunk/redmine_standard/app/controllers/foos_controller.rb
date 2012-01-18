@@ -21,7 +21,7 @@ class FoosController < ApplicationController
       Attachment.attach_files(@foo, params[:attachments])
       render_attachment_warning_if_needed(@foo)
       flash[:notice] = l(:notice_successful_create)
-      redirect_to :action => 'show', :id => @project, :foo_id => @foo.id
+      redirect_to :action => 'show', :project_id => @project, :id => @foo.id
     end
   end
 
@@ -37,7 +37,7 @@ class FoosController < ApplicationController
         Attachment.attach_files(@foo, params[:attachments])
         render_attachment_warning_if_needed(@foo)
         flash[:notice] = l(:notice_successful_update)
-        redirect_to :action => 'show', :id => @project, :foo_id => @foo
+        redirect_to :action => 'show', :project_id => @project, :id => @foo.id
       end
     end
   rescue ActiveRecord::StaleObjectError
@@ -47,7 +47,7 @@ class FoosController < ApplicationController
 
   def destroy
     @foo.destroy
-    redirect_to :action => 'index', :id => @project
+    redirect_to :action => 'index', :project_id => @project
   end
 
 
@@ -59,13 +59,13 @@ class FoosController < ApplicationController
 
 private
   def find_project
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:project_id])
   rescue ActiveRecord::RecordNotFound
     render_404
   end
 
   def find_foo
-    @foo = Foo.find_by_id(params[:foo_id])
+    @foo = Foo.find_by_id(params[:id])
     render_404	unless @foo
   end
 end

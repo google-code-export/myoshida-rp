@@ -4,7 +4,7 @@ Redmine::Plugin.register :redmine_standard do
   name 'Redmine Standard plugin'
   author 'M. Yoshida'
   description 'This is a sample plugin for Redmine'
-  version '0.0.1'
+  version '0.0.2'
   url 'http://www.r-labs.org/projects/r-labs/wiki'
 
   project_module :standard do
@@ -13,6 +13,7 @@ Redmine::Plugin.register :redmine_standard do
                :require => :member
   end
 
-  menu :project_menu, :standard, { :controller => 'foos', :action => 'index' }
+  menu :project_menu, :standard, { :controller => 'foos', :action => 'index',
+                                   :params => :project_id}
 
 end

@@ -1,7 +1,7 @@
 
 <div class="contextual">
   <%= link_to_if_authorized(l(:label_foos_new), 
-                            {:action => 'new', :id => @project}, 
+                            {:action => 'new', :project_id => @project}, 
                             :class => 'icon icon-add') %>
 </div>
 
@@ -21,7 +21,7 @@
 <% @foos.each do |foo| %>
   <tr class="<%= cycle('odd', 'even') %>">
   <td><%= foo.id %></td>
-  <td><%= link_to(foo.subject, {:action=> :show, :id => @project, :foo_id => foo.id} ) %></td>
+  <td><%= link_to(foo.subject, {:action=> :show, :project_id => @project, :id => foo.id} ) %></td>
 </tr>
 <% end %>
 </tbody>
