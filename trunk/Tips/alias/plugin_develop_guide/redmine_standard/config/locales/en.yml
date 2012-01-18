@@ -1,8 +1,0 @@
-en:
-  label_standard: Standard
-  project_module_standard: Standard plugin
-  permission_view_foos: View sample data
-  permission_manage_foos: Manage sample data
-
-  label_foos_new: New sample data
-  label_foo: Sample data
