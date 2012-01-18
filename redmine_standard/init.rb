@@ -13,7 +13,6 @@ Redmine::Plugin.register :redmine_standard do
                :require => :member
   end
 
-  menu :project_menu, :standard, { :controller => 'foos', :action => 'index'},
-                                           :param => :project_id
+  menu :project_menu, :standard, { :controller => 'foos', :action => 'index'}, :param => :project_id
 
 end
