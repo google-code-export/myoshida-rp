@@ -29,7 +29,7 @@
 
 ;;; Code:
 
-(defconst ex-html-mode-version "0.0.2"
+(defconst ex-html-mode-version "0.0.3"
   "ex-html-mode version number")
 
 (defun ex-html-mode-version ()
