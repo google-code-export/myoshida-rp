@@ -29,7 +29,7 @@
 
 ;;; Code:
 
-(defconst ex-html-mode-version "0.0.1"
+(defconst ex-html-mode-version "0.0.2"
   "ex-html-mode version number")
 
 (defun ex-html-mode-version ()
@@ -379,7 +379,7 @@ Key bindings:
 	    (setq tdlist (cdr tdlist)))
 	  (ex-html-insert-string-newline "</tr>"))
 	)))
-  (ex-html-insert-string-newline "<table>"))
+  (ex-html-insert-string-newline "</table>"))
 
 
 (provide 'ex-html-mode)
