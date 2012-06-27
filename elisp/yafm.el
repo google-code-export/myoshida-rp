@@ -1,12 +1,9 @@
 ;;; yafm.el --- Yet another follow mode for compilation/output buffers
 
-;; Copyright (C) 1997 Stephen Eglen
-
-;; Author: Mitsuyoshi Yoshida
+;; Author: M. Yoshida
 ;; Created:  7-MAY-2004
 ;; Version: 1.0
 ;; Keywords: compile
-;; RCS: $Id: yafm.el,v 1.3 2004/06/28 01:21:23 miyoshid Exp $
  
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -25,11 +22,6 @@
 
 ;;; Commentary:
 
-
-;; This is inspired by the table of contents code from reftex.el.
-;; http://www.strw.leidenuniv.nl/~dominik/Tools/
-;; And this is inspired by the table of contents code from mell.el.
-;; http://www.strw.leidenuniv.nl/~dominik/Tools/
 
 ;;; Installation
 ;; (autoload 'yafm-mode "yafm" "follow mode for compilation/occur buffers" t)
