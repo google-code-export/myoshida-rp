@@ -12,7 +12,8 @@ DefaultAlias = [
   "ALIASES = startuml{1}=\"@image html \\1\\n@image rtf \\1\\n@image latex \\1\\n@if DontIgnorePlantUMLCode\"",
   "ALIASES += \"enduml=@endif\""
 ]
-
+DefaultConfigFileName = "config.txt"
+DefaultConfigFilePath = File.join(File.dirname(File.expand_path(__FILE__)), DefaultConfigFileName)
 
 class DoxyfileParser
   
@@ -131,6 +132,10 @@ Dir.chdir(doxydir) {
   puts "Execute PlantUML : "
 
   args = ['-jar', jarfile]
+
+  if (File.exist?(DefaultConfigFilePath))
+    args += ['-config', DefaultConfigFilePath]
+  end
 
   imgdir = parser['IMAGE_PATH']
   unless imgdir
