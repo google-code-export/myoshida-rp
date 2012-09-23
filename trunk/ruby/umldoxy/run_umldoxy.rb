@@ -3,7 +3,12 @@
 # 
 # Author : Mitsuyoshi Yoshida
 # This program is freely distributable under the terms of an MIT-style license.
-# 
+#
+# 0.0.1 Initial version
+# 1.0.0 Supports for config file
+#
+
+Version_run_plantuml = "1.0.0"
 
 require 'tempfile'
 
