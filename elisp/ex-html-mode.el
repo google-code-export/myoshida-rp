@@ -90,6 +90,14 @@
   :type 'string
   :group 'ex-html)
 
+
+(defcustom ex-html-file-base-url
+  ""
+  "The URL for uploaded file "
+  :type 'string
+  :group 'ex-html)  
+
+
 (defcustom ex-html-target-mode-auto-newline
   t
   "Blog target is auto newline mode."
@@ -100,6 +108,8 @@
   "Hook run by command `ex-html-mode'."
   :type 'hook
   :group 'ex-html)
+
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -153,6 +163,7 @@ Key bindings:
 (define-key ex-html-prefix-key "io" 'ex-html-insert-ol)
 (define-key ex-html-prefix-key "id" 'ex-html-insert-dl)
 (define-key ex-html-prefix-key "it" 'ex-html-insert-table)
+(define-key ex-html-prefix-key "ii" 'ex-html-insert-img)
 
 ;; Html Quote fun
 (defun ex-html-insert-amp () "insert quoted &" (interactive) (insert "&amp;"))
@@ -381,6 +392,15 @@ Key bindings:
 	)))
   (ex-html-insert-string-newline "</table>"))
 
+
+;; insert image
+(defun ex-html-insert-img (fpath title)
+  "Insert img tag"
+  (interactive "fLocal image file : \nsImage title : ")
+  (let ((basename (file-name-nondirectory fpath)))
+    (insert (format "<img src='%s' title='%s' alt='%s' />"
+		    (concat ex-html-file-base-url basename) title title))
+  ))
 
 (provide 'ex-html-mode)
 ;;; ex-html-mode.el ends here
