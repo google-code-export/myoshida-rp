@@ -59,6 +59,7 @@
 
 (defvar yafm-entry-alist '(
 			   (compilation-mode . yafm-compilation-next-line)
+			   (grep-mode . yafm-compilation-next-line)
 			   (occur-mode . yafm-occur-next-line)
 			   (diff-mode . yafm-diff-next-line)
 			   (apropos-mode . (lambda (arg)
