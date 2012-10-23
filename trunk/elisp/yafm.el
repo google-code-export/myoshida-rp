@@ -2,7 +2,7 @@
 
 ;; Author: M. Yoshida
 ;; Created:  7-MAY-2004
-;; Version: 1.0
+;; Version: 1.1
 ;; Keywords: compile
  
 ;; This program is free software; you can redistribute it and/or modify
@@ -92,8 +92,8 @@ yafm を利用するモードのエントリの連想配列。各要素は
   (local-set-key yafm-previous-line-key 'yafm-previous-line)
   (local-set-key yafm-quit-key          'yafm-quit)
   (local-set-key "o" 'other-window)
-  (local-set-key " " 'next-screen)
-  (local-set-key [delete] 'prev-screen)
+  (local-set-key " " 'scroll-up-command)
+  (local-set-key [delete] 'scroll-down-command)
   )
 
 
@@ -207,10 +207,8 @@ yafm を利用するモードのエントリの連想配列。各要素は
 
 (defun yafm-compilation-next-line (arg)
   "next-line for compile-mode"
-  (if (and (> arg 0) (bobp))
-      (compile-goto-error)
-    (compilation-next-error arg)
-    (compile-goto-error)))
+  (compilation-next-error arg)
+  (compile-goto-error))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;
