@@ -1,0 +1,3 @@
+skinparam backgroundColor transparent
+skinparam classAttributeIconSize 0
+skinparam componentStyle uml2
