@@ -5,12 +5,23 @@
 /// コンパイル : csc IComparableSample.cs Point.cs
 
 using System;
+using System.Collections.Generic;
 
 
 namespace IComparableSample
 {
     class Program
     {
+	static void DumpArray<Type>(string title, IEnumerable<Type> ary)
+	{	    
+	    Console.WriteLine("==== " + title + " ====");
+	    foreach(var it in ary)
+	    {
+	    	Console.Write("{0} ", it);
+	    }
+	    Console.WriteLine();
+	}
+	
         static void Main(string[] args)
         {
 	    // Point を格納したデータを準備
@@ -22,24 +33,13 @@ namespace IComparableSample
 		new Point(4, 1),
 		new Point(3, 1)
 	    };	    
-
-	    Console.WriteLine("==== Original ====");
-	    foreach (Point pos in ary)
-	    {
-		Console.Write("{0} ", pos);
-	    }
-	    Console.WriteLine();
+	    DumpArray("Original", ary);
 
 	    // データのソート
 	    Array.Sort(ary);
 
 	    // ソート結果を出力
-	    Console.WriteLine("==== Sorted ====");
-	    foreach (Point pos in ary)
-	    {
-		Console.Write("{0} ", pos);
-	    }
-	    Console.WriteLine();	    
+	    DumpArray("Sorted", ary);
         }
     }
 }
