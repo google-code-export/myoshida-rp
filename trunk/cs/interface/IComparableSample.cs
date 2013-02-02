@@ -23,7 +23,7 @@ namespace IComparableSample
 	    Console.WriteLine();
 	}
 	
-        static void Main(string[] args)
+        static void Main()
         {
 	    // Point を格納したデータを準備
 	    Point [] ary = {
