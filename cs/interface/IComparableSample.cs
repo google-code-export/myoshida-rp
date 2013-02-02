@@ -20,6 +20,7 @@ namespace IComparableSample
 	    	Console.Write("{0} ", it);
 	    }
 	    Console.WriteLine();
+	    Console.WriteLine();
 	}
 	
         static void Main(string[] args)
@@ -29,7 +30,6 @@ namespace IComparableSample
 		new Point(1, 2),
 		new Point(3, 5),
 		new Point(1, 9),
-		new Point(2, 8),
 		new Point(4, 1),
 		new Point(3, 1)
 	    };	    
@@ -37,9 +37,13 @@ namespace IComparableSample
 
 	    // データのソート
 	    Array.Sort(ary);
-
-	    // ソート結果を出力
 	    DumpArray("Sorted", ary);
+
+	    // 二分探索
+	    Console.WriteLine("==== Binary Search ====");
+	    var target = new Point(3, 1);
+	    int pos = Array.BinarySearch(ary, target);
+	    Console.WriteLine("{0} => {1}", target, pos);
         }
     }
 }
