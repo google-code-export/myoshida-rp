@@ -87,9 +87,19 @@ namespace IComparableSample_T
 	    };	    
 	    DumpArray("Original", ary);
 
-	    // データのソート
-	    Array.Sort(ary);
-	    DumpArray("Sorted", ary);
+	    Console.WriteLine("Point<int>(1, 2) == Point<int>(1, 2) => {0}",
+			      target.CompareTo(new Point<int>(1, 2)));
+
+	    
+	    // // データのソート
+	    // Array.Sort(ary);
+	    // DumpArray("Sorted", ary);
+
+	    // // 二分探索
+	    // Console.WriteLine("==== Binary Search ====");
+	    // var target = new Point<int>(1, 2);
+	    // int pos = Array.BinarySearch(ary, target);
+	    // Console.WriteLine("{0} => {1}", target, pos);
         }
     }
 }
