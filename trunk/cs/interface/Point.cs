@@ -4,7 +4,7 @@
 
 using System;
 
-namespace IComparableSample
+namespace Geometry
 {
     class Point : IComparable
     {
@@ -36,6 +36,8 @@ namespace IComparableSample
 	/// </summary>
 	public int CompareTo(Object obj)
 	{
+	    if (obj == null) return 1;
+	     
 	    Point other = (Point)obj;
 	    if (other.x == x) {
 		return y - other.y;
