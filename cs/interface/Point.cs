@@ -3,10 +3,11 @@
 /// </summary>
 
 using System;
+using System.Collections.Generic;
 
 namespace Geometry
 {
-    class Point : IComparable
+    class Point : IComparable, IComparable<Point>
     {
 	/// <summary>
 	///   x 座標
@@ -34,15 +35,22 @@ namespace Geometry
 	/// <summary>
 	///   比較メソッド
 	/// </summary>
-	public int CompareTo(Object obj)
+	public int CompareTo(Point other)
 	{
-	    if (obj == null) return 1;
+	    if (other == null) return 1;
 	     
-	    Point other = (Point)obj;
 	    if (other.x == x) {
 		return y - other.y;
 	    }	
 	    return x - other.x;
+	}
+
+	/// <summary>
+	///   比較メソッド
+	/// </summary>
+	public int CompareTo(Object obj)
+	{
+	    return CompareTo((Point)obj);
 	}
 
 
@@ -55,5 +63,46 @@ namespace Geometry
 	}
 	
     } // Point
-  
+
+
+    class PointTest
+    {
+	static void DumpArray<Type>(string title, IEnumerable<Type> ary)
+	{	    
+	    Console.WriteLine("==== " + title + " ====");
+	    foreach(var it in ary)
+	    {
+	    	Console.Write("{0} ", it);
+	    }
+	    Console.WriteLine();
+	    Console.WriteLine();
+	}
+	
+        static void Main()
+        {
+	    // Point を格納したデータを準備
+	    Point [] ary = {
+		new Point(1, 2),
+		new Point(3, 5),
+		new Point(1, 9),
+		new Point(4, 1),
+		new Point(3, 1)
+	    };
+	    DumpArray("Original (Array)", ary);
+	    List<Point> ls = new List<Point>(ary);
+	    
+
+	    // データのソート
+	    Array.Sort(ary);
+	    DumpArray("Sorted (Array)", ary);	    
+	    
+
+	    DumpArray("Original (List)", ls);
+
+	    // データのソート
+	    ls.Sort();
+	    DumpArray("Sorted (List)", ls);
+        }
+    }
+
 }
