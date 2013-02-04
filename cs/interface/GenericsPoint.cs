@@ -2,15 +2,15 @@
 ///   ジェネリックな点クラスの IComparable のサンプル
 /// </summary>
 ///
-/// コンパイル : csc IComparableSampleType.cs
+/// コンパイル : csc GenericsPoint.cs
 
 using System;
 using System.Collections.Generic;
 
 
-namespace IComparableSample_T
+namespace GenericsPointSample
 {
-    class Point<Type> : IComparable
+    class Point<Type> : IComparable<Point<Type> >
 	where Type : IComparable
     {
 	/// <summary>
@@ -39,11 +39,10 @@ namespace IComparableSample_T
 	/// <summary>
 	///   比較メソッド
 	/// </summary>
-	public int CompareTo(Object obj)
+	public int CompareTo(Point<Type> other)
 	{
-	    if (obj == null) return 1;
+	    if (other == null) return 1;
 	    
-	    Point<Type> other = (Point<Type>)obj;
 	    if (x.CompareTo(other.x) == 0) {
 		return y.CompareTo(other.y);
 	    }	
@@ -66,13 +65,12 @@ namespace IComparableSample_T
     {
 	static void DumpArray<Type>(string title, IEnumerable<Type> ary)
 	{	    
-	    Console.WriteLine("==== " + title + " ====");
+	    Console.WriteLine("## " + title + " ##");
 	    foreach(var it in ary)
 	    {
 	    	Console.Write("{0} ", it);
 	    }
-	    Console.WriteLine();
-	    Console.WriteLine();
+	    Console.WriteLine("\n");
 	}
 	
         static void Main()
@@ -92,10 +90,10 @@ namespace IComparableSample_T
 	    DumpArray("Sorted", ary);
 
 	    // 二分探索
-	    Console.WriteLine("==== Binary Search ====");
+	    Console.WriteLine("## Binary Search ##");
 	    var target = new Point<int>(3, 1);
 	    int pos = Array.BinarySearch(ary, target);
-	    Console.WriteLine("{0} => {1}", target, pos);
+	    Console.WriteLine("{0} @ {1}", target, pos);
         }
     }
 }
