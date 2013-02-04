@@ -75,25 +75,25 @@ namespace IComparableTypeSample
         static void Main()
         {
 	    // Point を格納したデータを準備
-	    List<Point> ls = new List<Point>();
-
-	    ls.Add(new Point(1, 2));
-	    ls.Add(new Point(3, 5));
-	    ls.Add(new Point(1, 9));
-	    ls.Add(new Point(4, 1));
-	    ls.Add(new Point(3, 1));
+	    Point [] ary = {
+		new Point(1, 2),
+		new Point(3, 5),
+		new Point(1, 9),
+		new Point(4, 1),
+		new Point(3, 1)
+	    };
+	    LinkedList<Point> ls = new LinkedList<Point>(ary);
 
 	    DumpArray("Original", ls);
 
-	    // データのソート
-	    ls.Sort();
-	    DumpArray("Sorted", ls);
-
 	    // 二分探索
-	    Console.WriteLine("==== Binary Search ====");
+	    Console.WriteLine("==== Find ====");
 	    var target = new Point(3, 1);
-	    int pos = ls.BinarySearch(target);
-	    Console.WriteLine("{0} => {1}", target, pos);
+	    LinkedListNode<Point> pos = ls.Find(target);
+	    if (pos == null)
+		Console.WriteLine("{0} => null", target);
+	    else
+		Console.WriteLine("{0} => {1}", target, pos);
 	}
 
     } // Program
