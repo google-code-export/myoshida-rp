@@ -1,14 +1,14 @@
 ﻿/// <summary>
-///   ジェネリックな点クラスの IComparable のサンプル
+///   ジェネリックな点クラスの IComparable<T> のサンプル
 /// </summary>
 ///
-/// コンパイル : csc GenericsPoint.cs
+/// コンパイル : csc GenericPointSample.cs
 
 using System;
 using System.Collections.Generic;
 
 
-namespace GenericsPointSample
+namespace GenericPointSample
 {
     class Point<Type> : IComparable<Point<Type> >
 	where Type : IComparable
