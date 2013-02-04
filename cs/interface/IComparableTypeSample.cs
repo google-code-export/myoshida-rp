@@ -61,39 +61,29 @@ namespace IComparableTypeSample
 
     class Program
     {
-	static void DumpArray<Type>(string title, IEnumerable<Type> ary)
-	{	    
-	    Console.WriteLine("==== " + title + " ====");
-	    foreach(var it in ary)
-	    {
-	    	Console.Write("{0} ", it);
-	    }
-	    Console.WriteLine();
-	    Console.WriteLine();
+	static void WritePointPairLine(KeyValuePair<Point, string> kvp, string prefix = "")
+	{
+	    Console.WriteLine("{0} {1} : {2}", prefix, kvp.Key, kvp.Value);
 	}
 	
         static void Main()
         {
 	    // Point を格納したデータを準備
-	    Point [] ary = {
-		new Point(1, 2),
-		new Point(3, 5),
-		new Point(1, 9),
-		new Point(4, 1),
-		new Point(3, 1)
-	    };
-	    LinkedList<Point> ls = new LinkedList<Point>(ary);
+	    Console.WriteLine("==== Create SortedList ====");
+	    SortedList<Point, string> alist = new SortedList<Point, string>();
+	    Point p = null;
+	    p = new Point(1, 2); alist.Add(p, "A"); Console.WriteLine("Add {0}, A", p);
+	    p = new Point(3, 5); alist.Add(p, "B"); Console.WriteLine("Add {0}, B", p);
+	    p = new Point(1, 9); alist.Add(p, "C"); Console.WriteLine("Add {0}, C", p);
+	    p = new Point(4, 1); alist.Add(p, "D"); Console.WriteLine("Add {0}, D", p);
+	    p = new Point(3, 1); alist.Add(p, "E"); Console.WriteLine("Add {0}, E", p);
 
-	    DumpArray("Original", ls);
-
-	    // 二分探索
-	    Console.WriteLine("==== Find ====");
-	    var target = new Point(3, 1);
-	    LinkedListNode<Point> pos = ls.Find(target);
-	    if (pos == null)
-		Console.WriteLine("{0} => null", target);
-	    else
-		Console.WriteLine("{0} => {1}", target, pos);
+	    Console.WriteLine("\n==== SortedList ====");
+	    foreach( KeyValuePair<Point, string> kvp in alist )
+	    {
+	    	Console.WriteLine("{0} : {1}", kvp.Key, kvp.Value);
+	    }
+	
 	}
 
     } // Program
