@@ -1,5 +1,5 @@
 ﻿/// <summary>
-///   点クラス
+///   点クラス (IComparable のサンプル用)
 /// </summary>
 
 using System;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Geometry
 {
-    class Point : IComparable<Point>
+    class Point : IComparable
     {
 	/// <summary>
 	///   x 座標
@@ -35,10 +35,11 @@ namespace Geometry
 	/// <summary>
 	///   比較メソッド
 	/// </summary>
-	public int CompareTo(Point other)
+	public int CompareTo(Object obj)
 	{
-	    if (other == null) return 1;
-	     
+	    if (obj == null) return 1;
+
+	    Point other = (Point)obj;
 	    if (other.x == x) {
 		return y - other.y;
 	    }	
@@ -55,5 +56,4 @@ namespace Geometry
 	}
 	
     } // Point
-
 }
