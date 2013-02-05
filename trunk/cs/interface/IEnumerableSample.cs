@@ -1,7 +1,8 @@
 //
 // IEnumerable のサンプル
 //
-// コンパイル : csc IEnumerableSample.cs Point.cs
+// コンパイル (通常版)   : csc IEnumerableSample.cs Point.cs Polygon_Enumerator.cs
+// コンパイル (yield 版) : csc IEnumerableSample.cs Point.cs Polygon_yield.cs
 
 using System;
 using System.Collections;
@@ -11,40 +12,6 @@ using Geometry;
 
 namespace IEnumerableSample
 {
-
-    class Polygon : IEnumerable
-    {
-	private Point[] _points;
-
-	public Polygon(Point[] points)
-	{
-	    if (points != null)
-		_points = (Point[])points.Clone();
-	}
-
-	public int Count
-	{
-	    get { return _points.Length; }
-	}
-
-	/// 列挙子を取得
-	public IEnumerator GetEnumerator()
-	{
-	    return _points.GetEnumerator();
-	}    
-
-
-	public Point this[uint idx]
-	{
-	    get {
-		return _points[idx];
-	    }
-	    set {
-		_points[idx] = value;
-	    }
-	}
-    }
-
 
     class Program
     {
