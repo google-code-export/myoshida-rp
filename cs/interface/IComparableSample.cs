@@ -3,10 +3,11 @@
 /// </summary>
 ///
 /// コンパイル(IComparable 版)    : csc IComparableSample.cs Point_IComparable.cs
-/// コンパイル(IComparable<T> 版) : csc IComparableSample.cs Point.cs
+/// コンパイル(IComparable<T> 版) : csc IComparableSample.cs Point_IComparable_T.cs
 
 using System;
 using System.Collections.Generic;
+
 using Geometry;
 
 namespace IComparableSample

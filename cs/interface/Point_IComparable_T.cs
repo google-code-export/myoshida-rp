@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Geometry
 {
-    class Point : IComparable<Point>, ICloneable
+    class Point : IComparable<Point>
     {
 	/// <summary>
 	///   x 座標
@@ -52,19 +52,6 @@ namespace Geometry
 	public override string ToString()
 	{
 	    return "(" + x + ", " + y + ")";
-	}
-
-	public object Clone()
-	{
-	    return this.MemberwiseClone();
-
-	    // // 以下と同じ
-	    // Point obj = new Point();
-	    // // int は基本型なので、 = で OK
-	    // // クラス型の場合は obj.x = x.Clone();
-	    // obj.x = x;
-	    // obj.y = y;
-	    // return obj;
 	}
 	
     } // Point
