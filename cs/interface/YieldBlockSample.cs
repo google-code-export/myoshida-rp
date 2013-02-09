@@ -18,7 +18,13 @@ namespace IEnumerableSample
 	public Polygon(Point[] points)
 	{
 	    if (points != null)
-		_points = (Point[])points.Clone();
+	    {
+		_points = new Point[points.Length];
+		for (int cnt = 0; cnt < points.Length ; cnt++)
+		{
+		    _points[cnt] = new Point(points[cnt]);
+		}	
+	    }	
 	}
 
 	public int Count
