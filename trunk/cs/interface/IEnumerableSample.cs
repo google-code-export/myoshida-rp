@@ -17,7 +17,7 @@ namespace IEnumerableSample
     {
 	static void Main()
 	{
-	    Point[] points = new Point[] {
+	    Point[] points = {
 		new Point(0, 0),
 		new Point(5, 0),
 		new Point(0, 5)
