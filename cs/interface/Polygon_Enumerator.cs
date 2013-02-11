@@ -25,11 +25,6 @@ namespace Geometry
 	    }	
 	}
 
-	public int Count
-	{
-	    get { return _points.Length; }
-	}
-
 	/// <summary>
 	/// —ñ‹“Žq‚ðŽæ“¾
 	/// </summary>
