@@ -3,6 +3,13 @@
 /// </summary>
 /// 
 /// ƒRƒ“ƒpƒCƒ‹ : csc Shape.cs Point.cs 
+//
+// @startuml images/cs_shape.png
+// IEnumerable <|.. Shape
+// Shape <|-- Rectangle
+// Shape <|-- Polygon
+// @enduml
+
 
 using System;
 using System.Collections;
@@ -89,20 +96,10 @@ namespace Geometry
     }
 
     class Program
-    {
-	static void DumpShape(Shape fig)
-	{
-	    Console.Write("{0} = [ ", fig);
-	    foreach (Point pos in fig)
-	    {
-		Console.Write("{0} ", pos);
-	    }
-	    Console.WriteLine("]");	    
-	}	
-	
+    {	
 	static void Main()
 	{
-	    Shape[] shapes = new Shape[] {
+	    Shape[] shapes = {
 		new Rectangle(10, 5, 10, 5),
 		new Polygon(new Point[] {
 			new Point(0, 0),
@@ -113,7 +110,12 @@ namespace Geometry
 	    
 	    foreach (Shape fig in shapes)
 	    {
-		DumpShape(fig);
+		Console.Write("{0} = [ ", fig);
+		foreach (Point pos in fig)
+		{
+		    Console.Write("{0} ", pos);
+		}
+		Console.WriteLine("]");	    
 	    }
 	}
     }
