@@ -5,6 +5,8 @@
 /// ƒRƒ“ƒpƒCƒ‹ : csc Shape.cs Point.cs 
 //
 // @startuml images/cs_shape.png
+// interface IEnumerable
+// abstract Shape
 // IEnumerable <|.. Shape
 // Shape <|-- Rectangle
 // Shape <|-- Polygon
