@@ -74,7 +74,7 @@ namespace IEnumerableSample_T
     
     class Program
     {
-	// 結果表示用の拡張メソッド
+	// 結果表示用のメソッド
 	static string Dump<TSource>(IEnumerable<TSource> source)
 	{
 	    return "{" + string.Join(", ", source) + "}";
