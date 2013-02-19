@@ -16,24 +16,11 @@ namespace IDisposableSample
 	StreamWriter _writer;
 	// 通常のメンバー
 	string _title;
-	// Dispose 
-        private bool disposed = false;
+	// Dispose したかどうか
+        private bool _disposed = false;
 
-	private void WriteHeader()
-	{
-	    _writer.WriteLine("<html>");
-	    _writer.WriteLine("<head>");
-	    _writer.WriteLine("<title> " + _title + " </title>");
-	    _writer.WriteLine("</head>");
-	    _writer.WriteLine("<body>");
-	}	
-
-	private void WriteFooter()
-	{
-	    _writer.WriteLine("</body>");
-	    _writer.WriteLine("</html>");
-	}	
-
+	
+	
 	public HtmlFileWriter(string fpath, string title = "Sample")
 	{
 	    _title = title;
@@ -53,11 +40,13 @@ namespace IDisposableSample
 	
 	public void Write(string str)
 	{
+	    CheckDisposed();
 	    _writer.Write(HttpUtility.HtmlEncode(str));
 	}	
 
 	public void WriteRaw(string str)
 	{
+	    CheckDisposed();
 	    _writer.Write(str);
 	}	
 	
@@ -67,10 +56,6 @@ namespace IDisposableSample
 	    _writer.WriteLine(" <br />");    
 	}	
 	
-	public static HtmlFileWriter Create(string str)
-	{
-	    return new HtmlFileWriter(str);
-	}
 
 
 	// IDisposable に必須のメソッドの実装
@@ -100,24 +85,48 @@ namespace IDisposableSample
         protected virtual void Dispose(bool disposing)
         {
             // Dispose がまだ実行されていないときだけ実行
-            if(!this.disposed)
+            if(!_disposed)
             {
                 // disposing が true の場合(Dispose() が実行された場合)は
                 // アンマネージリソースも解放します。
                 if(disposing)
                 {
-                    // アンマネージリソースの解放
-                    _title = null;
+		    // アンマネージリソースの解放
+
+		    // 閉じる前にフッターを書く
+		    WriteFooter();
+		    _writer.Dispose();
                 }
+		
+		// アンマネージリソースの解放
 
-		// マネージリソースの解放
-		WriteFooter(); // 閉じる前にフッターを書く
-		_writer.Dispose();
+		// マネージリソースは null を指定
+		_title = null;
 
-                disposed = true;
+                _disposed = true;
             }
         }
 
+	private void CheckDisposed()
+	{
+	    if (_disposed)
+		throw new ObjectDisposedException(GetType().FullName);		
+	}
+
+	private void WriteHeader()
+	{
+	    _writer.WriteLine("<html>");
+	    _writer.WriteLine("<head>");
+	    _writer.WriteLine("<title> " + _title + " </title>");
+	    _writer.WriteLine("</head>");
+	    _writer.WriteLine("<body>");
+	}	
+
+	private void WriteFooter()
+	{
+	    _writer.WriteLine("</body>");
+	    _writer.WriteLine("</html>");
+	}
 	
     } // Point
 
@@ -127,7 +136,7 @@ namespace IDisposableSample
 	{
 	    string samplefpath = "sample.html";
 
-	    using (HtmlFileWriter fp = HtmlFileWriter.Create(samplefpath))
+	    using (HtmlFileWriter fp = new HtmlFileWriter(samplefpath))
 	    {
 		fp.WriteLine("test");
 		fp.WriteLine("<test>");
