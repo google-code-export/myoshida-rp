@@ -69,7 +69,8 @@ namespace IDisposableSample
 
 	// ファイナライザー(デストラクター)
         //
-        // Dispose
+	// Dispose() が呼び出されていない場合のみ
+	// 実行されます。
         ~HtmlFileWriter()
         {
             Dispose(false);
