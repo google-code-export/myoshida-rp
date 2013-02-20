@@ -89,7 +89,7 @@ namespace IDisposableSample
             if(!_disposed)
             {
                 // disposing が true の場合(Dispose() が実行された場合)は
-                // アンマネージリソースも解放します。
+                // マネージリソースも解放します。
                 if(disposing)
                 {
 		    // マネージリソースの解放
