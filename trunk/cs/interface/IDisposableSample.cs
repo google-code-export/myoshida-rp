@@ -128,7 +128,7 @@ namespace IDisposableSample
 	    _writer.WriteLine("</html>");
 	}
 	
-    } // Point
+    } // HtmlFileWriter
 
     class Program
     {
