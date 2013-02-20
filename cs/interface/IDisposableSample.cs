@@ -92,17 +92,17 @@ namespace IDisposableSample
                 // アンマネージリソースも解放します。
                 if(disposing)
                 {
-		    // アンマネージリソースの解放
+		    // マネージリソースの解放
 
-		    // 閉じる前にフッターを書く
-		    WriteFooter();
-		    _writer.Dispose();
+		    // マネージリソースは null を指定
+		    _title = null;
                 }
 		
 		// アンマネージリソースの解放
 
-		// マネージリソースは null を指定
-		_title = null;
+		// 閉じる前にフッターを書く
+		WriteFooter();
+		_writer.Dispose();
 
                 _disposed = true;
             }
