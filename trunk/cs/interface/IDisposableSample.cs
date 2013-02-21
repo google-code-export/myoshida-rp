@@ -20,7 +20,7 @@ namespace IDisposableSample
         private bool _disposed = false;
 
 	
-	
+	// コンストラクター
 	public HtmlFileWriter(string fpath, string title = "Sample")
 	{
 	    _title = title;
