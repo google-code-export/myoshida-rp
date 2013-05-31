@@ -1,0 +1,9 @@
+﻿<Application x:Class="WpfI18n.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:properties="clr-namespace:WpfI18n.Properties"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <properties:Resources x:Key="resources" />
+    </Application.Resources>
+</Application>
