@@ -24,5 +24,10 @@ namespace WpfI18n
         {
             InitializeComponent();
         }
+
+        private void buttonGreet_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(Properties.Resources.MessageHello);
+        }
     }
 }

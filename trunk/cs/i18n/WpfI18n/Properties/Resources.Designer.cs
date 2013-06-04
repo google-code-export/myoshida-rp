@@ -70,11 +70,11 @@ namespace WpfI18n.Properties {
         }
         
         /// <summary>
-        ///   Click に類似しているローカライズされた文字列を検索します。
+        ///   Greeting に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string UiButtonClick {
+        public static string UiButtonGreet {
             get {
-                return ResourceManager.GetString("UiButtonClick", resourceCulture);
+                return ResourceManager.GetString("UiButtonGreet", resourceCulture);
             }
         }
         
