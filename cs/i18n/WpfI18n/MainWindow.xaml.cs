@@ -11,8 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Threading;     // 追加
-using System.Globalization; // 追加
+
 
 namespace WpfI18n
 {
