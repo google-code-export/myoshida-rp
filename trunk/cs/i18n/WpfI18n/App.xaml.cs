@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Globalization;	// 追加
-using System.Threading;		// 追加
+using System.Threading;     // 追加
+using System.Globalization; // 追加
 
 namespace WpfI18n
 {
@@ -21,7 +20,7 @@ namespace WpfI18n
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
-        {        
+        {
             // 環境変数を使用
             string langstr = System.Environment.GetEnvironmentVariable("TEMP_LANG");
             if (langstr != null)
@@ -35,5 +34,6 @@ namespace WpfI18n
                 SetCurrentUICulture(e.Args[0]);
             }
         }
+
     }
 }
