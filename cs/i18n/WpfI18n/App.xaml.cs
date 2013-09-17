@@ -14,8 +14,9 @@ namespace WpfI18n
     /// </summary>
     public partial class App : Application
     {
-        private void SetCurrentUICulture(string culname)
+        private void SetCurrentCulture(string culname)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(culname);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(culname);
         }
 
@@ -25,13 +26,13 @@ namespace WpfI18n
             string langstr = System.Environment.GetEnvironmentVariable("TEMP_LANG");
             if (langstr != null)
             {
-                SetCurrentUICulture(langstr);
+                SetCurrentCulture(langstr);
             }
 
             // 引数を使用
             if (0 < e.Args.Length)
             {
-                SetCurrentUICulture(e.Args[0]);
+                SetCurrentCulture(e.Args[0]);
             }
         }
 
