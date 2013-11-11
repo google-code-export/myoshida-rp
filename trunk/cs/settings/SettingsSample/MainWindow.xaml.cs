@@ -22,13 +22,24 @@ namespace SettingsSample
         public MainWindow()
         {
             InitializeComponent();
+            Left   = Properties.Settings.Default.MainWindow_Left;
+            Top    = Properties.Settings.Default.MainWindow_Top;
+            Width  = Properties.Settings.Default.MainWindow_Width;
+            Height = Properties.Settings.Default.MainWindow_Height;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Properties.Settings.Default.MainWindow_Width = Width;
+            Properties.Settings.Default.MainWindow_Left   = Left;
+            Properties.Settings.Default.MainWindow_Top    = Top;
+            Properties.Settings.Default.MainWindow_Width  = Width;
             Properties.Settings.Default.MainWindow_Height = Height;
             Properties.Settings.Default.Save();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

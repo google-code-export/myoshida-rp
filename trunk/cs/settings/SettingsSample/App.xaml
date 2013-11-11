@@ -1,9 +1,8 @@
 ﻿<Application x:Class="SettingsSample.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:prop="clr-namespace:SettingsSample.Properties"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <prop:Settings x:Key="sett" />
+        
     </Application.Resources>
 </Application>
