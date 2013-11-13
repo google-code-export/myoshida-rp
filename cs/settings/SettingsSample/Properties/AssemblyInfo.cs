@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("SettingsSample")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("FJ-USER")]
+[assembly: AssemblyCompany("yohshiy")]
 [assembly: AssemblyProduct("SettingsSample")]
-[assembly: AssemblyCopyright("Copyright © FJ-USER 2013")]
+[assembly: AssemblyCopyright("Copyright © yohshiy 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
