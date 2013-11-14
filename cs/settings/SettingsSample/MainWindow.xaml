@@ -1,7 +1,7 @@
 ﻿<Window x:Class="SettingsSample.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Closing="Window_Closing" Width="{Binding Path=MainWindow_Width, Source={StaticResource sett}}" Height="{Binding Path=MainWindow_Height, Source={StaticResource sett}}">
+        Title="MainWindow" Closing="Window_Closing" Width="{Binding Path=MainWindow_Width, Source={StaticResource sett}}" Left="{Binding Source={StaticResource sett}, Path=MainWindow_Left}" Top="{Binding Source={StaticResource sett}, Path=MainWindow_Top}" Height="{Binding Source={StaticResource sett}, Path=MainWindow_Height}">
     <Grid>
         
     </Grid>
