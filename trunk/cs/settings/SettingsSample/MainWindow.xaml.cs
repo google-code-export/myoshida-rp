@@ -26,11 +26,16 @@ namespace SettingsSample
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Properties.Settings.Default.MainWindow_Left   = Left;
-            Properties.Settings.Default.MainWindow_Top    = Top;
-            Properties.Settings.Default.MainWindow_Width  = Width;
-            Properties.Settings.Default.MainWindow_Height = Height;
-            Properties.Settings.Default.Save();
+            if (WindowState == WindowState.Normal)
+            {
+                // ウィンドウの値を Settings に格納
+                Properties.Settings.Default.MainWindow_Left = Left;
+                Properties.Settings.Default.MainWindow_Top = Top;
+                Properties.Settings.Default.MainWindow_Width = Width;
+                Properties.Settings.Default.MainWindow_Height = Height;
+                // ファイルに保存
+                Properties.Settings.Default.Save();
+            }
         }
     }
 }
