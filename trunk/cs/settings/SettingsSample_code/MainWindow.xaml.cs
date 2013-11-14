@@ -22,6 +22,8 @@ namespace SettingsSample
         public MainWindow()
         {
             InitializeComponent();
+
+            // Settings の値をウィンドウに反映
             Left   = Properties.Settings.Default.MainWindow_Left;
             Top    = Properties.Settings.Default.MainWindow_Top;
             Width  = Properties.Settings.Default.MainWindow_Width;
@@ -30,16 +32,13 @@ namespace SettingsSample
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            // ウィンドウの値を Settings に格納
             Properties.Settings.Default.MainWindow_Left   = Left;
             Properties.Settings.Default.MainWindow_Top    = Top;
             Properties.Settings.Default.MainWindow_Width  = Width;
             Properties.Settings.Default.MainWindow_Height = Height;
+            // ファイルに保存
             Properties.Settings.Default.Save();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="SettingsSample.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Closing="Window_Closing" Width="403" Height="291" Loaded="Window_Loaded">
+        Title="MainWindow" Closing="Window_Closing" Width="403" Height="291">
     <Grid>
         
     </Grid>
