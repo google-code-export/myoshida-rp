@@ -3,33 +3,37 @@
   (:require [clojure.pprint :refer [pprint]])
   (:gen-class))
 
-(def cli-options
-  ;; An option with a required argument
+
+;; オプション仕様定義
+(def option-spec
+  ;; ショート形式 ロング形式 [オプション説明] [追加設定(キーと値) ...]
   [["-h" "--help" "Show help."]
-   ["-v" "--version" "Show program version."]
-   ["-p" "--port PORT" "Port number"
-    :default 80
-    :parse-fn #(Integer/parseInt %)
-    :validate [#(< 0 % 0x10000) "Must be a number between 0 and 65536"]]
-   ;; A non-idempotent option
-   ["-V" nil "Verbosity level"
-    :id :verbosity
-    :default 0
-    :assoc-fn (fn [m k _] (update-in m [k] inc))]
+   ;; デフォルト値を設定
+   ["-v" "--version" "Show program version." :default false]
+   ;; ショート形式を省略するときは nil
+   [nil "--verbose" "Output log verbosity."]
+
+   ;; 引数を取るオプション
+   ["-o" "--output FILE" "Output file path"
+    :default "a.out"
+    ]
+   ;; assoc-fn 指定
    ["-e" "--expr PATTERN" "Regular expression pattern"
     :assoc-fn
     (fn [m k v]
-      ;(println (str "k=" m ", k=" k ", v=" v))
+      ;(println (str "m=" m ", k=" k ", v=" v))
       (assoc m k
-             (if (contains? m k)
-               (conj (get m k) v)
-               [v])))
+             (let [vec (get m k)]
+               (if vec (conj vec v) [v])))
+      )
     ]
    ;; A boolean option defaulting to nil
-   ["-o" "--output FILE" "Output file path"]
    ])
+
 
 (defn -main
   "Command line option parse sample program."
   [& args]
-  (pprint (parse-opts args cli-options)))
+  (pprint
+   ;; (parse-opts 引数リスト オプション仕様
+   (parse-opts args option-spec)))
