@@ -2,12 +2,16 @@
   (:require [clojure.tools.cli :refer [parse-opts]]
             [clojure.pprint :refer [pprint]]
             [clojure.string :as string]
-            (:gen-class)))
+            (:gen-class))
+  (:import (java.io PrintWriter InputStreamReader))
+  )
+(use 'clojure.java.io)
+
 
 (def program-name "simpcat")
 (def program-version "0.0.1")
   
-;; オプション仕様定義
+;; 繧ｪ繝励す繝ｧ繝ｳ莉墓ｧ伜ｮ夂ｾｩ
 (def option-spec
   [["-h" "--help" "Show help."]
    ["-v" "--version" "Show program version."]
@@ -31,16 +35,32 @@
 
 
 (defn exit [status msg]
-  (.println (if (= status 0) *out* *err*)  msg)
+  (.println (if (= status 0) System/out *err*)  msg)
   (System/exit status))
+
+
+(defn catfile [fin fout]
+  (doseq [str (line-seq fin)]
+    (.println fout str)))  
+
+(defn cat-files [fpaths out]
+  (if (empty? fpaths)
+    (catfile (InputStreamReader. System/in) out)
+    (doseq [fpath fpaths]
+      (with-open [fin (reader fpath)]
+        (catfile fin out)
+        )))
+  )
 
 (defn -main [& args]
   (let [{:keys [options arguments errors summary]} (parse-opts args option-spec)]
-    ;; Handle help and error conditions
+    ;; 荳ｭ譁ｭ蜃ｦ逅�
     (cond
      (:help options) (exit 0 (usage summary))
      (:version options) (exit 0 version-msg)
      errors (exit 1 (errs-msg errors)))
-    (pprint options)
-    (pprint arguments)
+    (if (:output options)
+      (with-open [fout (PrintWriter. (writer (:output options)))]
+        (cat-files arguments fout))
+      (cat-files arguments System/out))
     ))
