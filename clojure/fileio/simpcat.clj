@@ -1,17 +1,21 @@
 
 (use 'clojure.java.io)
-
+(import (java.io PrintWriter))
 
 (defn catfile [fin fout]
   (doseq [str (line-seq fin)]
-    (.println fout str)))
-  
+    (.println fout str)))  
 
 
-(doseq [fpath *command-line-args*]
-  (let [fout (new java.io.PrintWriter "test.out")]
-    (with-open [fin (reader "test.txt")]
-      (catfile fin fout)
-      )))
+(with-open [fout (PrintWriter. (writer "test.out"))]
+  (.println fout "Hello world!!")
+  (.println System/out "Hello world!!")
+  )
+
+;; (doseq [fpath *command-line-args*]
+;;   (let [fout (PrintWriter. "test.out"]
+;;     (with-open [fin (reader "test.txt")]
+;;       (catfile fin fout)
+;;       )))
 
 
