@@ -1,10 +1,7 @@
 (ns cmdsamp.core
   (:require [clojure.tools.cli :refer [parse-opts]]
-            [clojure.pprint :refer [pprint]]
             [clojure.string :as string]
-            (:gen-class))
-  (:import (java.io PrintWriter InputStreamReader))
-  )
+            (:gen-class)))
 (use 'clojure.java.io)
 
 
@@ -22,37 +19,29 @@
    ])
 
 (defn print-version []
-  (println-str program-name " Ver. " program-version))
-
+  (println program-name " Ver. " program-version))
 
 (defn print-usage [options-summary]
-  (println-str
+  (println
    "Usage: " program-name " [Options] FILE [...]\n\n"
    "FILE: Input file path.\n\n"
    "Options:\n"
    options-summary))
 
 (defn print-err-msg [errors]
-  (let [errmsgs (if (vector? errmsgs) errors [errors])]
+  (let [errmsgs (if (vector? errors) errors [errors])]
     (.println *err* (string/join
                      \newline (map #(str program-name ":Error:" %1) errmsgs)))
     ))
-
-
-(defn exit [status msg]
-  (.println (if (= status 0) System/out *err*)  msg)
-  (System/exit status))
-
-
 
 (defn -main [& args]
   (let [{:keys [options arguments errors summary]} (parse-opts args option-spec)]
     ;; 中断処理
     (cond
-     ;; -h
+     ;; --help
      (:help options)
      (do (print-usage summary) (System/exit 0))
-     ;; -v
+     ;; --verion
      (:version options)
      (do (print-version) (System/exit 0))
      ;; 解析時のエラー
@@ -65,6 +54,6 @@
          (System/exit 1))
      )
     ;; アプリの処理
-    (println-str "Options   : " options)
-    (println-str "Arguments : " arguments)
+    (println "Options   : " options)
+    (println "Arguments : " arguments)
     ))
