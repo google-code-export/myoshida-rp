@@ -17,15 +17,14 @@
    ["-e" "--expr PATTERN" "Regular expression pattern"
     :assoc-fn
     (fn [m k v]
-      ; (println (str "m=" m ", k=" k ", v=" v))
-      ; (assoc m k v)
+      ;; (println (str "m=" m ", k=" k ", v=" v))
+      ;; (assoc m k v)
       (assoc m k
              (let [vec (get m k)]
                (if vec (conj vec v) [v])))
       )
     ]
    ])
-
 
 (defn -main
   "Command line option parse sample program."
