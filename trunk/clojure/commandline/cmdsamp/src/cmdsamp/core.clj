@@ -12,7 +12,7 @@
   [["-h" "--help" "Show help."]
    ["-v" "--version" "Show program version."]
    [nil  "--verbose" "Output log verbosity."]
-   ["-o" "--output FILE" "Output file path (Default: \"a.out\")"
+   ["-o" "--output OUT_FILE" "Output file path (Default: \"a.out\")"
     :default "a.out"
     ]
    ])
@@ -31,6 +31,7 @@
     (.println *err* (join \newline
                           (map #(str program-name ":Error:" %1) errmsgs)))
     ))
+
 
 (defn -main [& args]
   (let [{:keys [options arguments errors summary]} (parse-opts args option-spec)]
