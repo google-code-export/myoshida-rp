@@ -24,7 +24,7 @@
 (defn usage [options-summary]
   (str
    "Usage: " program-name " [Options] [FILE ...]\n\n"
-   "FILE: Input file path.\n\n"
+   "FILE: Input file path.  (Default: standard input)\n\n"
    "Options:\n"
    options-summary))
 
