@@ -45,7 +45,7 @@
 (defn cat-files [fpaths fout]
   (if-not (empty? fpaths)
     (doseq [fpath fpaths]
-      (with-open [fin (reader fpath)]
+      (with-open [fin (reader fpath :encoding "JISAutoDetect")]
         (print-file fin fout)
         ))
     (print-file (reader System/in) fout)
@@ -56,7 +56,7 @@
     ;; 中断処理
     (cond
      (:help options) (exit 0 (usage summary))
-     (:version options) (exit 0 version-msg)
+     (:version options) (exit 0 (version-msg))
      errors (exit 1 (errs-msg errors)))
     (if (:output options)
       (with-open [fout (PrintWriter. (writer (:output options)))]
