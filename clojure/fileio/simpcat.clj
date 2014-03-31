@@ -12,6 +12,9 @@
   (.println System/out "Hello world!!")
   )
 
+(println (class (writer *out*)))
+
+
 ;; (doseq [fpath *command-line-args*]
 ;;   (let [fout (PrintWriter. "test.out"]
 ;;     (with-open [fin (reader "test.txt")]
@@ -19,3 +22,15 @@
 ;;       )))
 
 
+;; (defn catfile [fin]
+;;   (println (class fin))
+;;   (doseq [str (line-seq fin)]
+;;     (println str)))
+
+;; (with-open [fin (reader "test.txt")]
+;;   (catfile fin))
+
+
+;; (println (class (reader *in*)))
+;; (println (class (reader System/in)))
+;; (catfile (reader System/in))
