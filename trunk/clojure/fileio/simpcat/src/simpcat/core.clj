@@ -1,11 +1,10 @@
 (ns simpcat.core
   (:require [clojure.tools.cli :refer [parse-opts]]
-            [clojure.pprint :refer [pprint]]
-            [clojure.string :as string]
+            [clojure.string :refer [join]]
             (:gen-class))
+  (:use [clojure.java.io])
   (:import (java.io PrintWriter InputStreamReader))
   )
-(use 'clojure.java.io)
 
 
 (def program-name "simpcat")
@@ -30,7 +29,7 @@
    options-summary))
 
 (defn errs-msg [errs]
-  (string/join
+  (join
    \newline (map #(str program-name ":Error:" %1) errs)))
 
 
@@ -39,18 +38,18 @@
   (System/exit status))
 
 
-(defn catfile [fin fout]
+(defn print-file [fin fout]
   (doseq [str (line-seq fin)]
     (.println fout str)))  
 
-(defn cat-files [fpaths out]
-  (if (empty? fpaths)
-    (catfile (InputStreamReader. System/in) out)
+(defn cat-files [fpaths fout]
+  (if-not (empty? fpaths)
     (doseq [fpath fpaths]
       (with-open [fin (reader fpath)]
-        (catfile fin out)
-        )))
-  )
+        (print-file fin fout)
+        ))
+    (print-file (reader System/in) fout)
+    ))
 
 (defn -main [& args]
   (let [{:keys [options arguments errors summary]} (parse-opts args option-spec)]
