@@ -3,5 +3,5 @@
 
 (with-open [fin (reader "test.txt")]
   (doseq [str (line-seq fin)]
-    (println str)
-  ))
+    (println str))
+  )
