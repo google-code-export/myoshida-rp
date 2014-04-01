@@ -45,7 +45,7 @@
 (defn cat-files [fpaths fout]
   (if-not (empty? fpaths)
     (doseq [fpath fpaths]
-      (with-open [fin (reader fpath :encoding "JISAutoDetect")]
+      (with-open [fin (reader fpath)]
         (print-file fin fout)
         ))
     (print-file (reader System/in) fout)
