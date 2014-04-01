@@ -58,6 +58,7 @@
      (:help options) (exit 0 (usage summary))
      (:version options) (exit 0 (version-msg))
      errors (exit 1 (errs-msg errors)))
+    ;; アプリケーション処理
     (if (:output options)
       (with-open [fout (PrintWriter. (writer (:output options)))]
         (cat-files arguments fout))
