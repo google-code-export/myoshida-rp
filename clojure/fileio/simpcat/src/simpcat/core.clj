@@ -14,7 +14,7 @@
 (def option-spec
   [["-h" "--help" "Show help."]
    ["-v" "--version" "Show program version."]
-   ["-o" "--output FILE" "Output file path (Default: standard output)"]
+   ["-o" "--output OUT_FILE" "Output file path (Default: standard output)"]
    ])
 
 (defn version-msg []
