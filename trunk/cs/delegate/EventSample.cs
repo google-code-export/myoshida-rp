@@ -1,7 +1,7 @@
 ﻿//
 // event のサンプル
 //
-// コンパイル : csc SimpleEventSample.cs
+// コンパイル : csc EventSample.cs
 
 using System;
 
@@ -13,14 +13,14 @@ namespace EventSample
     class Button
     {
 	// イベント
-	// (クラス定義内でしか event は定義できない)
-	public event HelloDelegate SomeEvent;
+	// (クラス定義内でしか event は使えない)
+	public event HelloDelegate SomeEvent = delegate(string name){};
 
-	// イベントを発生させる
+	// イベントの発生
 	public void Clicked(string name)
 	{
-	    // イベントの発生
-	    // (直接には Foo クラス内でしか呼べない)
+	    // 登録した関数を呼び出す
+	    // (直接には Foo クラス内でしか実行できない)
 	    SomeEvent(name);
 	}
     }

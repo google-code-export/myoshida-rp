@@ -1,7 +1,7 @@
 ﻿//
 // event のサンプル
 //
-// コンパイル : csc SimpleEventSample.cs
+// コンパイル : csc DelegateSample.cs
 
 using System;
 
@@ -33,9 +33,9 @@ namespace DelegateSample
 	    Foo foo = new Foo();
 
 	    // delegate の変数
-	    HelloDelegate funcs = delegete(){};
+	    HelloDelegate funcs = delegate(string name){};
     	    
-    	    funcs = foo.Hello;		// メソッドの格納
+    	    funcs += foo.Hello;		// メソッドの格納
     	    funcs += StaticHello;	// static 関数の格納
 	    // 無名関数の格納
     	    funcs += (string name) => {
