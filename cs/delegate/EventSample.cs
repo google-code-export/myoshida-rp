@@ -19,6 +19,7 @@ namespace EventSample
 	// イベントの発生
 	public void Clicked(string name)
 	{
+	    Console.WriteLine("<Button Clicked>");
 	    // 登録した関数を呼び出す
 	    // (直接には Foo クラス内でしか実行できない)
 	    SomeEvent(name);
