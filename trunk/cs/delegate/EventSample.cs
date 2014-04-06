@@ -21,7 +21,7 @@ namespace EventSample
 	{
 	    Console.WriteLine("<Button Clicked>");
 	    // 登録した関数を呼び出す
-	    // (直接には Foo クラス内でしか実行できない)
+	    // (直接には Button クラス内でしか実行できない)
 	    SomeEvent(name);
 	}
     }
