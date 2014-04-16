@@ -24,37 +24,31 @@
 
 ;;; Code:
 
-
 (defconst vs-c-style
   `("bsd"
+    (tab-width . 4)
+    (c-basic-offset . 4)
     (c-recognize-knr-p . nil)
     (c-enable-xemacs-performance-kludge-p . t) ; speed up indentation in XEmacs
-    (c-basic-offset . 4)
+    (c-offsets-alist . ((inline-open . 0)
+                        (substatement-open . 0)
+                        (case-label . +)
+                        (statement-case-open . 0)
+                        (case-label . 0)))
     (c-hanging-braces-alist . ((defun-open          before after)
                                (defun-close 	    before after)
                                (class-open  	    before after)
                                (class-close 	    before)
-                               (inexpr-class-open   before after)
-                               (inexpr-class-close  before after)
                                (namespace-open      before after)
                                (namespace-close     before after)
 			       (inline-open  	    before after)
                                (inline-close 	    before after)
                                (block-open   	    before after)
                                (block-close  	    before after)
-                               (extern-lang-open    before after)
-                               (extern-lang-close   before after)
-                               (statement-case-open before after)
+                               (statement-case-open after)
                                (substatement-open   before after)
 			       ))
-    (c-offsets-alist . ((inline-open . 0)
-                        (substatement-open . 0)
-                        (case-label . +)
-                        (statement-case-open . 0)
-                        (case-label . 0)))
-    (c-hanging-colons-alist . ((case-label)
-                               (label after)
-                               (access-label after)
+    (c-hanging-colons-alist . ((access-label after)
                                (member-init-intro before)))
     (c-hanging-semi&comma-criteria . (c-semi&comma-inside-parenlist))
     (c-cleanup-list . (defun-close-semi
