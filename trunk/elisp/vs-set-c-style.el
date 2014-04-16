@@ -30,10 +30,7 @@
     (c-basic-offset . 4)
     (c-recognize-knr-p . nil)
     (c-enable-xemacs-performance-kludge-p . t) ; speed up indentation in XEmacs
-    (c-offsets-alist . ((inline-open . 0)
-                        (substatement-open . 0)
-                        (case-label . +)
-                        (statement-case-open . 0)
+    (c-offsets-alist . ((statement-case-open . +)
                         (case-label . 0)))
     (c-hanging-braces-alist . ((defun-open          before after)
                                (defun-close 	    before after)
@@ -48,8 +45,11 @@
                                (statement-case-open after)
                                (substatement-open   before after)
 			       ))
-    (c-hanging-colons-alist . ((access-label after)
-                               (member-init-intro before)))
+    (c-hanging-colons-alist . ((case-label after)
+			       (label after)
+			       (access-label after)
+                               (member-init-intro before)
+			       ))
     (c-hanging-semi&comma-criteria . (c-semi&comma-inside-parenlist))
     (c-cleanup-list . (defun-close-semi
     		       list-close-comma
