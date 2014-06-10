@@ -1,13 +1,13 @@
-﻿// コンパイル : csc util.cs select.cs
+﻿// コンパイル : csc StdQueryOperators.cs
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace StdQuerySample
+namespace LinqSample
 {
-    class Program
+    class StdQueryOperators
     {
 	static string Dump<TSource>(IEnumerable<TSource> source)
 	{
@@ -40,8 +40,7 @@ namespace StdQuerySample
 	    };
 	    Console.WriteLine("src  = {0}", Dump(possrc));
 	    var sorted = possrc.OrderBy(elem => elem.x).ThenBy(elem => elem.y);
-	    Console.WriteLine("sort = {0}", Dump(sorted));
-	    
+	    Console.WriteLine("sort = {0}", Dump(sorted));	    
 	}
     }
 }
