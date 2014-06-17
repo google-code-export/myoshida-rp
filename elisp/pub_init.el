@@ -55,7 +55,7 @@
   (interactive "P")
   (if (or (eq last-command this-command)
 	  next-p)
-      (find-tag last-tag next-p)
+      (find-tag last-tag t)
     (call-interactively 'find-tag)))
 
 
