@@ -34,22 +34,28 @@
 
 ;; tags 機能
 
-(global-set-key (kbd "C-.") 'pop-tag-mark)
+(global-set-key (kbd "M-,") 'pop-tag-mark)
 (global-set-key (kbd "M-.") 'my-find-tag)
-(global-set-key (kbd "C-\\") 'my-tags-search)
+(global-set-key (kbd "C-.") 'my-tags-search)
 
-(defun my-tags-search ()
-  (interactive)
-  (ring-insert find-tag-marker-ring (point-marker))
-  (if (eq last-command this-command)
-      (tags-loop-continue)
-    (call-interactively 'tags-search)))
+(defun my-tags-search (next-p)
+  (interactive "P")
+  (let ((curpos (point)) (curbuf (current-buffer))
+	(curmark (point-marker)))
+    (if (or (eq last-command this-command)
+	    next-p)
+	(tags-loop-continue)
+      (call-interactively 'tags-search))
+    (if (or (not (eq curpos (point)))
+	    (not (eq curbuf (current-buffer))))
+	(ring-insert find-tag-marker-ring curmark))))
   
 
-(defun my-find-tag ()
-  (interactive)
-  (if (eq last-command this-command)
-      (find-tag last-tag t)
+(defun my-find-tag (next-p)
+  (interactive "P")
+  (if (or (eq last-command this-command)
+	  next-p)
+      (find-tag last-tag next-p)
     (call-interactively 'find-tag)))
 
 
@@ -77,7 +83,11 @@
 
 
 ;; 削除
-(global-set-key (kbd "<backspace>") 'my-hungry-backspace)
+;; (global-set-key (kbd "<backspace>") 'my-hungry-backspace)
+
+;; (add-hook 'eshell-mode-hook '(lambda ()
+;; 			       (local-set-key (kbd "<backspace>") 'backward-delete-char)))
+
 (defun my-hungry-backspace (beg end)
   "Delete the preceding character or whitespace."
   (interactive "r")
@@ -87,5 +97,7 @@
       (skip-chars-backward "[\n\r\f\v\\s ]")
       (if (/= (point) here)
 	  (delete-region (point) here)
-	(backward-delete-char-untabify 1))
-      )))
+	(backward-delete-char 1)))))
+
+
+
