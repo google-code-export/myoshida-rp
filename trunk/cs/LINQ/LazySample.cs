@@ -11,12 +11,13 @@ namespace LinqSample
 {
     class LazySample
     {
-	public static IEnumerable<string> ReadHeaderLines(string fpath, int linecnt)
+	public static IEnumerable<int> ReadValues(string fpath)
 	{
-	    var ptn = new Regex(@"^\s*(#.*)?$");
+	    var ptn = new Regex(@"\d+");
 	    return File.ReadLines(fpath)
-		.Where(line => !ptn.IsMatch(line))
-		.Take(linecnt);
+		.Select(line => ptn.Match(line).Value)
+		.Where(str => !String.IsNullOrEmpty(str))
+		.Select(str => int.Parse(str));
 	}   
 	
 	public static void Main(string[] args)
@@ -26,9 +27,9 @@ namespace LinqSample
 		Console.WriteLine("LazySample.exe INFILE");
 		return;
 	    }
-	    foreach (string line in ReadHeaderLines(args[0], 3))
+	    foreach (int val in ReadValues(args[0]))
 	    {
-		Console.WriteLine(line);
+		Console.WriteLine("{0}", val);
 	    }
 	}
     }
