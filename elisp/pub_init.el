@@ -38,6 +38,9 @@
 (global-set-key (kbd "M-.") 'my-find-tag)
 (global-set-key (kbd "C-.") 'my-tags-search)
 
+(global-set-key (kbd "<M-right>") 'my-find-tag)
+(global-set-key (kbd "<M-left>") 'pop-tag-mark)
+
 (defun my-tags-search (next-p)
   (interactive "P")
   (let ((curpos (point)) (curbuf (current-buffer))
